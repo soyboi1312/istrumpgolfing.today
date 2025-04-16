@@ -9,7 +9,186 @@ interface StatusData {
 
 export const statusData: StatusData = {
     events: {
-        // ... (keep existing event data)
+        '2025-04-13': {
+            location: 'West Palm Beach, FL',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf_departure',
+        },
+        '2025-04-12':{
+            location: 'West Palm Beach, FL',
+            url: 'https://www.yahoo.com/news/trump-arrives-round-golf-trump-161622589.html',
+            type: 'golf'
+            },
+        '2025-04-11':{
+            location: 'West Palm Beach, FL',
+            url: 'https://www.yahoo.com/news/trump-arrives-round-golf-trump-161622589.html',
+            type: 'arrival'
+            },
+        '2025-04-06': {
+            location: 'West Palm Beach, FL',
+            url: 'https://thehill.com/homenews/administration/5234982-trump-golfing-video-truth/',
+            type: 'golf_departure'
+        },
+        '2025-04-05': {
+            location: 'Jupiter, FL',
+            url: 'https://www.newsweek.com/donald-trump-golf-win-announcement-sparks-backlash-tariff-fallout-2055892',
+            type: 'golf'
+        },
+        '2025-04-04': {
+            location: 'West Palm Beach, FL',
+            url: 'https://apnews.com/article/donald-trump-tariffs-golf-813c7a300021445636f63fddbfd38c83',
+            type: 'golf'
+        },
+        '2025-04-03': {
+            location: 'Florida',
+            url: '',
+            type: 'arrival'
+        },
+        '2025-03-30': {
+            location: 'West Palm Beach, FL',
+            url: 'https://apnews.com/article/donald-trump-tariffs-golf-813c7a300021445636f63fddbfd38c83',
+            type: 'golf_departure'
+        },
+        '2025-03-29': {
+            location: 'West Palm Beach, FL',
+            url: 'https://www.instagram.com/lindseygrahamsc/p/DHzDPcXtL0_/',
+            type: 'golf'
+        },
+        '2025-03-28': {
+            location: 'Florida',
+            url: '',
+            type: 'arrival'
+        },
+        '2025-03-23': {
+            location: 'Philly',
+            url: '',
+            type: 'departure',
+        },
+        '2025-03-22': {
+            location: 'Bedminster, NJ',
+            url: 'https://www.motherjones.com/politics/2025/03/while-washington-dc-burns-trump-golfs/',
+            type: 'golf'
+        },
+        '2025-03-21': {
+            location: 'New Jersey',
+            url: '',
+            type: 'arrival'
+        },
+        '2025-03-16': {
+            location: 'West Palm Beach, FL',
+            url: 'https://www.newsweek.com/trump-touts-great-honor-winning-tournament-his-own-golf-course-2045666',
+            type: 'golf_departure'
+        },
+        '2025-03-15': {
+            location: 'West Palm Beach, FL',
+            url: 'https://www.newsweek.com/trump-touts-great-honor-winning-tournament-his-own-golf-course-2045666',
+            type: 'golf'
+        },
+        '2025-03-14': {
+            location: 'Florida',
+            url: '',
+            type: 'arrival'
+        },
+        '2025-03-09': {
+            location: 'West Palm Beach, FL',
+            url: '',
+            type: 'golf_departure'
+        },
+        '2025-03-08': {
+            location: 'West Palm Beach, FL',
+            url: '',
+            type: 'golf'
+        },
+        '2025-03-07': {
+            location: 'Florida',
+            url: '',
+            type: 'arrival'
+        },
+        '2025-03-02': {
+            location: 'West Palm Beach, FL',
+            url: 'https://www.independent.co.uk/news/world/americas/us-politics/trump-playing-golf-florida-cost-b2711532.html',
+            type: 'golf_departure'
+        },
+        '2025-03-01': {
+            location: 'Mar-a-Lago',
+            url: 'https://www.independent.co.uk/news/world/americas/us-politics/trump-playing-golf-florida-cost-b2711532.html',
+            type: 'golf'
+        },
+        '2025-02-28': {
+            location: 'Florida',
+            url: '',
+            type: 'arrival'
+        },
+        '2025-02-19': {
+            location: 'Mar-a-Lago',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'golf_departure'
+        },
+        '2025-02-18': {
+            location: 'West Palm Beach, FL',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'golf'
+        },
+        '2025-02-17': {
+            location: 'Mar-a-Lago',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'golf'
+        },
+        '2025-02-15': {
+            location: 'West Palm Beach, FL',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'golf'
+        },
+        '2025-02-14': {
+            location: 'Florida',
+            url: '',
+            type: 'arrival'
+        },
+        '2025-02-09': {
+            location: 'Mar-a-Lago',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'golf_departure'
+        },
+        '2025-02-08': {
+            location: 'West Palm Beach, FL',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'golf'
+        },
+        '2025-02-07': {
+            location: 'Florida',
+            url: '',
+            type: 'arrival'
+        },
+        '2025-02-02': {
+            location: 'Mar-a-Lago',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'golf_departure'
+        },'2025-02-01': {
+            location: 'Mar-a-Lago',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'golf'
+        },
+        '2025-01-31': {
+            location: 'Florida',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'arrival'
+        },
+        '2025-01-27': {
+            location: 'Doral, FL',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'golf_departure',
+            duration: 3
+        },
+        '2025-01-26': {
+            location: 'Doral, FL',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'golf'
+        },
+        '2025-01-25': {
+            location: 'Florida',
+            url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
+            type: 'arrival'
+        },
     },
     termStart: new Date(2025, 0, 19),
     tripCost: 3400000,
