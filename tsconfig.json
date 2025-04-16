@@ -18,10 +18,9 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "types": ["react", "next"], // Changed from "next/types"
+    "types": [], 
     "typeRoots": [
       "node_modules/@types",
-      "node_modules/next/types", // Explicit path to Next.js types
       "./types"
     ]
   },
