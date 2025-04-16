@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import { useMemo, FC } from 'react';
 import styles from '../styles/Home.module.css';
 import { EventData, Events } from '../types';
