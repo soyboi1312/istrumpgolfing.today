@@ -1,0 +1,489 @@
+/* styles/Home.module.css */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.container {
+  background-color: #000;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.status {
+  font-size: 5rem;
+  font-weight: 900;
+  /* Extra bold */
+  text-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 0, 0, 0.3);
+  margin: 1rem 0 2rem;
+  position: relative;
+  display: block;
+}
+
+.statusYes {
+  color: #fff;
+  text-shadow:
+    0 4px 10px rgba(0, 0, 0, .5),  /* Base shadow */
+    0 2px 20px rgba(235, 149, 50, 0.6),  /* Core glow */
+    0 4px 30px rgba(235, 149, 50, 0.4);  /* Subtle outer glow */
+}
+
+.statusNo {
+  color: #fff;
+  -webkit-text-stroke: 3px #000;
+  text-shadow:
+    0 4px 10px rgba(0, 0, 0, .5),  /* Base shadow */
+    0 2px 20px rgba(235, 149, 50, 0.6),  /* Core glow */
+    0 4px 30px rgba(235, 149, 50, 0.4);  /* Subtle outer glow */
+}
+
+.golfImage {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 20px 0;
+  text-align: center;
+  object-fit: cover;
+  transform: scale(0.9);
+  transform-origin: center;
+}
+
+.blurb {
+  line-height: 1.4;
+  margin: 20px 0;
+  padding: 20px 15px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  contain: content;
+  content-visibility: auto;
+  min-height: 185px; /* Adjust based on your content height */
+  overflow: hidden;
+  grid-template-rows: repeat(5, auto); /* Match number of text lines */
+  gap: 0.5rem;
+}
+
+.blurb a {
+  color: white;
+  display: inline-block;
+  padding: 4px 0;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.2s ease-in-out;
+}
+
+.blurb span {
+  display: inline-block;
+  min-width: 0.5em; /* Prevent number width changes */
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .blurb {
+    font-size: 1rem;
+    padding: 15px 12px;
+    margin: 15px 10px; /* Add horizontal margin */
+    text-align: center; /* Ensure center alignment */
+  }
+  
+  /* Fix potential image centering */
+  .golfImage {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
+.legend {
+  text-align: center;
+  font-size: small;
+  margin: 20px 0;
+  color: #ccc;
+}
+
+.legendColor {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: #ffa500;
+  margin-right: 3px;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+
+.tableCell {
+  background-color: inherit;
+}
+
+.calendarTable {
+  margin: 10px auto;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #1a1a1a;
+}
+
+.calendarTable th,
+.calendarTable td {
+  font-size: 1rem;
+  padding: 10px;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.calendarTable th {
+  background-color: #2d2d2d;
+}
+
+@media (max-width: 768px) {
+  .calendarTable {
+    font-size: 16px;
+  }
+
+  .calendarTable td {
+    padding: 8px;
+  }
+}
+
+.eventDay {
+  background-color: #ffa500 !important;
+  color: #000 !important;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  overflow: visible !important;
+}
+
+.eventDay:hover {
+  background-color: #ff8c00;
+}
+
+.arrivalDay {
+  position: relative;
+  overflow: visible !important; /* Override hidden overflow */
+}
+
+.arrivalDay::after {
+  content: '';
+  position: absolute;
+  bottom: 0; /* Adjust positioning */
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 16px 16px 0 0; /* Smaller triangle */
+  border-color: transparent #666 transparent transparent; 
+  z-index: 2;
+}
+
+
+/* For golf arrivals */
+.golf_arrival::after {
+  border-color: transparent #666 transparent transparent; 
+}
+
+.departureDay {
+  position: relative;
+  overflow: visible !important;
+}
+
+.departureDay::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 14px 14px 0 0; /* Smaller triangle */
+  border-color: #666 transparent transparent transparent; /* White color */
+  z-index: 2;
+}
+
+.eventDay:not(.arrivalDay):not(.departureDay) {
+  background-color: #ffa500 !important;
+}
+
+.golf_arrival {
+  background-color: #ffa500 !important;
+  position: relative;
+}
+
+.golf_arrival::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 16px 16px 0 0;
+  border-color: transparent #666 transparent transparent; /* White on orange */
+}
+
+.golf_departure {
+  background-color: #ffa500 !important;
+  position: relative;
+}
+
+.golf_departure::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 20px 0 0;
+  border-color: #666 transparent transparent transparent; 
+}
+
+.arrivalDay::after, .golf_arrival::after {
+  bottom: 0;
+  right: 0;
+  border-width: 16px 16px 0 0; /* Slightly larger */
+}
+
+.departureDay::after, .golf_departure::after {
+  top: 0;
+  left: 0;
+  border-width: 16px 16px 0 0; /* Slightly larger */
+}
+
+.futureDay {
+  background-color: #333 !important;
+  color: #666 !important;
+  cursor: default !important;
+}
+
+.futureDay.eventDay {
+  background-color: #664400 !important;
+  color: #888 !important;
+}
+
+.futureDay.eventDay.arrivalDay::after{
+  border-color: transparent #666 transparent transparent;
+}
+
+.futureDay.eventDay.departureDay::after {
+  border-color: #666 transparent transparent transparent;
+}
+
+.futureDay.golf_arrival::after {
+  border-color: transparent #664400 transparent transparent;
+}
+
+.futureDay.golf_departure::after {
+  border-color: #664400 transparent transparent transparent;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  will-change: transform;
+  transform: translate(-50%, -50%);
+  background-color: #2d2d2d;
+  border-radius: 4px;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.3s ease-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  padding: 15px;
+  border: 1px solid #fff;
+  max-width: 200px;
+  width: 90%;
+  line-height: 1.1;
+}
+
+.modalContent {
+  text-align: center;
+  font-size: small;
+}
+
+.closeIcon {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  transition: opacity 0.2s ease;
+}
+
+.closeIcon:hover {
+  opacity: 0.7;
+}
+
+.footer {
+  margin-top: 20px;
+  color: #888;
+  font-size: x-small;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px 0;
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  color: grey;
+}
+
+.socialIcon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin: 0 5px;
+  color: white;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.2s ease-in-out;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  justify-content: center
+}
+
+.socialIcon:hover {
+  opacity: 0.8;
+}
+
+.palestineIcon {
+  width: 48px;
+  height: 24px;
+  vertical-align: middle;
+  margin: 0 5px;
+  transition: opacity 0.2s ease-in-out;
+  border: 1px solid #222;
+}
+
+.palestineIcon:hover {
+  opacity: 0.8;
+}
+
+.cost {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 2.5em; /* Adjust based on max expected number width */
+  text-align: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: smaller;
+  line-height: 1;
+  padding: 0;
+}
+
+.costInfoPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2d2d2d;
+  border-radius: 4px;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.3s ease-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #fff;
+  max-width: 400px;
+  width: 90%;
+  padding: 10px;
+  z-index: 1001;
+  text-align: left;
+  font-size: small;
+  font-weight: bold;
+}
+
+.sourceLinkContainer {
+  margin-top: 5px;
+}
+
+.sourceLink {
+  color: #fff !important;
+  text-decoration: underline !important;
+  display: inline-block;
+  padding: 6px 6px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-size: x-small;
+  font-weight: normal;
+  text-underline-offset: 3px;
+}
+
+.sourcesList {
+  padding-left: 20px;
+  margin: 10px 0;
+  color: #ccc;
+  font-size: small;
+  font-weight: normal;
+}
+
+.sourcesList a {
+  font-size: small;
+  font-weight: none;
+  color: #ccc;
+}
+
+.sourcesList li {
+  margin-bottom: 12px;
+  line-height: 1;
+  list-style-type: disc;
+}
+
+.sourcesList li::marker {
+  color: #ffa500;
+}
+
+.costInfoLink {
+  color: #ffa500;
+  text-decoration: none;
+}
+
+.costInfoLink:hover {
+  color: #ff8c00;
+  text-decoration: underline;
+}
+
+.sourceButtonContainer {
+  margin: 5px 0;
+  text-align: center;
+}
+
+.sourceButton {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.6em;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
