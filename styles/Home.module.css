@@ -70,12 +70,14 @@
   border-radius: 10px;
   font-kerning: normal;
   text-rendering: optimizeLegibility;
-  contain: content;
-  content-visibility: auto;
   min-height: 185px; /* Adjust based on your content height */
   overflow: hidden;
-  grid-template-rows: repeat(5, auto); /* Match number of text lines */
-  gap: 0.5rem;
+  display: block; /* Switch to block layout */
+  height: auto; /* Let content dictate height */
+  min-height: 185px; /* Keep as fallback */
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  text-wrap: pretty;
 }
 
 .blurb a {
@@ -91,6 +93,17 @@
   display: inline-block;
   min-width: 0.5em; /* Prevent number width changes */
   transition: all 0.3s ease;
+  font-variant-numeric: tabular-nums;
+  min-width: 0; /* Override previous value */
+}
+
+.blurb p {
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+}
+
+.blurb p:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 768px) {
@@ -308,6 +321,7 @@
   max-width: 200px;
   width: 90%;
   line-height: 1.1;
+  will-change: opacity, transform;
 }
 
 .modalContent {

@@ -159,7 +159,8 @@ const Home: React.FC<HomeProps> = ({ events, termStart, tripCost, daysGolfed }) 
         <link rel="icon" type="image/png" sizes="32x32" href="/files/fav/favicon.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/files/fav/apple-touch-icon.png" />
         <title>Is Trump Golfing Today? Real-Time Tracker & Taxpayer Cost Calculator</title>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+          rel="stylesheet" />
       </Head>
 
       <main className={styles.main}>
@@ -169,6 +170,8 @@ const Home: React.FC<HomeProps> = ({ events, termStart, tripCost, daysGolfed }) 
           src={currentImage}
           alt="pic of fascist"
           className={styles.golfImage}
+          width={300}  // Add native width
+          height={300} // Add native height
           onLoad={() => setIsImageLoading(false)}
           style={{ opacity: isImageLoading ? 0 : 1 }}
         />
@@ -182,17 +185,24 @@ const Home: React.FC<HomeProps> = ({ events, termStart, tripCost, daysGolfed }) 
         </div>
 
         <div className={styles.blurb}>
-          Trump has golfed <span id="daysGolfed">{daysGolfed}</span> of the{' '}
-          <span id="daysSinceStart">{effectiveDaysSinceStart}</span> days ({percentage}%) since his second term began.<br /><br />
-          This has cost taxpayers{' '}
-          <span className={styles.cost}>
-            {`~$${(totalCost || 0).toLocaleString('en-US', {
-              maximumFractionDigits: 0
-            })}`}
-          </span>{' '}
-          across <strong>{totalTrips}</strong> golf trips.<br /><br />
-          During his first term, he golfed 293 days (20%), costing $151.5 million.<br /><br />
-          $1.75 million of that went to Secret Service accommodations at Trump-owned properties.<br />
+          <p>Trump has golfed <span id="daysGolfed">{daysGolfed}</span> of the{' '}
+            <span id="daysSinceStart">{effectiveDaysSinceStart}</span> days ({percentage}%)
+            since his second term began.
+          </p>
+
+          <p>This has cost taxpayers{' '}
+            <span className={styles.cost}>
+              {`~$${(totalCost || 0).toLocaleString('en-US', {
+                maximumFractionDigits: 0
+              })}`}
+            </span>{' '}
+            across <strong>{totalTrips}</strong> golf trips.
+          </p>
+
+          <p>During his first term, he golfed 293 days (20%), costing $151.5 million.</p>
+
+          <p>$1.75 million of that went to Secret Service accommodations at Trump-owned properties.</p>
+
           <div className={styles.sourceButtonContainer}>
             <button
               className={styles.sourceButton}
