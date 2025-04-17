@@ -177,7 +177,6 @@ export const statusData: StatusData = {
             location: 'Doral, FL',
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
             type: 'golf_departure',
-            duration: 3
         },
         '2025-01-26': {
             location: 'Doral, FL',
