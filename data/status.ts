@@ -13,11 +13,12 @@ export const statusData: StatusData = {
             location: 'Washington DC',
             url: 'https://youtu.be/l40AbwlzsWE',
             type: 'golf',
+            },
         '2025-04-13': {
             location: 'West Palm Beach, FL',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf_departure',
-        },
+            },
         '2025-04-12':{
             location: 'West Palm Beach, FL',
             url: 'https://www.yahoo.com/news/trump-arrives-round-golf-trump-161622589.html',
