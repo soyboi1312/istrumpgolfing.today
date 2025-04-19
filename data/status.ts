@@ -12,7 +12,7 @@ export const statusData: StatusData = {
         '2025-04-19': {
             location: 'Washington DC',
             url: 'https://youtu.be/l40AbwlzsWE',
-            type: 'golf_departure',
+            type: 'golf',
         '2025-04-13': {
             location: 'West Palm Beach, FL',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
