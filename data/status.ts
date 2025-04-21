@@ -1,4 +1,4 @@
-// data/status.ts
+// data/status.ts 
 import { EventType, Events } from '../types';
 
 interface StatusData {
