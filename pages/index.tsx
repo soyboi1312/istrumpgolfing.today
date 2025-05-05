@@ -283,31 +283,20 @@ const Home: React.FC<HomeProps> = ({ events, termStart, tripCost, daysGolfed }) 
                   rel="noopener norefferrer"
                   className={styles.vacationInfoLink}>184 days</a>
                   </li>
-                  <li>Obama: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
+                  <li>Obama: (2 terms): 328 days
+                  </li>
+                  <li>Bush: (2 terms): 1020 days
+                  </li>
+                  <li>Clinton: (2 terms): 345 days
+                  </li>
+                  <li>H.W. Bush: (2 terms): 543 days
+                  </li>
+                  <li>Reagan: (2 terms): 866 days
+                  </li>
+                  <li><a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
                   target="_blank"
                   rel="noopener norefferrer"
-                  className={styles.vacationInfoLink}>328 days</a>
-                  </li>
-                  <li>Bush: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
-                  target="_blank"
-                  rel="noopener norefferrer"
-                  className={styles.vacationInfoLink}>1020 days</a>
-                  </li>
-                  <li>Clinton: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
-                  target="_blank"
-                  rel="noopener norefferrer"
-                  className={styles.vacationInfoLink}>345 days</a>
-                  </li>
-                  <li>H.W. Bush: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
-                  target="_blank"
-                  rel="noopener norefferrer"
-                  className={styles.vacationInfoLink}>543 days</a>
-                  </li>
-                  <li>Reagan: (2 terms): <a href="https://www.washingtonpost.com/wp-dyn/content/blog/2008/03/04/BL2008030401392.html"
-                  target="_blank"
-                  rel="noopener norefferrer"
-                  className={styles.vacationInfoLink}>866 days</a>
-                  </li>
+                  className={styles.vacationInfoLink}>source for Reagan - Obama</a></li>
                 </ul>
                 <button className={styles.closeButton} onClick={() => setShowVacationInfo(false)}>
                   <svg
