@@ -256,75 +256,6 @@ const Home: React.FC<HomeProps> = ({
             Trump-owned properties.
           </p>
 
-          <div className={styles.sourceButtonContainer}>
-            <button
-              className={styles.sourceButton}
-              onClick={() => setShowCostInfo(!showCostInfo)}
-            >
-              sources
-            </button>
-            {showCostInfo && (
-              <div ref={popupRef} className={styles.costInfoPopup}>
-                <p>Cost estimates based on:</p>
-                <ul className={styles.sourcesList}>
-                  <li>
-                    <a
-                      href="https://www.gao.gov/products/gao-19-178"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.costInfoLink}
-                    >
-                      GAO study
-                    </a>{" "}
-                    showing $3.4 million average per trip
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.independent.co.uk/news/world/americas/us-politics/trump-gold-trips-taxpayer-money-doge-b2701045.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.costInfoLink}
-                    >
-                      Independent analysis
-                    </a>{" "}
-                    of first term costs
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.citizensforethics.org/reports-investigations/crew-investigations/the-secret-service-spent-nearly-2-million-at-trump-properties/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.costInfoLink}
-                    >
-                      CREW reporting
-                    </a>{" "}
-                    on Secret Service accommodation costs
-                  </li>
-                  <li className={styles.nonLinkItem}>
-                    Sources for days golfed can be seen in the calendar.
-                  </li>
-                </ul>
-                <button
-                  className={styles.closeButton}
-                  onClick={() => setShowCostInfo(false)}
-                >
-                  <svg
-                    className={styles.closeIcon}
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    role="button"
-                  >
-                    <path d="M18 6L6 18M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-            )}
-          </div>
-
           <div className={styles.vacationButtonContainer}>
             <button
               className={styles.vacationButton}
@@ -377,6 +308,75 @@ const Home: React.FC<HomeProps> = ({
                 <button
                   className={styles.closeButton}
                   onClick={() => setShowVacationInfo(false)}
+                >
+                  <svg
+                    className={styles.closeIcon}
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    role="button"
+                  >
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div className={styles.sourceButtonContainer}>
+            <button
+              className={styles.sourceButton}
+              onClick={() => setShowCostInfo(!showCostInfo)}
+            >
+              sources
+            </button>
+            {showCostInfo && (
+              <div ref={popupRef} className={styles.costInfoPopup}>
+                <p>Cost estimates based on:</p>
+                <ul className={styles.sourcesList}>
+                  <li>
+                    <a
+                      href="https://www.gao.gov/products/gao-19-178"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.costInfoLink}
+                    >
+                      GAO study
+                    </a>{" "}
+                    showing $3.4 million average per trip
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.independent.co.uk/news/world/americas/us-politics/trump-gold-trips-taxpayer-money-doge-b2701045.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.costInfoLink}
+                    >
+                      Independent analysis
+                    </a>{" "}
+                    of first term costs
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.citizensforethics.org/reports-investigations/crew-investigations/the-secret-service-spent-nearly-2-million-at-trump-properties/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.costInfoLink}
+                    >
+                      CREW reporting
+                    </a>{" "}
+                    on Secret Service accommodation costs
+                  </li>
+                  <li className={styles.nonLinkItem}>
+                    Sources for days golfed can be seen in the calendar.
+                  </li>
+                </ul>
+                <button
+                  className={styles.closeButton}
+                  onClick={() => setShowCostInfo(false)}
                 >
                   <svg
                     className={styles.closeIcon}
