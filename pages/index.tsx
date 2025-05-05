@@ -261,6 +261,62 @@ const Home: React.FC<HomeProps> = ({ events, termStart, tripCost, daysGolfed }) 
               </div>
             )}
           </div>
+
+          <div className={styles.sourceButtonContainer}>
+            <button
+              className={styles.sourceButton}
+              onClick={() => setShowCostInfo(!showCostInfo)}
+            >
+              But what about other presidents? 
+            </button>
+            {showCostInfo && (
+              <div ref={popupRef} className={styles.costInfoPopup}>
+                <p>
+                While trump golfed 293 days in his first term, he actually took a total of <a href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366" target="_blank"
+                  rel="noopener norefferrer"
+                  className={styles.costInfoLink}> 378 vacation days.</a>
+                </p>
+                <ul className={styles.sourcesList}>
+                  <li>Biden (1 term): <a href="https://www.snopes.com/news/2025/02/04/biden-vacation-president/"
+                  target="_blank"
+                  rel="noopener norefferrer"
+                  className={styles.costInfoLink}>184 days</a>
+                  </li>
+                  <li>Obama: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
+                  target="_blank"
+                  rel="noopener norefferrer"
+                  className={styles.costInfoLink}>328 days</a>
+                  </li>
+                  <li>Bush: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
+                  target="_blank"
+                  rel="noopener norefferrer"
+                  className={styles.costInfoLink}>1020 days</a>
+                  </li>
+                  <li>Clinton: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
+                  target="_blank"
+                  rel="noopener norefferrer"
+                  className={styles.costInfoLink}>345 days</a>
+                  </li>
+                </ul>
+                <button className={styles.closeButton} onClick={() => setShowCostInfo(false)}>
+                  <svg
+                    className={styles.closeIcon}
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    role="button"
+                  >
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            )}
+          </div>
+
+
         </div>
 
         <div className={styles.legend}>
