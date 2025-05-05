@@ -115,11 +115,15 @@ const Home: React.FC<HomeProps> = ({
   const [showCostInfo, setShowCostInfo] = useState<boolean>(false);
   const [showVacationInfo, setShowVacationInfo] = useState<boolean>(false);
   const [totalCost, setTotalCost] = useState<number>(0);
+  const costInfoRef = useRef<HTMLDivElement | null>(null);
+  const vacationInfoRef = useRef<HTMLDivElement | null>(null);
   const popupRef = useRef<HTMLDivElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   useClickOutside(popupRef, setShowCostInfo, [showCostInfo]);
   useClickOutside(modalRef, setModalOpen, [modalOpen]);
+  useClickOutside(costInfoRef, setShowCostInfo, [showCostInfo]);
+  useClickOutside(vacationInfoRef, setShowVacationInfo, [showVacationInfo]);
 
   const { daysSinceStart, isGolfingToday } = useTermDates(termStart, events);
   const effectiveDaysSinceStart = Math.max(daysSinceStart, 0);
@@ -244,7 +248,7 @@ const Home: React.FC<HomeProps> = ({
               But what about other presidents?
             </button>
             {showVacationInfo && (
-              <div ref={popupRef} className={styles.vacationInfoPopup}>
+              <div ref={vacationInfoRef} className={styles.vacationInfoPopup}>
                 <p>
                   While trump golfed 293 days in his first term, he took a total
                   of{" "}
@@ -334,7 +338,7 @@ const Home: React.FC<HomeProps> = ({
               sources
             </button>
             {showCostInfo && (
-              <div ref={popupRef} className={styles.costInfoPopup}>
+              <div ref={costInfoRef} className={styles.costInfoPopup}>
                 <p>Cost estimates based on:</p>
                 <ul className={styles.sourcesList}>
                   <li>
