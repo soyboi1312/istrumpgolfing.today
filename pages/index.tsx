@@ -236,26 +236,6 @@ const Home: React.FC<HomeProps> = ({
             {percentage}%) since his second term began.
           </p>
 
-          <p>
-            This has cost taxpayers{" "}
-            <span className={styles.cost}>
-              {`~$${(totalCost || 0).toLocaleString("en-US", {
-                maximumFractionDigits: 0,
-              })}`}
-            </span>{" "}
-            across <strong>{totalTrips}</strong> golf trips.
-          </p>
-
-          <p>
-            During his first term, he golfed 293 days (20%), costing $151.5
-            million.
-          </p>
-
-          <p>
-            $1.75 million of that went to Secret Service accommodations at
-            Trump-owned properties.
-          </p>
-
           <div className={styles.vacationButtonContainer}>
             <button
               className={styles.vacationButton}
@@ -325,6 +305,28 @@ const Home: React.FC<HomeProps> = ({
               </div>
             )}
           </div>
+
+          <p>
+            This has cost taxpayers{" "}
+            <span className={styles.cost}>
+              {`~$${(totalCost || 0).toLocaleString("en-US", {
+                maximumFractionDigits: 0,
+              })}`}
+            </span>{" "}
+            across <strong>{totalTrips}</strong> golf trips.
+          </p>
+
+          <p>
+            During his first term, he golfed 293 days (20%), costing $151.5
+            million.
+          </p>
+
+          <p>
+            $1.75 million of that went to Secret Service accommodations at
+            Trump-owned properties.
+          </p>
+
+          
 
           <div className={styles.sourceButtonContainer}>
             <button
