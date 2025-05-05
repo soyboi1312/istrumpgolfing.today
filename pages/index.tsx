@@ -305,7 +305,7 @@ const Home: React.FC<HomeProps> = ({
               </div>
             )}
           </div>
-
+          <p></p>
           <p>
             This has cost taxpayers{" "}
             <span className={styles.cost}>
@@ -325,8 +325,6 @@ const Home: React.FC<HomeProps> = ({
             $1.75 million of that went to Secret Service accommodations at
             Trump-owned properties.
           </p>
-
-          
 
           <div className={styles.sourceButtonContainer}>
             <button
