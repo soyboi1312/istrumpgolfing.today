@@ -446,7 +446,7 @@
   animation: fadeIn 0.3s ease-out;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border: 1px solid #fff;
-  max-width: 400px;
+  max-width: 375px;
   width: 90%;
   padding: 25px;
   z-index: 1001;
