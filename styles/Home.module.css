@@ -435,7 +435,31 @@
   font-weight: bold;
 }
 
+.vacationInfoPopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2d2d2d;
+  border-radius: 4px;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.3s ease-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #fff;
+  max-width: 400px;
+  width: 90%;
+  padding: 25px;
+  z-index: 1001;
+  text-align: left;
+  font-size: small;
+  font-weight: bold;
+}
+
 .sourceLinkContainer {
+  margin-top: 5px;
+}
+
+.vacationLinkContainer {
   margin-top: 5px;
 }
 
@@ -491,6 +515,33 @@
 }
 
 .sourceButton {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.6em;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.vacationInfoLink {
+  color: #ffa500;
+  text-decoration: none;
+}
+
+.vacationInfoLink:hover {
+  color: #ff8c00;
+  text-decoration: underline;
+}
+
+.vacationButtonContainer {
+  margin: 5px 0;
+  text-align: center;
+}
+
+.vacationButton {
   background: none;
   border: none;
   color: #fff;

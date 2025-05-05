@@ -99,6 +99,7 @@ const Home: React.FC<HomeProps> = ({ events, termStart, tripCost, daysGolfed }) 
   const [currentImage, setCurrentImage] = useState<string>('');
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [showCostInfo, setShowCostInfo] = useState<boolean>(false);
+  const [showVacationInfo, setShowVacationInfo] = useState<boolean>(false);
   const [totalCost, setTotalCost] = useState<number>(0);
   const popupRef = useRef<HTMLDivElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
@@ -262,53 +263,53 @@ const Home: React.FC<HomeProps> = ({ events, termStart, tripCost, daysGolfed }) 
             )}
           </div>
 
-          <div className={styles.sourceButtonContainer}>
+          <div className={styles.vacationButtonContainer}>
             <button
-              className={styles.sourceButton}
-              onClick={() => setShowCostInfo(!showCostInfo)}
+              className={styles.vacationButton}
+              onClick={() => setShowVacationInfo(!showVacationInfo)}
             >
               But what about other presidents? 
             </button>
-            {showCostInfo && (
-              <div ref={popupRef} className={styles.costInfoPopup}>
+            {showVacationInfo && (
+              <div ref={popupRef} className={styles.vacationInfoPopup}>
                 <p>
                 While trump golfed 293 days in his first term, he took a total of <a href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366" target="_blank"
                   rel="noopener norefferrer"
-                  className={styles.costInfoLink}>378 vacation days.</a>
+                  className={styles.vacationInfoPopup}>378 vacation days.</a>
                 </p>
                 <ul className={styles.sourcesList}>
                   <li>Biden (1 term): <a href="https://www.snopes.com/news/2025/02/04/biden-vacation-president/"
                   target="_blank"
                   rel="noopener norefferrer"
-                  className={styles.costInfoLink}>184 days</a>
+                  className={styles.vacationInfoLink}>184 days</a>
                   </li>
                   <li>Obama: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
                   target="_blank"
                   rel="noopener norefferrer"
-                  className={styles.costInfoLink}>328 days</a>
+                  className={styles.vacationInfoLink}>328 days</a>
                   </li>
                   <li>Bush: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
                   target="_blank"
                   rel="noopener norefferrer"
-                  className={styles.costInfoLink}>1020 days</a>
+                  className={styles.vacationInfoLink}>1020 days</a>
                   </li>
                   <li>Clinton: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
                   target="_blank"
                   rel="noopener norefferrer"
-                  className={styles.costInfoLink}>345 days</a>
+                  className={styles.vacationInfoLink}>345 days</a>
                   </li>
                   <li>H.W. Bush: (2 terms): <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
                   target="_blank"
                   rel="noopener norefferrer"
-                  className={styles.costInfoLink}>543 days</a>
+                  className={styles.vacationInfoLink}>543 days</a>
                   </li>
                   <li>Reagan: (2 terms): <a href="https://www.washingtonpost.com/wp-dyn/content/blog/2008/03/04/BL2008030401392.html"
                   target="_blank"
                   rel="noopener norefferrer"
-                  className={styles.costInfoLink}>866 days</a>
+                  className={styles.vacationInfoLink}>866 days</a>
                   </li>
                 </ul>
-                <button className={styles.closeButton} onClick={() => setShowCostInfo(false)}>
+                <button className={styles.closeButton} onClick={() => setShowVacationInfo(false)}>
                   <svg
                     className={styles.closeIcon}
                     viewBox="0 0 24 24"
