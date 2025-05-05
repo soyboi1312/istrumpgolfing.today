@@ -249,28 +249,10 @@ const Home: React.FC<HomeProps> = ({
               <div ref={vacationInfoRef} className={styles.vacationInfoPopup}>
                 <p>
                   While trump golfed 293 days in his first term, he took a total
-                  of{" "}
-                  <a
-                    href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366"
-                    target="_blank"
-                    rel="noopener norefferrer"
-                    className={styles.vacationInfoLink}
-                  >
-                    378 vacation days.
-                  </a>
+                  of 378 vacation days.
                 </p>
                 <ul className={styles.sourcesList}>
-                  <li>
-                    Biden (1 term):{" "}
-                    <a
-                      href="https://www.snopes.com/news/2025/02/04/biden-vacation-president/"
-                      target="_blank"
-                      rel="noopener norefferrer"
-                      className={styles.vacationInfoLink}
-                    >
-                      184 days
-                    </a>
-                  </li>
+                  <li>Biden (1 term): 184 days</li>
                   <li>Obama: (2 terms): 328 days</li>
                   <li>Bush: (2 terms): 1020 days</li>
                   <li>Clinton: (2 terms): 345 days</li>
@@ -278,12 +260,42 @@ const Home: React.FC<HomeProps> = ({
                   <li>Reagan: (2 terms): 866 days</li>
                   <li>
                     <a
+                      href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366"
+                      target="_blank"
+                      rel="noopener norefferrer"
+                      className={styles.vacationInfoLink}
+                    >
+                      Source for Trump's first term
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.snopes.com/news/2025/02/04/biden-vacation-president/"
+                      target="_blank"
+                      rel="noopener norefferrer"
+                      className={styles.vacationInfoLink}
+                    >
+                      Source for Biden
+                    </a>
+                  </li>
+                  <li>
+                    <a
                       href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
                       target="_blank"
                       rel="noopener norefferrer"
                       className={styles.vacationInfoLink}
                     >
-                      source for Reagan - Obama
+                      Source for H.W. Bush - Obama
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.washingtonpost.com/wp-dyn/content/blog/2008/03/04/BL2008030401392.html"
+                      target="_blank"
+                      rel="noopener norefferrer"
+                      className={styles.vacationInfoLink}
+                    >
+                      Source for Reagan
                     </a>
                   </li>
                 </ul>
