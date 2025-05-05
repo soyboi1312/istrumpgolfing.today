@@ -480,7 +480,8 @@
   margin: 10px 0;
   color: #ccc;
   font-size: small;
-  font-weight: normal;
+  font-weight: normal; 
+  padding: 0px;
 }
 
 .sourcesList a {
