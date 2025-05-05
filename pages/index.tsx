@@ -117,10 +117,8 @@ const Home: React.FC<HomeProps> = ({
   const [totalCost, setTotalCost] = useState<number>(0);
   const costInfoRef = useRef<HTMLDivElement | null>(null);
   const vacationInfoRef = useRef<HTMLDivElement | null>(null);
-  const popupRef = useRef<HTMLDivElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
-  useClickOutside(popupRef, setShowCostInfo, [showCostInfo]);
   useClickOutside(modalRef, setModalOpen, [modalOpen]);
   useClickOutside(costInfoRef, setShowCostInfo, [showCostInfo]);
   useClickOutside(vacationInfoRef, setShowVacationInfo, [showVacationInfo]);
