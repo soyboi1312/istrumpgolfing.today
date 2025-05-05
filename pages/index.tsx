@@ -253,11 +253,11 @@ const Home: React.FC<HomeProps> = ({
                 </p>
                 <ul className={styles.sourcesList}>
                   <li>Biden (1 term): 184 days</li>
-                  <li>Obama: (2 terms): 328 days</li>
-                  <li>Bush: (2 terms): 1020 days</li>
-                  <li>Clinton: (2 terms): 345 days</li>
-                  <li>H.W. Bush: (2 terms): 543 days</li>
-                  <li>Reagan: (2 terms): 866 days</li>
+                  <li>Obama (2 terms): 328 days</li>
+                  <li>Bush (2 terms): 1020 days</li>
+                  <li>Clinton (2 terms): 345 days</li>
+                  <li>H.W. Bush (2 terms): 543 days</li>
+                  <li>Reagan (2 terms): 866 days</li>
                   <li>
                     <a
                       href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366"
