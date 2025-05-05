@@ -272,9 +272,9 @@ const Home: React.FC<HomeProps> = ({ events, termStart, tripCost, daysGolfed }) 
             {showCostInfo && (
               <div ref={popupRef} className={styles.costInfoPopup}>
                 <p>
-                While trump golfed 293 days in his first term, he actually took a total of <a href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366" target="_blank"
+                While trump golfed 293 days in his first term, he took a total of <a href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366" target="_blank"
                   rel="noopener norefferrer"
-                  className={styles.costInfoLink}> 378 vacation days.</a>
+                  className={styles.costInfoLink}>378 vacation days.</a>
                 </p>
                 <ul className={styles.sourcesList}>
                   <li>Biden (1 term): <a href="https://www.snopes.com/news/2025/02/04/biden-vacation-president/"
