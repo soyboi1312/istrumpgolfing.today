@@ -272,7 +272,7 @@ const Home: React.FC<HomeProps> = ({
                     href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366"
                     target="_blank"
                     rel="noopener norefferrer"
-                    className={styles.vacationInfoPopup}
+                    className={styles.vacationInfoLink}
                   >
                     378 vacation days.
                   </a>
