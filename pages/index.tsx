@@ -12,7 +12,7 @@ import { DependencyList } from "react";
 interface HomeProps {
   events: Events;
   termStart: TermStart;
-  tripCost: number;
+  golfCost: number;
   daysGolfed: number;
 }
 
@@ -31,7 +31,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
           month: statusData.termStart.getMonth() + 1,
           day: statusData.termStart.getDate(),
         },
-        tripCost: statusData.tripCost,
+        golfCost: statusData.golfCost,
         daysGolfed: Object.values(statusData.events).filter(
           (
             e
@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       props: {
         events: {},
         termStart: { year: 2025, month: 1, day: 19 },
-        tripCost: 1400000,
+        golfCost: 1400000,
         daysGolfed: 0,
       },
     };
@@ -101,7 +101,7 @@ const formatDate = (dateString: string): string => {
 const Home: React.FC<HomeProps> = ({
   events,
   termStart,
-  tripCost,
+  golfCost,
   daysGolfed,
 }) => {
   const [totalTrips, setTotalTrips] = useState<number>(0);
@@ -151,12 +151,12 @@ const Home: React.FC<HomeProps> = ({
       isGolfingToday ? getRandomImage("golf") : getRandomImage("sad")
     );
 
-    const trips = Object.values(events).filter((event) =>
+    const golf = Object.values(events).filter((event) =>
       ["golf", "golf_arrival", "golf_departure"].includes(event.type)
     ).length;
-    setTotalTrips(trips);
-    setTotalCost(trips * tripCost);
-  }, [events, tripCost, getRandomImage, isGolfingToday]);
+    setTotalTrips(golf);
+    setTotalCost(golf * golfCost);
+  }, [events, golfCost, getRandomImage, isGolfingToday]);
 
   return (
     <div className={styles.container}>
