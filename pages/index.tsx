@@ -152,7 +152,7 @@ const Home: React.FC<HomeProps> = ({
     );
 
     const trips = Object.values(events).filter((event) =>
-      ["golf"].includes(event.type)
+      ["golf", "golf_arrival", "golf_departure"].includes(event.type)
     ).length;
     setTotalTrips(trips);
     setTotalCost(trips * tripCost);
