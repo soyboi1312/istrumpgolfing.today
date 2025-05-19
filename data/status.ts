@@ -4,7 +4,7 @@ import { EventType, Events } from '../types';
 interface StatusData {
     events: Events;
     termStart: Date;
-    tripCost: number;
+    golfCost: number;
 }
 
 export const statusData: StatusData = {
@@ -230,7 +230,7 @@ export const statusData: StatusData = {
         },
     },
     termStart: new Date(2025, 0, 19),
-    tripCost: 1400000,
+    golfCost: 1400000,
 };
 
 export const getStatusData = (): StatusData => statusData;
