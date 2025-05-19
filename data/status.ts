@@ -14,7 +14,6 @@ export const statusData: StatusData = {
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf'
         },
-    events: {
         '2025-05-10': {
             location: 'Washington DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
