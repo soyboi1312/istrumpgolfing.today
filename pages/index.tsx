@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       props: {
         events: {},
         termStart: { year: 2025, month: 1, day: 19 },
-        tripCost: 3400000,
+        tripCost: 1400000,
         daysGolfed: 0,
       },
     };
@@ -152,7 +152,7 @@ const Home: React.FC<HomeProps> = ({
     );
 
     const trips = Object.values(events).filter((event) =>
-      ["departure", "golf_departure"].includes(event.type)
+      ["golf", "golf_departure", "golf_arrival"].includes(event.type)
     ).length;
     setTotalTrips(trips);
     setTotalCost(trips * tripCost);
