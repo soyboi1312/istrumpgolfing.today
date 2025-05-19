@@ -244,7 +244,7 @@ const Home: React.FC<HomeProps> = ({
               {`~$${(totalCost || 0).toLocaleString("en-US", {
                 maximumFractionDigits: 0,
               })}`}
-            </span>{" "}.
+            </span>{". "}
           </p>
 
           <div className={styles.vacationButtonContainer}>
