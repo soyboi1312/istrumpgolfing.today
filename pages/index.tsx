@@ -237,6 +237,15 @@ const Home: React.FC<HomeProps> = ({
             <span id="daysSinceStart">{effectiveDaysSinceStart}</span> days (
             {percentage}%) since his second term began.
           </p>
+          <p></p>
+          <p>
+            This has cost taxpayers{" "}
+            <span className={styles.cost}>
+              {`~$${(totalCost || 0).toLocaleString("en-US", {
+                maximumFractionDigits: 0,
+              })}`}
+            </span>{" "}.
+          </p>
 
           <div className={styles.vacationButtonContainer}>
             <button
@@ -319,17 +328,8 @@ const Home: React.FC<HomeProps> = ({
               </div>
             )}
           </div>
+          
           <p></p>
-          <p>
-            This has cost taxpayers{" "}
-            <span className={styles.cost}>
-              {`~$${(totalCost || 0).toLocaleString("en-US", {
-                maximumFractionDigits: 0,
-              })}`}
-            </span>{" "}
-            across <strong>{totalTrips}</strong> golf trips.
-          </p>
-
           <p>
             During his first term, he golfed 293 days (20%), costing $151.5
             million.
