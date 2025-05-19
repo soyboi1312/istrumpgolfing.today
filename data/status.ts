@@ -230,7 +230,7 @@ export const statusData: StatusData = {
         },
     },
     termStart: new Date(2025, 0, 19),
-    tripCost: 3400000,
+    tripCost: 1400000,
 };
 
 export const getStatusData = (): StatusData => statusData;
