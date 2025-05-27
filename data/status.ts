@@ -12,7 +12,7 @@ export const statusData: StatusData = {
         '2025-05-25': {
             location: 'Bedminster, NJ',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
-            type: 'golf'
+            type: 'departure'
         },
         '2025-05-24': {
             location: 'Bedminster, NJ',
