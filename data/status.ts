@@ -263,7 +263,7 @@ export const statusData: StatusData = {
     locationCosts: {
         "Las Vegas, NV": 1600000,
         "Mar-a-Lago": 1400000,
-        "West Palm Beach": 1400000,
+        "West Palm Beach, FL": 1400000,
         "Jupiter, FL": 1400000,
         "Doral, FL": 1400000,
         "Bedminster, NJ": 400000,
