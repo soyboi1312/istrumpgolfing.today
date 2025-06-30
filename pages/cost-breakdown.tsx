@@ -16,16 +16,13 @@ const CostBreakdown = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Presidential Golf Trip Cost Breakdown</h1>
-        <div className={styles.blurb}>
+        <div className={`${styles.blurb} ${styles.blurbContainer}`}>
             <p>The taxpayer cost of presidential golf trips varies dramatically depending on the destination, with the primary cost drivers being flight distance, the type of aircraft required, and location-specific security needs. A Government Accountability Office (GAO) report on four of President Trump's trips to his Mar-a-Lago club in Florida established a baseline cost of approximately $3.4 million per weekend. This high cost is driven by the use of the large Air Force One (a modified Boeing 747), the necessity of C-17 cargo planes to transport the presidential motorcade, and a unique, expensive maritime security operation by the U.S. Coast Guard required by the resort's coastal location.</p>
             <p>In contrast, a trip to the Trump National Golf Club in Bedminster, New Jersey, represents a mid-range cost scenario, estimated to be between $840,000 and $1.13 million per weekend. The significant cost reduction comes from the shorter flight distance, which allows for the use of a smaller, less expensive aircraft (a C-32), and the absence of any need for maritime security patrols. The lowest-cost scenario is a day trip to the Trump National Golf Club in Sterling, Virginia. Because this location is close to the White House, travel is conducted entirely by motorcade, eliminating all aircraft expenses—the largest component of travel costs. The total for a Sterling trip is estimated to be under $100,000, composed mainly of vehicle operating costs and personnel overtime.</p>
             <p>Using this same framework, a hypothetical weekend trip to Las Vegas would be even more expensive than one to Mar-a-Lago, with an estimated cost of over $5 million. This higher figure is primarily due to the much longer flight time from Washington, D.C., which significantly increases the operational costs for both Air Force One and the C-17 cargo planes needed to transport the motorcade.</p>
-        </div>
-
-        <h2 className={styles.subtitle}>Location-Based Cost Breakdowns</h2>
-
-        <div className={styles.tableContainer}>
-            <h3 className={styles.tableTitle}>Cost Component (Per Weekend Trip to Florida)</h3>
+            <h2 className={styles.subtitle}>Location-Based Cost Breakdowns</h2>
+            <div className={styles.tableContainer}>
+            <h3 className={styles.tableTitle}>Cost Component (Per Weekend Trip to Mar-a-Lago, FL)</h3>
             <table className={styles.table}>
                 <thead>
                     <tr>
@@ -69,8 +66,8 @@ const CostBreakdown = () => {
                 </tbody>
             </table>
         </div>
-
-        <div className={styles.tableContainer}>
+        
+                <div className={styles.tableContainer}>
             <h3 className={styles.tableTitle}>Cost Component (Per 3-Day Trip to Bedminster, NJ)</h3>
             <table className={styles.table}>
                 <thead>
@@ -111,8 +108,8 @@ const CostBreakdown = () => {
                 </tbody>
             </table>
         </div>
-
-        <div className={styles.tableContainer}>
+        
+                <div className={styles.tableContainer}>
             <h3 className={styles.tableTitle}>Cost Component (Per Day Trip to Sterling, VA)</h3>
             <table className={styles.table}>
                 <thead>
@@ -149,8 +146,8 @@ const CostBreakdown = () => {
                 </tbody>
             </table>
         </div>
-        
-        <div className={styles.tableContainer}>
+                
+                <div className={styles.tableContainer}>
             <h3 className={styles.tableTitle}>Estimated Cost for a Weekend Trip to Las Vegas, NV</h3>
             <table className={styles.table}>
                 <thead>
@@ -182,6 +179,7 @@ const CostBreakdown = () => {
                     </tr>
                 </tbody>
             </table>
+        </div>
         </div>
 
         <div className={styles.sourcesSection}>

@@ -1,0 +1,124 @@
+.container {
+  background-color: #000;
+  min-height: 100vh;
+  padding: 20px;
+  color: #fff;
+}
+
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-bottom: 2px solid #ffa500;
+    padding-bottom: 0.5rem;
+}
+
+.blurb {
+  line-height: 1.6;
+  margin: 20px 0;
+  padding: 20px 15px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  text-wrap: pretty;
+}
+
+.blurb p {
+    margin-bottom: 1rem;
+}
+
+.blurb p:last-child {
+    margin-bottom: 0;
+}
+
+.blurbContainer {
+    padding: 25px;
+}
+
+.tableContainer {
+    margin-bottom: 2rem;
+}
+
+.tableTitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+    border: 1px solid #333;
+    text-align: left;
+}
+
+.table th {
+    background-color: #2d2d2d;
+    font-weight: bold;
+}
+
+.subItem {
+    padding-left: 30px !important;
+    font-style: italic;
+    color: #ccc;
+}
+
+.sourcesSection {
+    margin-top: 3rem;
+}
+
+.sourcesList {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.sourcesList li {
+    margin-bottom: 1rem;
+}
+
+.sourcesList a {
+    color: #ffa500;
+    text-decoration: underline;
+}
+
+.sourcesList a:hover {
+    color: #ff8c00;
+}
+
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.homeLink {
+  color: #ffa500;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.homeLink:hover {
+  color: #ff8c00;
+}
