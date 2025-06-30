@@ -1,4 +1,5 @@
 /* pages/index.tsx */
+/* pages/index.tsx */
 import Head from "next/head";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { GetStaticProps } from "next";
@@ -12,7 +13,7 @@ import { DependencyList } from "react";
 interface HomeProps {
   events: Events;
   termStart: TermStart;
-  golfCost: number;
+  locationCosts: { [key: string]: number };
   daysGolfed: number;
 }
 
@@ -31,7 +32,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
           month: statusData.termStart.getMonth() + 1,
           day: statusData.termStart.getDate(),
         },
-        golfCost: statusData.golfCost,
+        locationCosts: statusData.locationCosts,
         daysGolfed: Object.values(statusData.events).filter(
           (
             e
@@ -45,7 +46,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       props: {
         events: {},
         termStart: { year: 2025, month: 1, day: 19 },
-        golfCost: 1400000,
+        locationCosts: {},
         daysGolfed: 0,
       },
     };
@@ -101,7 +102,7 @@ const formatDate = (dateString: string): string => {
 const Home: React.FC<HomeProps> = ({
   events,
   termStart,
-  golfCost,
+  locationCosts,
   daysGolfed,
 }) => {
   const [totalTrips, setTotalTrips] = useState<number>(0);
@@ -151,12 +152,18 @@ const Home: React.FC<HomeProps> = ({
       isGolfingToday ? getRandomImage("golf") : getRandomImage("sad")
     );
 
-    const golf = Object.values(events).filter((event) =>
+    const golfEvents = Object.values(events).filter((event) =>
       ["golf", "golf_arrival", "golf_departure"].includes(event.type)
-    ).length;
-    setTotalTrips(golf);
-    setTotalCost(golf * golfCost);
-  }, [events, golfCost, getRandomImage, isGolfingToday]);
+    );
+    setTotalTrips(golfEvents.length);
+
+    const newTotalCost = golfEvents.reduce((acc, event) => {
+      const cost = locationCosts[event.location] || 0;
+      return acc + cost;
+    }, 0);
+
+    setTotalCost(newTotalCost);
+  }, [events, locationCosts, getRandomImage, isGolfingToday]);
 
   return (
     <div className={styles.container}>
