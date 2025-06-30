@@ -349,7 +349,7 @@ const Home: React.FC<HomeProps> = ({
 
           <p>
                 Wondering why these trips cost so much? We've put together a detailed guide on the factors that influence the total cost.
-                <br/>
+                <br/><br/>
                 <Link href="/cost-breakdown"><a className={styles.costInfoLink}>View the Cost Breakdown</a></Link>
           </p>
 
@@ -358,7 +358,7 @@ const Home: React.FC<HomeProps> = ({
               className={styles.sourceButton}
               onClick={() => setShowCostInfo(!showCostInfo)}
             >
-              sources
+              quick sources
             </button>
             {showCostInfo && (
               <div ref={costInfoRef} className={styles.costInfoPopup}>
