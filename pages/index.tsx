@@ -8,6 +8,7 @@ import useTermDates from "../hooks/useTermDates";
 import Calendar from "../components/Calendar";
 import { Events, EventData, TermStart, EventType } from "../types";
 import { DependencyList } from "react";
+import Link from "next/link";
 
 interface HomeProps {
   events: Events;
@@ -359,6 +360,17 @@ const Home: React.FC<HomeProps> = ({
                 <ul className={styles.sourcesList}>
                   <li>
                     <a
+                      href="https://www.gao.gov/products/gao-19-178"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.costInfoLink}
+                    >
+                      GAO study
+                    </a>{" "}
+                    showing $3.4 million average per trip
+                  </li>
+                  <li>
+                    <a
                       href="https://www.independent.co.uk/news/world/americas/us-politics/trump-gold-trips-taxpayer-money-doge-b2701045.html"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -404,7 +416,7 @@ const Home: React.FC<HomeProps> = ({
             )}
           </div>
         </div>
- 
+
         <div className={styles.blurb}>
             <p>
                 Wondering why these trips cost so much? We've put together a detailed guide on the factors that influence the total cost.
