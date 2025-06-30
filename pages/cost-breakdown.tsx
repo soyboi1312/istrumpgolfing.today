@@ -114,8 +114,8 @@ const CostBreakdown = () => {
             <table className={styles.table}>
                 <thead>
                     <tr>
-                        <th>Metric</th>
-                        <th>Sterling, Virginia</th>
+                        <th>Cost Component</th>
+                        <th>Estimated Cost</th>
                     </tr>
                 </thead>
                 <tbody>

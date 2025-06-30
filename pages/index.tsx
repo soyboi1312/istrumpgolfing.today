@@ -405,7 +405,7 @@ const Home: React.FC<HomeProps> = ({
             )}
           </div>
 
-          <p>
+          <p><br/>
                 Wondering why these trips cost so much? <br/>
                 We've put together a detailed guide on the factors that influence the total cost.
                 <br/><br/>
