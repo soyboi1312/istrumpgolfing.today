@@ -4,7 +4,7 @@ import { EventType, Events } from '../types';
 interface StatusData {
     events: Events;
     termStart: Date;
-    golfCost: number;
+    locationCosts: { [key: string]: number };
 }
 
 export const statusData: StatusData = {
@@ -260,7 +260,15 @@ export const statusData: StatusData = {
         },
     },
     termStart: new Date(2025, 0, 19),
-    golfCost: 1400000,
+    locationCosts: {
+        "Las Vegas, NV": 1600000,
+        "Mar-a-Lago": 1400000,
+        "West Palm Beach": 1400000,
+        "Jupiter, FL": 1400000,
+        "Doral, FL": 1400000,
+        "Bedminster, NJ": 400000,
+        "Sterling, VA": 40000,
+        "Washington DC": 40000,
 };
 
 export const getStatusData = (): StatusData => statusData;
