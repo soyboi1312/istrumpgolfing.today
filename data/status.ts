@@ -267,8 +267,8 @@ export const statusData: StatusData = {
         "Jupiter, FL": 1400000,
         "Doral, FL": 1400000,
         "Bedminster, NJ": 400000,
-        "Sterling, VA": 40000,
-        "Washington DC": 40000,
+        "Sterling, VA": 100000,
+        "Washington DC": 100000,
     }
 };
 
