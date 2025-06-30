@@ -269,6 +269,7 @@ export const statusData: StatusData = {
         "Bedminster, NJ": 400000,
         "Sterling, VA": 40000,
         "Washington DC": 40000,
+    }
 };
 
 export const getStatusData = (): StatusData => statusData;
