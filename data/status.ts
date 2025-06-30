@@ -233,7 +233,8 @@ export const statusData: StatusData = {
             location: 'Mar-a-Lago',
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
             type: 'golf_departure'
-        },'2025-02-01': {
+        },
+        '2025-02-01': {
             location: 'Mar-a-Lago',
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
             type: 'golf'
@@ -266,7 +267,7 @@ export const statusData: StatusData = {
         "West Palm Beach, FL": 1400000,
         "Jupiter, FL": 1400000,
         "Doral, FL": 1400000,
-        "Bedminster, NJ": 400000,
+        "Bedminster, NJ": 300000,
         "Sterling, VA": 100000,
         "Washington DC": 100000,
     }
