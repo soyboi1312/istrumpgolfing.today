@@ -3,16 +3,16 @@ import { useState, useEffect } from 'react';
 import { Events, TermStart } from '../types';
 
 interface UseTermDatesResult {
-    daysSinceStart: number;
-    isGolfingToday: boolean;
+    daysSinceStart: number | null;
+    isGolfingToday: boolean | null;
 }
 
 export default function useTermDates(
     termStart: TermStart,
     events: Events
 ): UseTermDatesResult {
-    const [daysSinceStart, setDaysSinceStart] = useState(0);
-    const [isGolfingToday, setIsGolfingToday] = useState(false);
+    const [daysSinceStart, setDaysSinceStart] = useState<number | null>(null);
+    const [isGolfingToday, setIsGolfingToday] = useState<boolean | null>(null);
 
     useEffect(() => {
         const today = new Date();
@@ -35,7 +35,7 @@ export default function useTermDates(
         setDaysSinceStart(Math.max(daysSince, 0));
 
         // Check golf events
-        const golfEvents = Object.keys(events).filter(date => 
+        const golfEvents = Object.keys(events).filter(date =>
             ['golf', 'golf_arrival', 'golf_departure'].includes(events[date].type)
         );
         setIsGolfingToday(golfEvents.includes(todayISO));
