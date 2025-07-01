@@ -13,33 +13,37 @@ export default function useTermDates(
 ): UseTermDatesResult {
     const [daysSinceStart, setDaysSinceStart] = useState<number | null>(null);
     const [isGolfingToday, setIsGolfingToday] = useState<boolean | null>(null);
+    const [hasMounted, setHasMounted] = useState(false);
 
     useEffect(() => {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+        setHasMounted(true);
+    }, []);
 
-        // Generate today's ISO date string
-        const year = today.getFullYear();
-        const month = today.getMonth() + 1;
-        const day = today.getDate();
-        const todayISO = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    useEffect(() => {
+        if (hasMounted) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
 
-        // Calculate days since term start
-        const termStartDate = new Date(
-            termStart.year,
-            termStart.month - 1,
-            termStart.day
-        );
-        const timeDiff = today.getTime() - termStartDate.getTime();
-        const daysSince = Math.floor(timeDiff / (1000 * 3600 * 24));
-        setDaysSinceStart(Math.max(daysSince, 0));
+            const year = today.getFullYear();
+            const month = today.getMonth() + 1;
+            const day = today.getDate();
+            const todayISO = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
-        // Check golf events
-        const golfEvents = Object.keys(events).filter(date =>
-            ['golf', 'golf_arrival', 'golf_departure'].includes(events[date].type)
-        );
-        setIsGolfingToday(golfEvents.includes(todayISO));
-    }, [termStart, events]);
- 
+            const termStartDate = new Date(
+                termStart.year,
+                termStart.month - 1,
+                termStart.day
+            );
+            const timeDiff = today.getTime() - termStartDate.getTime();
+            const daysSince = Math.floor(timeDiff / (1000 * 3600 * 24));
+            setDaysSinceStart(Math.max(daysSince, 0));
+
+            const golfEvents = Object.keys(events).filter(date =>
+                ['golf', 'golf_arrival', 'golf_departure'].includes(events[date].type)
+            );
+            setIsGolfingToday(golfEvents.includes(todayISO));
+        }
+    }, [termStart, events, hasMounted]);
+
     return { daysSinceStart, isGolfingToday };
 }
