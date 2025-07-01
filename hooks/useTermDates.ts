@@ -40,6 +40,6 @@ export default function useTermDates(
         );
         setIsGolfingToday(golfEvents.includes(todayISO));
     }, [termStart, events]);
-
+ 
     return { daysSinceStart, isGolfingToday };
 }
