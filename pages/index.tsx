@@ -125,7 +125,7 @@ const Home: React.FC<HomeProps> = ({
   useClickOutside(vacationInfoRef, setShowVacationInfo, [showVacationInfo]);
 
   const { daysSinceStart, isGolfingToday } = useTermDates(termStart, events);
-  const effectiveDaysSinceStart = Math.max(daysSinceStart, 0);
+  const effectiveDaysSinceStart = Math.max(daysSinceStart || 0, 0);
   const percentage =
     effectiveDaysSinceStart > 0
       ? parseFloat(((daysGolfed / effectiveDaysSinceStart) * 100).toFixed(1))
