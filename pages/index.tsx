@@ -15,35 +15,15 @@ interface HomeProps {
   termStart: TermStart;
   locationCosts: { [key: string]: number };
   daysGolfed: number;
-  initialImage: string;
 }
 
 interface ClickOutsideHandler {
   (value: boolean): void;
 }
 
-const IMAGE_SETS = {
-  sad: ["sad.webp", "sad1.webp"],
-  golf: ["golf.webp", "golf1.webp", "golf2.webp"],
-} as const;
-
-const getRandomImage = (set: keyof typeof IMAGE_SETS) => {
-    const randomIndex = Math.floor(Math.random() * IMAGE_SETS[set].length);
-    return `/files/${IMAGE_SETS[set][randomIndex]}`;
-};
-
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
     const statusData = getStatusData();
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
-    const todayISO = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-    const isGolfingToday = Object.keys(statusData.events).filter(date => ['golf', 'golf_arrival', 'golf_departure'].includes(statusData.events[date].type)).includes(todayISO);
-    const initialImage = getRandomImage(isGolfingToday ? 'golf' : 'sad');
-
     return {
       props: {
         events: statusData.events,
@@ -59,7 +39,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
           ): e is EventData => // Add type predicate
             ["golf", "golf_arrival", "golf_departure"].includes(e.type)
         ).length,
-        initialImage,
       },
     };
   } catch (error) {
@@ -69,7 +48,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
         termStart: { year: 2025, month: 1, day: 19 },
         locationCosts: {},
         daysGolfed: 0,
-        initialImage: getRandomImage('sad'),
       },
     };
   }
@@ -97,6 +75,11 @@ const useClickOutside = (
   }, dependencies);
 };
 
+const IMAGE_SETS = {
+  sad: ["sad.webp", "sad1.webp"],
+  golf: ["golf.webp", "golf1.webp", "golf2.webp"],
+} as const;
+
 const formatDate = (dateString: string): string => {
   const [year, month, day] = dateString.split("-");
   const monthNames = [
@@ -121,7 +104,6 @@ const Home: React.FC<HomeProps> = ({
   termStart,
   locationCosts,
   daysGolfed,
-  initialImage,
 }) => {
   const [totalTrips, setTotalTrips] = useState<number>(0);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -129,7 +111,7 @@ const Home: React.FC<HomeProps> = ({
     date: string;
     data: EventData;
   } | null>(null);
-  const [currentImage, setCurrentImage] = useState<string>(initialImage);
+  const [currentImage, setCurrentImage] = useState<string>("");
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [showCostInfo, setShowCostInfo] = useState<boolean>(false);
   const [showVacationInfo, setShowVacationInfo] = useState<boolean>(false);
@@ -143,17 +125,16 @@ const Home: React.FC<HomeProps> = ({
   useClickOutside(vacationInfoRef, setShowVacationInfo, [showVacationInfo]);
 
   const { daysSinceStart, isGolfingToday } = useTermDates(termStart, events);
-  const effectiveDaysSinceStart = daysSinceStart !== null ? Math.max(daysSinceStart, 0) : 0;
+  const effectiveDaysSinceStart = Math.max(daysSinceStart, 0);
   const percentage =
     effectiveDaysSinceStart > 0
       ? parseFloat(((daysGolfed / effectiveDaysSinceStart) * 100).toFixed(1))
       : 0;
 
-  const handleNewImage = () => {
-      if(isGolfingToday !== null) {
-        setCurrentImage(getRandomImage(isGolfingToday ? 'golf' : 'sad'));
-      }
-  };
+  const getRandomImage = useCallback((set: keyof typeof IMAGE_SETS) => {
+    const randomIndex = Math.floor(Math.random() * IMAGE_SETS[set].length);
+    return `/files/${IMAGE_SETS[set][randomIndex]}`;
+  }, []);
 
   const getEventLabel = (type: EventType): string => {
     const labels: Record<EventType, string> = {
@@ -167,6 +148,10 @@ const Home: React.FC<HomeProps> = ({
   };
 
   useEffect(() => {
+    setCurrentImage(
+      isGolfingToday ? getRandomImage("golf") : getRandomImage("sad")
+    );
+
     const golfEvents = Object.values(events).filter((event) =>
       ["golf", "golf_arrival", "golf_departure"].includes(event.type)
     );
@@ -178,7 +163,7 @@ const Home: React.FC<HomeProps> = ({
     }, 0);
 
     setTotalCost(newTotalCost);
-  }, [events, locationCosts]);
+  }, [events, locationCosts, getRandomImage, isGolfingToday]);
 
   return (
     <div className={styles.container}>
@@ -243,7 +228,6 @@ const Home: React.FC<HomeProps> = ({
           onLoad={() => setIsImageLoading(false)}
           style={{ opacity: isImageLoading ? 0 : 1 }}
         />
-        <button className={styles.newImageButton} onClick={handleNewImage}>New Image</button>
         <div
           id="status"
           className={`${styles.status} ${
@@ -251,7 +235,7 @@ const Home: React.FC<HomeProps> = ({
           }`}
           aria-live="polite"
         >
-          {isGolfingToday === null ? '...' : (isGolfingToday ? "Yes" : "No")}
+          {isGolfingToday ? "Yes" : "No"}
         </div>
 
         <div className={styles.blurb}>
@@ -376,17 +360,6 @@ const Home: React.FC<HomeProps> = ({
                 <ul className={styles.sourcesList}>
                   <li>
                     <a
-                      href="https://www.gao.gov/products/gao-19-178"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.costInfoLink}
-                    >
-                      GAO study
-                    </a>{" "}
-                    showing $3.4 million average per trip
-                  </li>
-                  <li>
-                    <a
                       href="https://www.independent.co.uk/news/world/americas/us-politics/trump-gold-trips-taxpayer-money-doge-b2701045.html"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -430,12 +403,16 @@ const Home: React.FC<HomeProps> = ({
                 </button>
               </div>
             )}
-          </div> 
-          <p>
-                Wondering why these trips cost so much? <br/><br/>We've put together a detailed guide on the factors that influence the total cost.
-                <br/> <br/>
+          </div>
+
+          <p><br/>
+                Wondering why these trips cost so much? <br/>
+                We've put together a detailed guide on the factors that influence the total cost.
+                <br/><br/>
                 <Link href="/cost-breakdown"><a className={styles.costInfoLink}>View the Cost Breakdown</a></Link>
-            </p>
+          </p>
+
+          
         </div>
 
         <div className={styles.legend}>
