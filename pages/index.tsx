@@ -105,20 +105,24 @@ const Home: React.FC<HomeProps> = ({
   locationCosts,
   daysGolfed,
 }) => {
+  const [hasMounted, setHasMounted] = useState(false); // Top-level mount state
   const [totalTrips, setTotalTrips] = useState<number>(0);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [selectedEvent, setSelectedEvent] = useState<{
     date: string;
     data: EventData;
   } | null>(null);
-  const [currentImage, setCurrentImage] = useState<string>("");
-  const [isImageLoading, setIsImageLoading] = useState(true);
+  const [currentImage, setCurrentImage] = useState<string>("/files/sad.webp"); // Default image
   const [showCostInfo, setShowCostInfo] = useState<boolean>(false);
   const [showVacationInfo, setShowVacationInfo] = useState<boolean>(false);
   const [totalCost, setTotalCost] = useState<number>(0);
   const costInfoRef = useRef<HTMLDivElement | null>(null);
   const vacationInfoRef = useRef<HTMLDivElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    setHasMounted(true); // This will run only on the client, after the initial render
+  }, []);
 
   useClickOutside(modalRef, setModalOpen, [modalOpen]);
   useClickOutside(costInfoRef, setShowCostInfo, [showCostInfo]);
@@ -148,22 +152,25 @@ const Home: React.FC<HomeProps> = ({
   };
 
   useEffect(() => {
-    setCurrentImage(
-      isGolfingToday ? getRandomImage("golf") : getRandomImage("sad")
-    );
+    // All client-side calculations are now dependent on hasMounted
+    if (hasMounted) {
+      setCurrentImage(
+        isGolfingToday ? getRandomImage("golf") : getRandomImage("sad")
+      );
 
-    const golfEvents = Object.values(events).filter((event) =>
-      ["golf", "golf_arrival", "golf_departure"].includes(event.type)
-    );
-    setTotalTrips(golfEvents.length);
+      const golfEvents = Object.values(events).filter((event) =>
+        ["golf", "golf_arrival", "golf_departure"].includes(event.type)
+      );
+      setTotalTrips(golfEvents.length);
 
-    const newTotalCost = golfEvents.reduce((acc, event) => {
-      const cost = locationCosts[event.location] || 0;
-      return acc + cost;
-    }, 0);
+      const newTotalCost = golfEvents.reduce((acc, event) => {
+        const cost = locationCosts[event.location] || 0;
+        return acc + cost;
+      }, 0);
 
-    setTotalCost(newTotalCost);
-  }, [events, locationCosts, getRandomImage, isGolfingToday]);
+      setTotalCost(newTotalCost);
+    }
+  }, [hasMounted, events, locationCosts, getRandomImage, isGolfingToday]);
 
   return (
     <div className={styles.container}>
@@ -218,202 +225,213 @@ const Home: React.FC<HomeProps> = ({
 
       <main className={styles.main}>
         <h2>Is Trump Golfing Today?</h2>
-        <img
-          id="golfImage"
-          src={currentImage}
-          alt="pic of fascist"
-          className={styles.golfImage}
-          width={300} // Add native width
-          height={300} // Add native height
-          onLoad={() => setIsImageLoading(false)}
-          style={{ opacity: isImageLoading ? 0 : 1 }}
-        />
-        <div
-          id="status"
-          className={`${styles.status} ${
-            isGolfingToday ? styles.statusYes : styles.statusNo
-          }`}
-          aria-live="polite"
-        >
-          {isGolfingToday ? "Yes" : "No"}
-        </div>
-
-        <div className={styles.blurb}>
-          <p>
-            Trump has golfed <span id="daysGolfed">{daysGolfed}</span> of the{" "}
-            <span id="daysSinceStart">{effectiveDaysSinceStart}</span> days (
-            {percentage}%) since his second term began.
-          </p>
-          <p></p>
-          <p>
-            This has cost taxpayers{" "}
-            <span className={styles.cost}>
-              {`~$${(totalCost || 0).toLocaleString("en-US", {
-                maximumFractionDigits: 0,
-              })}`}
-            </span>{". "}
-          </p>
-
-          <div className={styles.vacationButtonContainer}>
-            <button
-              className={styles.vacationButton}
-              onClick={() => setShowVacationInfo(!showVacationInfo)}
+        
+        {/* Conditional rendering based on hasMounted */}
+        {hasMounted ? (
+          <>
+            <img
+              id="golfImage"
+              src={currentImage}
+              alt="pic of fascist"
+              className={styles.golfImage}
+              width={300}
+              height={300}
+            />
+            <div
+              id="status"
+              className={`${styles.status} ${
+                isGolfingToday ? styles.statusYes : styles.statusNo
+              }`}
+              aria-live="polite"
             >
-              But what about other presidents?
-            </button>
-            {showVacationInfo && (
-              <div ref={vacationInfoRef} className={styles.vacationInfoPopup}>
-                <p>
-                  While trump golfed 293 days in his first term, he took a total
-                  of 378 vacation days.
-                </p>
-                <ul className={styles.sourcesList}>
-                  <li>Biden (1 term): 184 days</li>
-                  <li>Obama (2 terms): 328 days</li>
-                  <li>Bush (2 terms): 1020 days</li>
-                  <li>Clinton (2 terms): 345 days</li>
-                  <li>H.W. Bush (2 terms): 543 days</li>
-                  <li>Reagan (2 terms): 866 days</li>
-                  <li>
-                    <a
-                      href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366"
-                      target="_blank"
-                      rel="noopener norefferrer"
-                      className={styles.vacationInfoLink}
-                    >
-                      Source for Trump's first term
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.snopes.com/news/2025/02/04/biden-vacation-president/"
-                      target="_blank"
-                      rel="noopener norefferrer"
-                      className={styles.vacationInfoLink}
-                    >
-                      Source for Biden
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
-                      target="_blank"
-                      rel="noopener norefferrer"
-                      className={styles.vacationInfoLink}
-                    >
-                      Source for H.W. Bush - Obama
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.washingtonpost.com/wp-dyn/content/blog/2008/03/04/BL2008030401392.html"
-                      target="_blank"
-                      rel="noopener norefferrer"
-                      className={styles.vacationInfoLink}
-                    >
-                      Source for Reagan
-                    </a>
-                  </li>
-                </ul>
+              {isGolfingToday ? "Yes" : "No"}
+            </div>
+            <div className={styles.blurb}>
+              <p>
+                Trump has golfed <span id="daysGolfed">{daysGolfed}</span> of the{" "}
+                <span id="daysSinceStart">{effectiveDaysSinceStart}</span> days (
+                {percentage}%) since his second term began.
+              </p>
+              <p></p>
+              <p>
+                This has cost taxpayers{" "}
+                <span className={styles.cost}>
+                  {`~$${(totalCost || 0).toLocaleString("en-US", {
+                    maximumFractionDigits: 0,
+                  })}`}
+                </span>{". "}
+              </p>
+
+              <div className={styles.vacationButtonContainer}>
                 <button
-                  className={styles.closeButton}
-                  onClick={() => setShowVacationInfo(false)}
+                  className={styles.vacationButton}
+                  onClick={() => setShowVacationInfo(!showVacationInfo)}
                 >
-                  <svg
-                    className={styles.closeIcon}
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    role="button"
-                  >
-                    <path d="M18 6L6 18M6 6l12 12" />
-                  </svg>
+                  But what about other presidents?
                 </button>
+                {showVacationInfo && (
+                  <div ref={vacationInfoRef} className={styles.vacationInfoPopup}>
+                    <p>
+                      While trump golfed 293 days in his first term, he took a total
+                      of 378 vacation days.
+                    </p>
+                    <ul className={styles.sourcesList}>
+                      <li>Biden (1 term): 184 days</li>
+                      <li>Obama (2 terms): 328 days</li>
+                      <li>Bush (2 terms): 1020 days</li>
+                      <li>Clinton (2 terms): 345 days</li>
+                      <li>H.W. Bush (2 terms): 543 days</li>
+                      <li>Reagan (2 terms): 866 days</li>
+                      <li>
+                        <a
+                          href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366"
+                          target="_blank"
+                          rel="noopener norefferrer"
+                          className={styles.vacationInfoLink}
+                        >
+                          Source for Trump's first term
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.snopes.com/news/2025/02/04/biden-vacation-president/"
+                          target="_blank"
+                          rel="noopener norefferrer"
+                          className={styles.vacationInfoLink}
+                        >
+                          Source for Biden
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html"
+                          target="_blank"
+                          rel="noopener norefferrer"
+                          className={styles.vacationInfoLink}
+                        >
+                          Source for H.W. Bush - Obama
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.washingtonpost.com/wp-dyn/content/blog/2008/03/04/BL2008030401392.html"
+                          target="_blank"
+                          rel="noopener norefferrer"
+                          className={styles.vacationInfoLink}
+                        >
+                          Source for Reagan
+                        </a>
+                      </li>
+                    </ul>
+                    <button
+                      className={styles.closeButton}
+                      onClick={() => setShowVacationInfo(false)}
+                    >
+                      <svg
+                        className={styles.closeIcon}
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        role="button"
+                      >
+                        <path d="M18 6L6 18M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-          
-          <p></p>
-          <p>
-            During his first term, he golfed 293 days (20%), costing $151.5
-            million.
-          </p>
+              
+              <p></p>
+              <p>
+                During his first term, he golfed 293 days (20%), costing $151.5
+                million.
+              </p>
 
-          <p>
-            $1.75 million of that went to Secret Service accommodations at
-            Trump-owned properties.
-          </p>
+              <p>
+                $1.75 million of that went to Secret Service accommodations at
+                Trump-owned properties.
+              </p>
 
-          <div className={styles.sourceButtonContainer}>
-            <button
-              className={styles.sourceButton}
-              onClick={() => setShowCostInfo(!showCostInfo)}
-            >
-              Sources
-            </button>
-            {showCostInfo && (
-              <div ref={costInfoRef} className={styles.costInfoPopup}>
-                <p>Cost estimates based on:</p>
-                <ul className={styles.sourcesList}>
-                  <li>
-                    <a
-                      href="https://www.independent.co.uk/news/world/americas/us-politics/trump-gold-trips-taxpayer-money-doge-b2701045.html"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.costInfoLink}
-                    >
-                      Independent analysis
-                    </a>{" "}
-                    of first term costs
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.citizensforethics.org/reports-investigations/crew-investigations/the-secret-service-spent-nearly-2-million-at-trump-properties/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.costInfoLink}
-                    >
-                      CREW reporting
-                    </a>{" "}
-                    on Secret Service accommodation costs
-                  </li>
-                  <li className={styles.nonLinkItem}>
-                    Sources for days golfed can be seen in the calendar.
-                  </li>
-                </ul>
+              <div className={styles.sourceButtonContainer}>
                 <button
-                  className={styles.closeButton}
-                  onClick={() => setShowCostInfo(false)}
+                  className={styles.sourceButton}
+                  onClick={() => setShowCostInfo(!showCostInfo)}
                 >
-                  <svg
-                    className={styles.closeIcon}
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    role="button"
-                  >
-                    <path d="M18 6L6 18M6 6l12 12" />
-                  </svg>
+                  Sources
                 </button>
+                {showCostInfo && (
+                  <div ref={costInfoRef} className={styles.costInfoPopup}>
+                    <p>Cost estimates based on:</p>
+                    <ul className={styles.sourcesList}>
+                      <li>
+                        <a
+                          href="https://www.independent.co.uk/news/world/americas/us-politics/trump-gold-trips-taxpayer-money-doge-b2701045.html"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.costInfoLink}
+                        >
+                          Independent analysis
+                        </a>{" "}
+                        of first term costs
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.citizensforethics.org/reports-investigations/crew-investigations/the-secret-service-spent-nearly-2-million-at-trump-properties/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.costInfoLink}
+                        >
+                          CREW reporting
+                        </a>{" "}
+                        on Secret Service accommodation costs
+                      </li>
+                      <li className={styles.nonLinkItem}>
+                        Sources for days golfed can be seen in the calendar.
+                      </li>
+                    </ul>
+                    <button
+                      className={styles.closeButton}
+                      onClick={() => setShowCostInfo(false)}
+                    >
+                      <svg
+                        className={styles.closeIcon}
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        role="button"
+                      >
+                        <path d="M18 6L6 18M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                )}
               </div>
-            )}
+
+              <p>
+                    Wondering why these trips cost so much? <br/><br/>
+                    We've put together a detailed guide on the factors that influence the total cost.
+                    <br/><br/>
+                    <Link href="/cost-breakdown"><a className={styles.costInfoLink}>View the Cost Breakdown</a></Link>
+              </p>
+            </div>
+          </>
+        ) : (
+          // This is the placeholder content that will be rendered on the server
+          // and on the initial client load. It's static and has no client-side dependencies.
+          <div>
+            <div style={{ height: '300px', width: '300px', backgroundColor: '#333', margin: 'auto' }} />
+            <div className={styles.status}>Loading...</div>
+            <div className={styles.blurb}>
+              <p>Calculating...</p>
+            </div>
           </div>
-
-          <p>
-                Wondering why these trips cost so much? <br/><br/>
-                We've put together a detailed guide on the factors that influence the total cost.
-                <br/><br/>
-                <Link href="/cost-breakdown"><a className={styles.costInfoLink}>View the Cost Breakdown</a></Link>
-          </p>
-
-          
-        </div>
+        )}
 
         <div className={styles.legend}>
           <p>
@@ -425,6 +443,7 @@ const Home: React.FC<HomeProps> = ({
           </p>
         </div>
 
+        {/* The Calendar component can now be simplified */}
         <Calendar
           events={events}
           onDateSelect={(eventData) => {
@@ -434,7 +453,7 @@ const Home: React.FC<HomeProps> = ({
         />
 
         {modalOpen &&
-          selectedEvent && ( // Add null check here
+          selectedEvent && (
             <div ref={modalRef} className={styles.modal}>
               <button
                 className={styles.closeButton}
