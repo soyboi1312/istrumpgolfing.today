@@ -368,7 +368,7 @@ const Home: React.FC<HomeProps> = ({
               className={styles.sourceButton}
               onClick={() => setShowCostInfo(!showCostInfo)}
             >
-              sources
+              Sources
             </button>
             {showCostInfo && (
               <div ref={costInfoRef} className={styles.costInfoPopup}>
