@@ -514,5 +514,5 @@ const Home: React.FC<HomeProps> = ({
     </div>
   );
 };
-
+ 
 export default Home;
