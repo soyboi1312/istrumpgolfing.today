@@ -414,7 +414,9 @@ const Home: React.FC<HomeProps> = ({
               </div>
 
               <p>
-                    Wondering why these trips cost so much? <br/><br/>
+                    Wondering why these trips cost so much? 
+              </p>
+                <p>
                     We've put together a detailed guide on the factors that influence the total cost.
                     <br/><br/>
                     <Link href="/cost-breakdown"><a className={styles.costInfoLink}>View the Cost Breakdown</a></Link>
