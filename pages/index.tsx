@@ -428,7 +428,7 @@ const Home: React.FC<HomeProps> = ({
           // and on the initial client load. It's static and has no client-side dependencies.
           <div>
             <div style={{ height: '300px', width: '300px', backgroundColor: '#333', margin: 'auto' }} />
-            <div className={styles.status}>Loading...</div>
+            <div className={styles.status}>Loading pic of fascist...</div>
             <div className={styles.blurb}>
               <p>Calculating...</p>
             </div>
