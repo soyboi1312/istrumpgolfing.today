@@ -215,7 +215,7 @@ const Home: React.FC<HomeProps> = ({
           href="/files/fav/apple-touch-icon.png"
         />
         <title>
-          Is Trump Golfing Today? Real-Time Tracker & Taxpayer Cost Calculator
+          Is Trump Golfing Today? Trump Golf Tracker & Taxpayer Cost Calculator
         </title>
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
