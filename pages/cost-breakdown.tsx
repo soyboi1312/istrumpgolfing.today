@@ -110,7 +110,7 @@ const CostBreakdown = () => {
         </div>
         
                 <div className={styles.tableContainer}>
-            <h3 className={styles.tableTitle}>Cost Component (Per Day Trip to Sterling, VA)</h3>
+            <h3 className={styles.tableTitle}>Cost Component (Per Day Trip to Sterling, VA and Washington DC)</h3>
             <table className={styles.table}>
                 <thead>
                     <tr>
