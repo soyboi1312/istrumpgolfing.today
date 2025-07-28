@@ -232,7 +232,7 @@ const Home: React.FC<HomeProps> = ({
             <img
               id="golfImage"
               src={currentImage}
-              alt="pic of fascist"
+              alt="fascist"
               className={styles.golfImage}
               width={300}
               height={300}
@@ -424,11 +424,9 @@ const Home: React.FC<HomeProps> = ({
             </div>
           </>
         ) : (
-          // This is the placeholder content that will be rendered on the server
-          // and on the initial client load. It's static and has no client-side dependencies.
           <div>
             <div style={{ height: '300px', width: '300px', backgroundColor: '#333', margin: 'auto' }} />
-            <div className={styles.status}>Loading pic of fascist...</div>
+            <div className={styles.status}>fascist</div>
             <div className={styles.blurb}>
               <p>Calculating...</p>
             </div>
