@@ -9,7 +9,7 @@ interface StatusData {
 
 export const statusData: StatusData = {
     events: {
-         '2025-07-26': {
+        '2025-07-26': {
             location: 'Scotland',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf'
