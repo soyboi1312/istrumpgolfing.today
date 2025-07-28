@@ -17,7 +17,7 @@ export const statusData: StatusData = {
         '2025-07-25': {
             location: 'Scotland',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
-            type: 'arrived',
+            type: 'arrival',
         },
         '2025-07-20': {
             location: 'Washington DC',
