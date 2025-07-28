@@ -8,7 +8,17 @@ interface StatusData {
 }
 
 export const statusData: StatusData = {
-    events: {        
+    events: {
+         '2025-07-26': {
+            location: 'Scotland',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf'
+        },
+        '2025-07-25': {
+            location: 'Scotland',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'arrived'
+        },
         '2025-07-20': {
             location: 'Washington DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
@@ -277,6 +287,7 @@ export const statusData: StatusData = {
     },
     termStart: new Date(2025, 0, 19),
     locationCosts: {
+        "Scotland": 1700000,
         "Las Vegas, NV": 1600000,
         "Mar-a-Lago": 1400000,
         "West Palm Beach, FL": 1400000,
