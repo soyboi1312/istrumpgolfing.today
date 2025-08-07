@@ -9,10 +9,25 @@ interface StatusData {
 
 export const statusData: StatusData = {
     events: {
+        '2025-08-03': {
+            location: 'Bedminster, NJ',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
+        '2025-08-02': {
+            location: 'Bedminster, NJ',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
         '2025-07-29': {
             location: 'Scotland',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'departure',
+        },
+        '2025-07-27': {
+            location: 'Scotland',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
         },
         '2025-07-26': {
             location: 'Scotland',
@@ -33,9 +48,19 @@ export const statusData: StatusData = {
             location: 'Washington DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
+        },        
+        '2025-07-12': {
+            location: 'Bedminster, NJ',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
         },
-        '2025-07-04': {
-            location: 'Washington DC',
+        '2025-07-06': {
+            location: 'Bedminster, NJ',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
+        '2025-07-05': {
+            location: 'Bedminster, NJ',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
