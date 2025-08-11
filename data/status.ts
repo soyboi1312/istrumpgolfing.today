@@ -9,6 +9,16 @@ interface StatusData {
 
 export const statusData: StatusData = {
     events: {
+        '2025-08-10': {
+            location: 'Washington DC',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
+        '2025-08-09': {
+            location: 'Washington, DC',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
         '2025-08-03': {
             location: 'Bedminster, NJ',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
@@ -18,6 +28,11 @@ export const statusData: StatusData = {
             location: 'Bedminster, NJ',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
+        },
+        '2025-08-01': {
+            location: 'Bedminster, NJ',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'arrival',
         },
         '2025-07-29': {
             location: 'Scotland',
