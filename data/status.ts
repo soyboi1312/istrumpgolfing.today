@@ -5,7 +5,7 @@ interface StatusData {
     events: Events;
     termStart: Date;
     locationCosts: { [key: string]: number };
-} 
+}  
 
 export const statusData: StatusData = {
     events: {
