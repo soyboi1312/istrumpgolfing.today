@@ -9,6 +9,11 @@ interface StatusData {
 
 export const statusData: StatusData = {
     events: {
+        '2025-08-30': {
+            location: 'Washington DC',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
         '2025-08-24': {
             location: 'Washington DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
