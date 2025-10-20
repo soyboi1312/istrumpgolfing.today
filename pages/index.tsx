@@ -355,6 +355,16 @@ const Home: React.FC<HomeProps> = ({
                 Trump-owned properties.
               </p>
 
+              <p>
+                  Wondering why these trips cost so much? 
+              </p>
+              <p>
+                  We've put together a detailed guide on the factors that influence the total cost.
+                  <br/><br/>
+                  <Link href="/cost-breakdown"><a className={styles.costInfoLink}>View the Cost Breakdown</a></Link>
+              </p>
+
+              {/* MOVED BLOCK STARTS HERE */}
               <div className={styles.sourceButtonContainer}>
                 <button
                   className={styles.sourceButton}
@@ -412,15 +422,8 @@ const Home: React.FC<HomeProps> = ({
                   </div>
                 )}
               </div>
+              {/* MOVED BLOCK ENDS HERE */}
 
-              <p>
-                    Wondering why these trips cost so much? 
-              </p>
-                <p>
-                    We've put together a detailed guide on the factors that influence the total cost.
-                    <br/><br/>
-                    <Link href="/cost-breakdown"><a className={styles.costInfoLink}>View the Cost Breakdown</a></Link>
-              </p>
             </div>
           </>
         ) : (
