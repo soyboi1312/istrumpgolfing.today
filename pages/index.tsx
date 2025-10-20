@@ -354,6 +354,18 @@ const Home: React.FC<HomeProps> = ({
                 $1.75 million of that went to Secret Service accommodations at
                 Trump-owned properties.
               </p>
+              
+              <p>
+                    Wondering why these trips cost so much? 
+              </p>
+                <p>
+                    We've put together a detailed guide on the factors that influence the total cost.
+                    <br/><br/>
+                    <Link href="/cost-breakdown"><a className={styles.costInfoLink}>View the Cost Breakdown</a></Link>
+              </p>
+            </div>
+          </><p></p>
+      
 
               <div className={styles.sourceButtonContainer}>
                 <button
@@ -412,17 +424,6 @@ const Home: React.FC<HomeProps> = ({
                   </div>
                 )}
               </div>
-
-              <p>
-                    Wondering why these trips cost so much? 
-              </p>
-                <p>
-                    We've put together a detailed guide on the factors that influence the total cost.
-                    <br/><br/>
-                    <Link href="/cost-breakdown"><a className={styles.costInfoLink}>View the Cost Breakdown</a></Link>
-              </p>
-            </div>
-          </>
         ) : (
           <div>
             <div style={{ height: '300px', width: '300px', backgroundColor: '#333', margin: 'auto' }} />
