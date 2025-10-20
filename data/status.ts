@@ -12,7 +12,7 @@ export const statusData: StatusData = {
         '2025-10-19':{
             location: 'West Palm Beach, FL',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
-            type: 'golf',
+            type: 'golf_departure',
         },
         '2025-10-18':{
             location: 'West Palm Beach, FL',
