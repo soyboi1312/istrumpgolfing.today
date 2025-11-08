@@ -21,6 +21,10 @@ interface ClickOutsideHandler {
   (value: boolean): void;
 }
 
+/**
+ * Fetches golf event data at build time for static site generation
+ * @returns Props containing events, term start date, location costs, and days golfed count
+ */
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
     const statusData = getStatusData();
@@ -53,8 +57,15 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   }
 };
 
+/**
+ * Custom hook to detect clicks outside of a referenced element
+ * Useful for closing modals and popups when clicking outside
+ * @param ref - React ref to the element to monitor
+ * @param handler - Callback function to execute when clicking outside
+ * @param dependencies - React dependencies to control when the listener is active
+ */
 const useClickOutside = (
-  ref: React.RefObject<HTMLElement | null>, // Allow null
+  ref: React.RefObject<HTMLElement | null>,
   handler: ClickOutsideHandler,
   dependencies: DependencyList
 ) => {
@@ -75,11 +86,20 @@ const useClickOutside = (
   }, dependencies);
 };
 
+/**
+ * Image file sets for different golf statuses
+ * Each set contains multiple images for variety
+ */
 const IMAGE_SETS = {
   sad: ["sad.webp", "sad1.webp"],
   golf: ["golf.webp", "golf1.webp", "golf2.webp"],
 } as const;
 
+/**
+ * Formats an ISO date string (YYYY-MM-DD) to human-readable format (MMM-DD-YYYY)
+ * @param dateString - ISO formatted date string
+ * @returns Formatted date string (e.g., "Jan-20-2025")
+ */
 const formatDate = (dateString: string): string => {
   const [year, month, day] = dateString.split("-");
   const monthNames = [
@@ -135,11 +155,21 @@ const Home: React.FC<HomeProps> = ({
       ? parseFloat(((daysGolfed / effectiveDaysSinceStart) * 100).toFixed(1))
       : 0;
 
+  /**
+   * Selects a random image from the specified set
+   * @param set - The image set key ('sad' or 'golf')
+   * @returns Path to a random image from the selected set
+   */
   const getRandomImage = useCallback((set: keyof typeof IMAGE_SETS) => {
     const randomIndex = Math.floor(Math.random() * IMAGE_SETS[set].length);
     return `/files/${IMAGE_SETS[set][randomIndex]}`;
   }, []);
 
+  /**
+   * Converts event type code to human-readable label
+   * @param type - Event type (golf, arrival, departure, etc.)
+   * @returns Human-readable event label
+   */
   const getEventLabel = (type: EventType): string => {
     const labels: Record<EventType, string> = {
       golf: "Golfed",

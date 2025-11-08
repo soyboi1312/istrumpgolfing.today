@@ -3,17 +3,33 @@ import React, { JSX, useState, useEffect, useMemo, FC } from 'react';
 import styles from '../styles/Home.module.css';
 import { EventData, Events } from '../types';
 
+/**
+ * Props for the Calendar component
+ */
 interface CalendarProps {
+    /** Map of date strings (YYYY-MM-DD) to event data */
     events: Events;
+    /** Callback fired when a date with an event is clicked */
     onDateSelect: (selected: { date: string; data: EventData }) => void;
 }
 
+/**
+ * Internal representation of a calendar day
+ */
 interface CalendarDay {
+    /** Day of month (1-31) */
     day: number;
+    /** Full ISO date string (YYYY-MM-DD) */
     fullDate: string;
+    /** Event data for this day */
     data: EventData;
 }
 
+/**
+ * Interactive calendar component that displays golf events by month
+ * Shows visual indicators for arrivals, departures, and golf days
+ * Allows clicking on past events to view details
+ */
 const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
     const [hasMounted, setHasMounted] = useState(false);
     const [calendarMonths, setCalendarMonths] = useState<JSX.Element[]>([]);

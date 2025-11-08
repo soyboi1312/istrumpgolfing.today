@@ -1,19 +1,30 @@
-// data/status.ts 
+// data/status.ts
 import { EventType, Events } from '../types';
 
 interface StatusData {
     events: Events;
     termStart: Date;
     locationCosts: { [key: string]: number };
-}  
+}
 
+/**
+ * Presidential golf tracking data
+ * Contains all golf events, term start date, and location-based cost estimates
+ */
 export const statusData: StatusData = {
     events: {
+        // ========================================
+        // November 2025
+        // ========================================
         '2025-11-01':{
             location: 'West Palm Beach, FL',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
+
+        // ========================================
+        // October 2025
+        // ========================================
         '2025-10-19':{
             location: 'West Palm Beach, FL',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
@@ -30,27 +41,31 @@ export const statusData: StatusData = {
             type: 'arrival',
             },
         '2025-10-11': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-10-04': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
+
+        // ========================================
+        // September 2025
+        // ========================================
         '2025-09-28': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-09-27': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-09-20': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
@@ -60,27 +75,31 @@ export const statusData: StatusData = {
             type: 'golf',
         },
         '2025-09-06': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-09-01': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
+
+        // ========================================
+        // August 2025
+        // ========================================
         '2025-08-31': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-08-30': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-08-24': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
@@ -90,7 +109,7 @@ export const statusData: StatusData = {
             type: 'golf',
         },
         '2025-08-17': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
@@ -100,7 +119,7 @@ export const statusData: StatusData = {
             type: 'golf',
         },
         '2025-08-10': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
@@ -124,6 +143,10 @@ export const statusData: StatusData = {
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
+
+        // ========================================
+        // July 2025
+        // ========================================
         '2025-07-29': {
             location: 'Scotland',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
@@ -145,12 +168,12 @@ export const statusData: StatusData = {
             type: 'arrival',
         },
         '2025-07-20': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-07-19': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },        
@@ -169,23 +192,31 @@ export const statusData: StatusData = {
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
+
+        // ========================================
+        // June 2025
+        // ========================================
         '2025-06-29': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-06-28': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-06-01': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
+
+        // ========================================
+        // May 2025
+        // ========================================
         '2025-05-31': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
@@ -200,12 +231,12 @@ export const statusData: StatusData = {
             type: 'golf',
         },
         '2025-05-18': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-05-10': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
@@ -229,13 +260,17 @@ export const statusData: StatusData = {
             url: '',
             type: 'arrival',
         },
+
+        // ========================================
+        // April 2025
+        // ========================================
         '2025-04-20': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
             },
         '2025-04-19': {
-            location: 'Washington DC',
+            location: 'Washington, DC',
             url: 'https://youtu.be/l40AbwlzsWE',
             type: 'golf',
             },
@@ -274,6 +309,10 @@ export const statusData: StatusData = {
             url: '',
             type: 'arrival',
         },
+
+        // ========================================
+        // March 2025
+        // ========================================
         '2025-03-30': {
             location: 'West Palm Beach, FL',
             url: 'https://apnews.com/article/donald-trump-tariffs-golf-813c7a300021445636f63fddbfd38c83',
@@ -349,6 +388,10 @@ export const statusData: StatusData = {
             url: '',
             type: 'arrival',
         },
+
+        // ========================================
+        // February 2025
+        // ========================================
         '2025-02-19': {
             location: 'Mar-a-Lago',
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
@@ -404,6 +447,10 @@ export const statusData: StatusData = {
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
             type: 'arrival',
         },
+
+        // ========================================
+        // January 2025
+        // ========================================
         '2025-01-27': {
             location: 'Doral, FL',
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
@@ -430,7 +477,7 @@ export const statusData: StatusData = {
         "Doral, FL": 1400000,
         "Bedminster, NJ": 350000,
         "Sterling, VA": 100000,
-        "Washington DC": 100000,
+        "Washington, DC": 100000,
     }
 };
 
