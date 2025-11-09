@@ -32,7 +32,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Lock files (optional - uncomment if you want to track them)
-# package-lock.json
-# yarn.lock
-# pnpm-lock.yaml
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
