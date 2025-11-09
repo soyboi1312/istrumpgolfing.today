@@ -477,7 +477,7 @@ export const statusData: StatusData = {
         "West Palm Beach, FL": 3400000,   // $3.4M per weekend (same as Mar-a-Lago)
         "Jupiter, FL": 3400000,           // $3.4M per weekend (similar FL distance/security needs)
         "Doral, FL": 3400000,             // $3.4M per weekend (similar FL distance/security needs)
-        "Bedminster, NJ": 1300000,        // ~$1.3M per 3-day trip (shorter flight, C-32 vs AF1)
+        "Bedminster, NJ": 350000,         // ~$350K per trip (close to DC, shorter flight)
         "Sterling, VA": 100000,           // <$100K per day trip (motorcade only, no aircraft)
         "Washington, DC": 100000,         // <$100K per day trip (motorcade only, no aircraft)
     }

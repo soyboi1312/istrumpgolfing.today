@@ -10,7 +10,7 @@ import styles from '../styles/CostBreakdown.module.css';
  *
  * Cost Sources:
  * - Mar-a-Lago, FL: ~$3.4M per weekend (GAO-19-178 report on 4 Mar-a-Lago trips)
- * - Bedminster, NJ: ~$1.3M per 3-day trip (estimated based on distance/aircraft requirements)
+ * - Bedminster, NJ: ~$350K per 3-day trip (close proximity to DC, reduced aircraft requirements)
  * - Sterling, VA / Washington, DC: <$100K per day trip (motorcade only, no aircraft)
  * - Las Vegas, NV: ~$5M per weekend (hypothetical, based on extended flight distance)
  *
@@ -32,7 +32,7 @@ const CostBreakdown = () => {
         <h1 className={styles.title}>Presidential Golf Trip Cost Breakdown</h1>
         <div className={`${styles.blurb} ${styles.blurbContainer}`}>
             <p>The taxpayer cost of presidential golf trips varies dramatically depending on the destination, with the primary cost drivers being flight distance, the type of aircraft required, and location-specific security needs. A Government Accountability Office (GAO) report on four of President Trump's trips to his Mar-a-Lago club in Florida established a baseline cost of approximately $3.4 million per weekend. This high cost is driven by the use of the large Air Force One (a modified Boeing 747), the necessity of C-17 cargo planes to transport the presidential motorcade, and a unique, expensive maritime security operation by the U.S. Coast Guard required by the resort's coastal location.</p>
-            <p>In contrast, a trip to the Trump National Golf Club in Bedminster, New Jersey, represents a mid-range cost scenario, estimated to be between $840,000 and $1.13 million per weekend. The significant cost reduction comes from the shorter flight distance, which allows for the use of a smaller, less expensive aircraft (a C-32), and the absence of any need for maritime security patrols. The lowest-cost scenario is a day trip to the Trump National Golf Club in Sterling, Virginia. Because this location is close to the White House, travel is conducted entirely by motorcade, eliminating all aircraft expenses—the largest component of travel costs. The total for a Sterling trip is estimated to be under $100,000, composed mainly of vehicle operating costs and personnel overtime.</p>
+            <p>In contrast, a trip to the Trump National Golf Club in Bedminster, New Jersey, represents a low-to-mid-range cost scenario, estimated at approximately $350,000 per 3-day trip. Due to its proximity to Washington, DC (approximately 50 miles), Bedminster trips avoid the need for large aircraft like Air Force One or C-17 cargo planes. Instead, travel relies primarily on Marine One helicopters, local aircraft support, and motorcade operations, with no maritime security requirements. The lowest-cost scenario is a day trip to the Trump National Golf Club in Sterling, Virginia. Because this location is even closer to the White House, travel is conducted entirely by motorcade, eliminating all aircraft expenses—the largest component of travel costs. The total for a Sterling trip is estimated to be under $100,000, composed mainly of vehicle operating costs and personnel overtime.</p>
             <p>Using this same framework, a hypothetical weekend trip to Las Vegas would be even more expensive than one to Mar-a-Lago, with an estimated cost of over $5 million. This higher figure is primarily due to the much longer flight time from Washington, D.C., which significantly increases the operational costs for both Air Force One and the C-17 cargo planes needed to transport the motorcade.</p>
             <h2 className={styles.subtitle}>Location-Based Cost Breakdowns</h2>
             <div className={styles.tableContainer}>
@@ -93,31 +93,31 @@ const CostBreakdown = () => {
                 <tbody>
                     <tr>
                         <td>Total Estimated Per-Trip Cost</td>
-                        <td>~$1,300,000</td>
+                        <td>~$350,000</td>
                     </tr>
                     <tr>
-                        <td>C-32 Flight (Primary Aircraft)</td>
-                        <td>$360,000</td>
-                    </tr>
-                    <tr>
-                        <td>C-17 Flights (Motorcade Transport)</td>
-                        <td>$400,000</td>
-                    </tr>
-                    <tr>
-                        <td>Marine One (WH to Andrews RT)</td>
+                        <td>Marine One Helicopters</td>
                         <td>$57,000</td>
                     </tr>
                     <tr>
-                        <td>DOD/DHS Personnel (Per Diem, etc.)</td>
-                        <td>$303,000</td>
+                        <td>Local Aircraft Support</td>
+                        <td>$50,000</td>
+                    </tr>
+                    <tr>
+                        <td>Motorcade Operations</td>
+                        <td>$60,000</td>
+                    </tr>
+                    <tr>
+                        <td>DOD/DHS Personnel (3-Day)</td>
+                        <td>$100,000</td>
                     </tr>
                     <tr>
                         <td>Secret Service Staffing</td>
-                        <td>$135,000</td>
+                        <td>$50,000</td>
                     </tr>
                     <tr>
                         <td>Bedminster Township Law Enforcement</td>
-                        <td>$43,000</td>
+                        <td>$33,000</td>
                     </tr>
                 </tbody>
             </table>
