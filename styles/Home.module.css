@@ -439,12 +439,14 @@
   margin: 0 0 1rem 0;
   font-weight: 600;
   color: var(--color-primary-orange);
+  text-align: center;
 }
 
 .shareButtonGroup {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .shareButton {
