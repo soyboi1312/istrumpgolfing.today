@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2025-11-09",
+    "location": "Mar-a-Lago",
+    "type": "golf",
+    "source": "https://example.com/news/trump-golf-nov-9",
+    "description": "Optional: Pool report confirmed golfing at Mar-a-Lago"
+  },
+  {
+    "date": "2025-11-08",
+    "location": "Mar-a-Lago",
+    "type": "golf_arrival",
+    "source": "https://example.com/news/trump-arrives-mar-a-lago",
+    "description": "Optional: Arrived and golfed same day"
+  },
+  {
+    "date": "2025-11-07",
+    "location": "Bedminster, NJ",
+    "type": "golf_departure",
+    "source": "https://example.com/news/trump-bedminster-golf",
+    "description": "Optional: Golfed before departing"
+  }
+]

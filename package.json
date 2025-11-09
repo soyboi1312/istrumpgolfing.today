@@ -7,13 +7,15 @@
     "dev": "next dev",
     "start": "next start",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "tsc --noEmit --watch"
+    "type-check:watch": "tsc --noEmit --watch",
+    "update-data": "ts-node scripts/update-golf-data.ts"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
     "@types/react": "^18.0.0",
     "@types/node": "^20.0.0",
-    "next": "^14.0.0"
+    "next": "^14.0.0",
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
     "next": "^14.1.0",
