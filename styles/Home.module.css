@@ -94,6 +94,14 @@
 /* ============================================
    Content Sections
    ============================================ */
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--color-primary-orange);
+  text-align: center;
+}
+
 .blurb {
   line-height: 1.4;
   margin: var(--spacing-lg) 0;

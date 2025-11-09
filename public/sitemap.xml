@@ -7,8 +7,16 @@
 
 <url>
   <loc>https://istrumpgolfing.today/</loc>
-  <lastmod>2025-07-02T23:08:02+00:00</lastmod>
+  <lastmod>2025-11-09T00:00:00+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>1.0</priority>
 </url>
 
+<url>
+  <loc>https://istrumpgolfing.today/cost-breakdown</loc>
+  <lastmod>2025-11-09T00:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
 
 </urlset>

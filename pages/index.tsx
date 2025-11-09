@@ -232,26 +232,37 @@ const Home: React.FC<HomeProps> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
-          content="Track how many days Donald Trump has golfed during his presidency. Real-time updates on taxpayer costs, historical data, and verified sources. Updated daily."
+          content="Is Trump golfing today? Real-time Trump golf tracker with daily updates. Track presidential golf trips, taxpayer costs ($151.5M first term), and verified sources. Official Trump golf counter."
         ></meta>
         <meta
           name="keywords"
-          content="Trump, is trump golfing, today, golfing, Donald Trump, Republican, GOP, fascist, price, cost"
+          content="is trump golfing today, trump golf tracker, trump golfing, how many days has trump golfed, trump golf counter, trump golf trips cost, presidential golf tracker, trump vacation days, trump mar-a-lago trips"
         />
         <meta name="msapplication-TileColor" content="#ae8160" />
         <meta name="application-name" content="Is Trump Golfing Today?" />
-        <meta
-          property="og:image"
-          content="https://istrumpgolfing.today/files/icons/preview.png"
-        />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://istrumpgolfing.today/" />
+        <meta property="og:title" content="Is Trump Golfing Today? | Real-Time Trump Golf Tracker" />
+        <meta property="og:description" content="Track Donald Trump's golf trips in real-time. See daily updates, taxpayer costs, and verified sources. 293 days golfed in first term costing $151.5M." />
+        <meta property="og:image" content="https://istrumpgolfing.today/files/icons/preview.png" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="180" />
         <meta property="og:image:height" content="180" />
-        <meta
-          name="twitter:image"
-          content="https://istrumpgolfing.today/files/icons/preview.png"
-        />
+        <meta property="og:site_name" content="Is Trump Golfing Today?" />
+
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://istrumpgolfing.today/" />
+        <meta name="twitter:title" content="Is Trump Golfing Today? | Trump Golf Tracker" />
+        <meta name="twitter:description" content="Real-time Trump golf tracker. Track presidential golf trips, costs, and verified data. Updated daily." />
+        <meta name="twitter:image" content="https://istrumpgolfing.today/files/icons/preview.png" />
+        <meta name="twitter:site" content="@istrumpgolfing" />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://istrumpgolfing.today/" />
+
         <link
           rel="shortcut icon"
           sizes="16x16 24x24 32x32 48x48"
@@ -296,6 +307,49 @@ const Home: React.FC<HomeProps> = ({
             })
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Is Trump golfing today?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "This website tracks Donald Trump's golf trips in real-time, showing whether he is golfing today and providing historical data on all his golf outings during his presidency."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How much do Trump's golf trips cost taxpayers?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Trump's golf trips cost taxpayers varying amounts depending on location: Mar-a-Lago trips cost approximately $3.4 million per weekend, Bedminster trips cost around $350,000, and local DC trips cost under $100,000. During his first term, golf trips cost taxpayers $151.5 million total."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How many days has Trump golfed as president?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "During his first term, Donald Trump golfed 293 days out of 1,461 days in office (20%). The website tracks all golf days with verified sources and real-time updates for his current term."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Where does Trump golf most often?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Trump most frequently golfs at his own properties including Mar-a-Lago in Florida, Trump National Golf Club in Bedminster, New Jersey, and Trump National Golf Club in Sterling, Virginia."
+                  }
+                }
+              ]
+            })
+          }}
+        />
       </Head>
 
       <main className={styles.main}>
@@ -322,6 +376,7 @@ const Home: React.FC<HomeProps> = ({
               {isGolfingToday ? "Yes" : "No"}
             </div>
             <div className={styles.blurb}>
+              <h2 className={styles.subtitle}>Trump Golf Tracker - Real-Time Presidential Golf Trip Counter</h2>
               <p>
                 Trump has golfed <span id="daysGolfed">{daysGolfed}</span> of the{" "}
                 <span id="daysSinceStart">{effectiveDaysSinceStart}</span> days (
