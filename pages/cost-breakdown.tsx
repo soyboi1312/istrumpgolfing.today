@@ -23,6 +23,7 @@ const CostBreakdown = () => {
         <title>Cost Breakdown - Is Trump Golfing Today?</title>
         <meta name="description" content="Detailed cost analysis of Trump's presidential golf trips based on GAO reports. Learn why Mar-a-Lago trips cost $3.4M, Bedminster $350K, and DC trips under $100K per visit." />
         <meta name="keywords" content="Trump golf costs, presidential travel expenses, Mar-a-Lago cost, GAO report, taxpayer money, presidential golf trips" />
+        <link rel="canonical" href="https://istrumpgolfing.today/cost-breakdown" />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
           rel="stylesheet"

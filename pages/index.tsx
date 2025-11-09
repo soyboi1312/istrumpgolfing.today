@@ -232,26 +232,37 @@ const Home: React.FC<HomeProps> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
-          content="Track how many days Donald Trump has golfed during his presidency. Real-time updates on taxpayer costs, historical data, and verified sources. Updated daily."
+          content="Is Trump golfing today? Real-time Trump golf tracker with daily updates. Track presidential golf trips, taxpayer costs ($151.5M first term), and verified sources. Official Trump golf counter."
         ></meta>
         <meta
           name="keywords"
-          content="Trump, is trump golfing, today, golfing, Donald Trump, Republican, GOP, fascist, price, cost"
+          content="is trump golfing today, trump golf tracker, trump golfing, how many days has trump golfed, trump golf counter, trump golf trips cost, presidential golf tracker, trump vacation days, trump mar-a-lago trips"
         />
         <meta name="msapplication-TileColor" content="#ae8160" />
         <meta name="application-name" content="Is Trump Golfing Today?" />
-        <meta
-          property="og:image"
-          content="https://istrumpgolfing.today/files/icons/preview.png"
-        />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://istrumpgolfing.today/" />
+        <meta property="og:title" content="Is Trump Golfing Today? | Real-Time Trump Golf Tracker" />
+        <meta property="og:description" content="Track Donald Trump's golf trips in real-time. See daily updates, taxpayer costs, and verified sources. 293 days golfed in first term costing $151.5M." />
+        <meta property="og:image" content="https://istrumpgolfing.today/files/icons/preview.png" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="180" />
         <meta property="og:image:height" content="180" />
-        <meta
-          name="twitter:image"
-          content="https://istrumpgolfing.today/files/icons/preview.png"
-        />
+        <meta property="og:site_name" content="Is Trump Golfing Today?" />
+
+        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://istrumpgolfing.today/" />
+        <meta name="twitter:title" content="Is Trump Golfing Today? | Trump Golf Tracker" />
+        <meta name="twitter:description" content="Real-time Trump golf tracker. Track presidential golf trips, costs, and verified data. Updated daily." />
+        <meta name="twitter:image" content="https://istrumpgolfing.today/files/icons/preview.png" />
+        <meta name="twitter:site" content="@istrumpgolfing" />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://istrumpgolfing.today/" />
+
         <link
           rel="shortcut icon"
           sizes="16x16 24x24 32x32 48x48"
@@ -296,6 +307,49 @@ const Home: React.FC<HomeProps> = ({
             })
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Is Trump golfing today?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "This website tracks Donald Trump's golf trips in real-time, showing whether he is golfing today and providing historical data on all his golf outings during his presidency."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How much do Trump's golf trips cost taxpayers?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Trump's golf trips cost taxpayers varying amounts depending on location: Mar-a-Lago trips cost approximately $3.4 million per weekend, Bedminster trips cost around $350,000, and local DC trips cost under $100,000. During his first term, golf trips cost taxpayers $151.5 million total."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How many days has Trump golfed as president?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "During his first term, Donald Trump golfed 293 days out of 1,461 days in office (20%). The website tracks all golf days with verified sources and real-time updates for his current term."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Where does Trump golf most often?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Trump most frequently golfs at his own properties including Mar-a-Lago in Florida, Trump National Golf Club in Bedminster, New Jersey, and Trump National Golf Club in Sterling, Virginia."
+                  }
+                }
+              ]
+            })
+          }}
+        />
       </Head>
 
       <main className={styles.main}>
@@ -322,6 +376,7 @@ const Home: React.FC<HomeProps> = ({
               {isGolfingToday ? "Yes" : "No"}
             </div>
             <div className={styles.blurb}>
+              <h2 className={styles.subtitle}>Trump Golf Tracker - Real-Time Presidential Golf Trip Counter</h2>
               <p>
                 Trump has golfed <span id="daysGolfed">{daysGolfed}</span> of the{" "}
                 <span id="daysSinceStart">{effectiveDaysSinceStart}</span> days (
@@ -438,6 +493,53 @@ const Home: React.FC<HomeProps> = ({
                 </Link>{" "}
                 explaining the factors that drive these expenses.
               </p>
+
+              {/* Share Buttons */}
+              <div className={styles.shareButtons}>
+                <p className={styles.shareText}>Share this tracker:</p>
+                <div className={styles.shareButtonGroup}>
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                      `Trump has golfed ${daysGolfed} days (${percentage}%) since taking office, costing taxpayers ~$${(totalCost || 0).toLocaleString('en-US', { maximumFractionDigits: 0 })}. Track it live:`
+                    )}&url=${encodeURIComponent('https://istrumpgolfing.today')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.shareButton}
+                    aria-label="Share on Twitter"
+                  >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    Twitter
+                  </a>
+                  <a
+                    href={`https://bsky.app/intent/compose?text=${encodeURIComponent(
+                      `Trump has golfed ${daysGolfed} days (${percentage}%) costing taxpayers ~$${(totalCost || 0).toLocaleString('en-US', { maximumFractionDigits: 0 })}. Track it: https://istrumpgolfing.today`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.shareButton}
+                    aria-label="Share on Bluesky"
+                  >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                      <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"/>
+                    </svg>
+                    Bluesky
+                  </a>
+                  <a
+                    href={`https://www.reddit.com/submit?url=${encodeURIComponent('https://istrumpgolfing.today')}&title=${encodeURIComponent('Trump Golf Tracker - Real-time tracking of presidential golf trips')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.shareButton}
+                    aria-label="Share on Reddit"
+                  >
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                      <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                    </svg>
+                    Reddit
+                  </a>
+                </div>
+              </div>
 
               {/* MOVED BLOCK STARTS HERE */}
               <div className={styles.sourceButtonContainer}>
@@ -585,6 +687,24 @@ const Home: React.FC<HomeProps> = ({
           )}
 
         <div className={styles.footer}>
+          <div className={styles.navigationLinks}>
+            <Link href="/comparison">
+              <a className={styles.navLink}>Presidential Comparison</a>
+            </Link>
+            {" | "}
+            <Link href="/cost-breakdown">
+              <a className={styles.navLink}>Cost Breakdown</a>
+            </Link>
+            {" | "}
+            <Link href="/embed">
+              <a className={styles.navLink}>Embed Widget</a>
+            </Link>
+            {" | "}
+            <Link href="/about">
+              <a className={styles.navLink}>About</a>
+            </Link>
+          </div>
+          <br />
           This data is produced with publicly available information and is not
           authorized, or endorsed by any political organization or candidate.{" "}
           <br />

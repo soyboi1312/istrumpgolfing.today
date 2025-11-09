@@ -94,6 +94,14 @@
 /* ============================================
    Content Sections
    ============================================ */
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--color-primary-orange);
+  text-align: center;
+}
+
 .blurb {
   line-height: 1.4;
   margin: var(--spacing-lg) 0;
@@ -399,6 +407,68 @@
 
 .footer a:hover {
   color: var(--color-text-gray);
+}
+
+.navigationLinks {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.navLink {
+  color: var(--color-primary-orange);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: #ff8c00;
+  text-decoration: underline;
+}
+
+/* Share Buttons */
+.shareButtons {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: rgba(255, 165, 0, 0.1);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+.shareText {
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+  color: var(--color-primary-orange);
+}
+
+.shareButtonGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.shareButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--color-primary-orange);
+  color: var(--color-bg-black);
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.shareButton:hover {
+  background-color: #ff8c00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 165, 0, 0.3);
+}
+
+.shareButton svg {
+  flex-shrink: 0;
 }
 
 /* Social media icons */
