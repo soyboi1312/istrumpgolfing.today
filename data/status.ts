@@ -468,16 +468,18 @@ export const statusData: StatusData = {
         },
     },
     termStart: new Date(2025, 0, 19),
+    // Location costs per trip (based on GAO reports and distance/aircraft analysis)
+    // See /cost-breakdown page for detailed breakdowns
     locationCosts: {
-        "Scotland": 1700000,
-        "Las Vegas, NV": 1600000,
-        "Mar-a-Lago": 1400000,
-        "West Palm Beach, FL": 1400000,
-        "Jupiter, FL": 1400000,
-        "Doral, FL": 1400000,
-        "Bedminster, NJ": 350000,
-        "Sterling, VA": 100000,
-        "Washington, DC": 100000,
+        "Scotland": 1700000,              // Estimated based on international travel distance
+        "Las Vegas, NV": 5000000,         // ~$5M per weekend (long distance, Air Force One + C-17s)
+        "Mar-a-Lago": 3400000,            // $3.4M per weekend (GAO-19-178 report)
+        "West Palm Beach, FL": 3400000,   // $3.4M per weekend (same as Mar-a-Lago)
+        "Jupiter, FL": 3400000,           // $3.4M per weekend (similar FL distance/security needs)
+        "Doral, FL": 3400000,             // $3.4M per weekend (similar FL distance/security needs)
+        "Bedminster, NJ": 1300000,        // ~$1.3M per 3-day trip (shorter flight, C-32 vs AF1)
+        "Sterling, VA": 100000,           // <$100K per day trip (motorcade only, no aircraft)
+        "Washington, DC": 100000,         // <$100K per day trip (motorcade only, no aircraft)
     }
 };
 
