@@ -193,8 +193,32 @@ const Home: React.FC<HomeProps> = ({
       );
       setTotalTrips(golfEvents.length);
 
-      const newTotalCost = golfEvents.reduce((acc, event) => {
-        const cost = locationCosts[event.location] || 0;
+      // Calculate total cost by counting TRIPS, not individual days
+      // A trip is identified by its end date (departure or standalone golf day)
+      const eventDates = Object.keys(events).sort();
+      const trips: { location: string; endDate: string }[] = [];
+
+      eventDates.forEach((date, index) => {
+        const event = events[date];
+        const eventType = event.type;
+
+        // Check if this is a trip endpoint
+        const isEndpoint =
+          eventType === 'golf_departure' ||
+          eventType === 'departure' ||
+          // Standalone golf day (not preceded by arrival)
+          (eventType === 'golf' && (
+            index === 0 ||
+            !['arrival', 'golf_arrival'].includes(events[eventDates[index - 1]]?.type)
+          ));
+
+        if (isEndpoint && ['golf', 'golf_arrival', 'golf_departure'].includes(eventType)) {
+          trips.push({ location: event.location, endDate: date });
+        }
+      });
+
+      const newTotalCost = trips.reduce((acc, trip) => {
+        const cost = locationCosts[trip.location] || 0;
         return acc + cost;
       }, 0);
 
