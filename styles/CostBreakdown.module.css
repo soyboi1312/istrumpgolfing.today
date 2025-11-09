@@ -80,6 +80,12 @@
     font-weight: bold;
 }
 
+/* Right-align cost values in second column */
+.table td:nth-child(2) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
 .subItem {
     padding-left: 30px !important;
     font-style: italic;
@@ -121,4 +127,38 @@
 
 .homeLink:hover {
   color: #ff8c00;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
+  }
+
+  .tableContainer {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table {
+    min-width: 500px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .blurbContainer {
+    padding: 15px;
+  }
+
+  .container {
+    padding: 15px;
+  }
 }

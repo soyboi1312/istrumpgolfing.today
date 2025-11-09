@@ -130,8 +130,15 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
                                 key={day}
                                 className={className}
                                 onClick={onClick || undefined}
+                                onKeyDown={onClick ? (e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        onClick();
+                                    }
+                                } : undefined}
                                 aria-label={ariaLabel}
                                 role={onClick ? 'button' : undefined}
+                                tabIndex={onClick ? 0 : undefined}
                             >
                                 {day}
                             </td>
