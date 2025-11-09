@@ -2,6 +2,20 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/CostBreakdown.module.css';
 
+/**
+ * Cost Breakdown Page Component
+ *
+ * Displays detailed breakdowns of presidential golf trip costs across different locations.
+ * Cost estimates are based on GAO reports and various governmental analyses.
+ *
+ * Cost Sources:
+ * - Mar-a-Lago, FL: ~$3.4M per weekend (GAO-19-178 report on 4 Mar-a-Lago trips)
+ * - Bedminster, NJ: ~$1.3M per 3-day trip (estimated based on distance/aircraft requirements)
+ * - Sterling, VA / Washington, DC: <$100K per day trip (motorcade only, no aircraft)
+ * - Las Vegas, NV: ~$5M per weekend (hypothetical, based on extended flight distance)
+ *
+ * @returns Detailed cost breakdown page with tables and source references
+ */
 const CostBreakdown = () => {
   return (
     <div className={styles.container}>
@@ -79,7 +93,7 @@ const CostBreakdown = () => {
                 <tbody>
                     <tr>
                         <td>Total Estimated Per-Trip Cost</td>
-                        <td>$840,000 - $1,130,000</td>
+                        <td>~$1,300,000</td>
                     </tr>
                     <tr>
                         <td>C-32 Flight (Primary Aircraft)</td>
@@ -110,7 +124,7 @@ const CostBreakdown = () => {
         </div>
         
                 <div className={styles.tableContainer}>
-            <h3 className={styles.tableTitle}>Cost Component (Per Day Trip to Sterling, VA and Washington DC)</h3>
+            <h3 className={styles.tableTitle}>Cost Component (Per Day Trip to Sterling, VA or Washington, DC)</h3>
             <table className={styles.table}>
                 <thead>
                     <tr>
@@ -186,7 +200,7 @@ const CostBreakdown = () => {
           <h2 className={styles.subtitle}>Sources and Related Content</h2>
           <ul className={styles.sourcesList}>
             <li><a href="https://www.gao.gov/products/gao-19-178" target="_blank" rel="noopener noreferrer">Presidential Travel: Secret Service and DOD Need to Ensure That Expenditure Reports Are Prepared and Submitted to Congress - GAO</a></li>
-            <li><a href="https://gao.gov/assets/gao-19-178.pdf" target="_blank" rel="noopener noreferrer">GAO-19-178, PRESIDENTIAL TRAVEL: Secret Service and DOD Need to Ensure That Expenditure Reports Are Prepared and Submitted to Co</a></li>
+            <li><a href="https://gao.gov/assets/gao-19-178.pdf" target="_blank" rel="noopener noreferrer">GAO-19-178, PRESIDENTIAL TRAVEL: Secret Service and DOD Need to Ensure That Expenditure Reports Are Prepared and Submitted to Congress</a></li>
             <li><a href="https://elections101.iowa.gov/wp-content/uploads/2021/09/Trumps-Golf-Costs-HuffPost.docx" target="_blank" rel="noopener noreferrer">Trump's Golf Costs - Elections 101</a></li>
             <li><a href="https://americanprogressaction.org/article/president-trump-track-charge-taxpayers-240-million-golf-trips" target="_blank" rel="noopener noreferrer">President Trump on Track to Charge Taxpayers $237 Million for Golf Trips</a></li>
           </ul>
