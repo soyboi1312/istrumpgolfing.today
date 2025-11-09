@@ -1,4 +1,8 @@
 /* styles/Home.module.css */
+
+/* ============================================
+   Animations
+   ============================================ */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -11,10 +15,13 @@
   }
 }
 
+/* ============================================
+   Layout Components
+   ============================================ */
 .container {
-  background-color: #000;
+  background-color: var(--color-bg-black);
   min-height: 100vh;
-  padding: 20px;
+  padding: var(--spacing-lg);
 }
 
 .main {
@@ -22,33 +29,33 @@
   margin: 0 auto;
 }
 
+/* ============================================
+   Status Display
+   ============================================ */
 .status {
   font-size: 5rem;
   font-weight: 900;
-  /* Extra bold */
-  text-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(0, 0, 0, 0.3);
+  text-shadow: var(--shadow-base), 0 0 20px rgba(0, 0, 0, 0.3);
   margin: 1rem 0 2rem;
   position: relative;
   display: block;
 }
 
 .statusYes {
-  color: #fff;
+  color: var(--color-text-white);
   text-shadow:
-    0 4px 10px rgba(0, 0, 0, .5),  /* Base shadow */
-    0 2px 20px rgba(235, 149, 50, 0.6),  /* Core glow */
-    0 4px 30px rgba(235, 149, 50, 0.4);  /* Subtle outer glow */
+    0 4px 10px rgba(0, 0, 0, .5),
+    var(--shadow-glow-core),
+    var(--shadow-glow-outer);
 }
 
 .statusNo {
-  color: #fff;
-  -webkit-text-stroke: 3px #000;
+  color: var(--color-text-white);
+  -webkit-text-stroke: 3px var(--color-bg-black);
   text-shadow:
-    0 4px 10px rgba(0, 0, 0, .5),  /* Base shadow */
-    0 2px 20px rgba(235, 149, 50, 0.6),  /* Core glow */
-    0 4px 30px rgba(235, 149, 50, 0.4);  /* Subtle outer glow */
+    0 4px 10px rgba(0, 0, 0, .5),
+    var(--shadow-glow-core),
+    var(--shadow-glow-outer);
 }
 
 .golfImage {
@@ -62,38 +69,38 @@
   transform-origin: center;
 }
 
+/* ============================================
+   Content Sections
+   ============================================ */
 .blurb {
   line-height: 1.4;
-  margin: 20px 0;
-  padding: 20px 15px;
-  background-color: #1a1a1a;
-  border-radius: 10px;
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-lg) var(--spacing-md);
+  background-color: var(--color-bg-dark);
+  border-radius: var(--radius-lg);
   font-kerning: normal;
   text-rendering: optimizeLegibility;
-  min-height: 185px; /* Adjust based on your content height */
+  min-height: 185px;
   overflow: hidden;
-  display: block; /* Switch to block layout */
-  height: auto; /* Let content dictate height */
-  min-height: 185px; /* Keep as fallback */
+  display: block;
+  height: auto;
   font-optical-sizing: auto;
   font-synthesis: none;
   text-wrap: pretty;
 }
 
 .blurb a {
-  color: white;
+  color: var(--color-text-white);
   display: inline-block;
-  /*padding: 4px 0;*/
   text-decoration: underline;
-  transition: color 0.2s ease-in-out;
+  transition: color var(--transition-fast);
 }
 
 .blurb span {
   display: inline-block;
-  min-width: 0.5em; /* Prevent number width changes */
-  transition: all 0.3s ease;
+  transition: all var(--transition-medium);
   font-variant-numeric: tabular-nums;
-  min-width: 0; /* Override previous value */
+  min-width: 0;
 }
 
 .blurb p {
@@ -121,44 +128,50 @@
   }
 }
 
+/* ============================================
+   Calendar Legend
+   ============================================ */
 .legend {
   text-align: center;
   font-size: small;
-  margin: 20px 0;
-  color: #ccc;
+  margin: var(--spacing-lg) 0;
+  color: var(--color-text-gray);
 }
 
 .legendColor {
   display: inline-block;
   width: 15px;
   height: 15px;
-  background-color: #ffa500;
-  margin-right: 3px;
+  background-color: var(--color-primary-orange);
+  margin-right: var(--spacing-sm);
   vertical-align: middle;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .tableCell {
   background-color: inherit;
 }
 
+/* ============================================
+   Calendar Table
+   ============================================ */
 .calendarTable {
-  margin: 10px auto;
+  margin: var(--spacing-sm) auto;
   border-collapse: collapse;
   width: 100%;
-  background-color: #1a1a1a;
+  background-color: var(--color-bg-dark);
 }
 
 .calendarTable th,
 .calendarTable td {
   font-size: 1rem;
-  padding: 10px;
-  border: 1px solid #333;
-  color: #fff;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-white);
 }
 
 .calendarTable th {
-  background-color: #2d2d2d;
+  background-color: var(--color-bg-medium);
 }
 
 @media (max-width: 768px) {
@@ -171,9 +184,12 @@
   }
 }
 
+/* ============================================
+   Calendar Event Days
+   ============================================ */
 .eventDay {
-  background-color: #ffa500 !important;
-  color: #000 !important;
+  background-color: var(--color-primary-orange) !important;
+  color: var(--color-bg-black) !important;
   font-weight: bold;
   cursor: pointer;
   position: relative;
@@ -181,7 +197,7 @@
 }
 
 .eventDay:hover {
-  background-color: #ff8c00;
+  background-color: var(--color-primary-orange-dark);
 }
 
 .arrivalDay {
@@ -189,23 +205,22 @@
   overflow: visible !important; /* Override hidden overflow */
 }
 
+/* Arrival indicator (bottom-right triangle) */
 .arrivalDay::after {
   content: '';
   position: absolute;
-  bottom: 0; /* Adjust positioning */
+  bottom: 0;
   right: 0;
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 16px 16px 0 0; /* Smaller triangle */
-  border-color: transparent #666 transparent transparent; 
+  border-width: 16px 16px 0 0;
+  border-color: transparent var(--color-indicator) transparent transparent;
   z-index: 2;
 }
 
-
-/* For golf arrivals */
 .golf_arrival::after {
-  border-color: transparent #666 transparent transparent; 
+  border-color: transparent var(--color-indicator) transparent transparent;
 }
 
 .departureDay {
@@ -213,6 +228,7 @@
   overflow: visible !important;
 }
 
+/* Departure indicator (top-left triangle) */
 .departureDay::after {
   content: '';
   position: absolute;
@@ -221,17 +237,17 @@
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 14px 14px 0 0; /* Smaller triangle */
-  border-color: #666 transparent transparent transparent; /* White color */
+  border-width: 14px 14px 0 0;
+  border-color: var(--color-indicator) transparent transparent transparent;
   z-index: 2;
 }
 
 .eventDay:not(.arrivalDay):not(.departureDay) {
-  background-color: #ffa500 !important;
+  background-color: var(--color-primary-orange) !important;
 }
 
 .golf_arrival {
-  background-color: #ffa500 !important;
+  background-color: var(--color-primary-orange) !important;
   position: relative;
 }
 
@@ -244,11 +260,11 @@
   height: 0;
   border-style: solid;
   border-width: 16px 16px 0 0;
-  border-color: transparent #666 transparent transparent; /* White on orange */
+  border-color: transparent var(--color-indicator) transparent transparent;
 }
 
 .golf_departure {
-  background-color: #ffa500 !important;
+  background-color: var(--color-primary-orange) !important;
   position: relative;
 }
 
@@ -261,7 +277,7 @@
   height: 0;
   border-style: solid;
   border-width: 20px 20px 0 0;
-  border-color: #666 transparent transparent transparent; 
+  border-color: var(--color-indicator) transparent transparent transparent;
 }
 
 .arrivalDay::after, .golf_arrival::after {
@@ -276,47 +292,51 @@
   border-width: 16px 16px 0 0; /* Slightly larger */
 }
 
+/* Future day styles (grayed out) */
 .futureDay {
-  background-color: #333 !important;
-  color: #666 !important;
+  background-color: var(--color-bg-light) !important;
+  color: var(--color-text-dark) !important;
   cursor: default !important;
 }
 
 .futureDay.eventDay {
-  background-color: #664400 !important;
-  color: #888 !important;
+  background-color: var(--color-primary-orange-muted) !important;
+  color: var(--color-text-muted) !important;
 }
 
-.futureDay.eventDay.arrivalDay::after{
-  border-color: transparent #666 transparent transparent;
+.futureDay.eventDay.arrivalDay::after {
+  border-color: transparent var(--color-text-dark) transparent transparent;
 }
 
 .futureDay.eventDay.departureDay::after {
-  border-color: #666 transparent transparent transparent;
+  border-color: var(--color-text-dark) transparent transparent transparent;
 }
 
 .futureDay.golf_arrival::after {
-  border-color: transparent #664400 transparent transparent;
+  border-color: transparent var(--color-primary-orange-muted) transparent transparent;
 }
 
 .futureDay.golf_departure::after {
-  border-color: #664400 transparent transparent transparent;
+  border-color: var(--color-primary-orange-muted) transparent transparent transparent;
 }
 
+/* ============================================
+   Modals & Popups
+   ============================================ */
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
   will-change: transform;
   transform: translate(-50%, -50%);
-  background-color: #2d2d2d;
-  border-radius: 4px;
+  background-color: var(--color-bg-medium);
+  border-radius: var(--radius-md);
   backdrop-filter: blur(2px);
   animation: fadeIn 0.3s ease-out;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-popup);
   z-index: 1000;
-  padding: 15px;
-  border: 1px solid #fff;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border-light);
   max-width: 200px;
   width: 90%;
   line-height: 1.1;
@@ -331,48 +351,51 @@
 .closeIcon {
   width: 20px;
   height: 20px;
-  color: #fff;
-  transition: opacity 0.2s ease;
+  color: var(--color-text-white);
+  transition: opacity var(--transition-fast);
 }
 
 .closeIcon:hover {
   opacity: 0.7;
 }
 
+/* ============================================
+   Footer
+   ============================================ */
 .footer {
-  margin-top: 20px;
-  color: #888;
+  margin-top: var(--spacing-lg);
+  color: var(--color-text-muted);
   font-size: x-small;
 }
 
 .footer a {
-  color: white;
-  text-decoration: none;
-  display: inline-block;
-  margin: 10px 0;
+  color: var(--color-text-white);
   text-decoration: underline;
+  display: inline-block;
+  margin: var(--spacing-sm) 0;
 }
 
 .footer a:hover {
-  color: grey;
+  color: var(--color-text-gray);
 }
 
+/* Social media icons */
 .socialIcon {
   width: 24px;
   height: 24px;
   vertical-align: middle;
-  margin: 0 5px;
-  color: white;
+  margin: 0 var(--spacing-xs);
+  color: var(--color-text-white);
   filter: brightness(0) invert(1);
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity var(--transition-fast);
 }
 
 .socialLink {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 15px;
-  justify-content: center
+  margin-top: var(--spacing-md);
+  justify-content: center;
 }
 
 .socialIcon:hover {
@@ -383,8 +406,8 @@
   width: 48px;
   height: 24px;
   vertical-align: middle;
-  margin: 0 5px;
-  transition: opacity 0.2s ease-in-out;
+  margin: 0 var(--spacing-xs);
+  transition: opacity var(--transition-fast);
   border: 1px solid #222;
 }
 
@@ -401,33 +424,37 @@
   text-align: center;
 }
 
+/* ============================================
+   Buttons
+   ============================================ */
 .closeButton {
   position: absolute;
   top: 4px;
   right: 8px;
   background: none;
   border: none;
-  color: white;
+  color: var(--color-text-white);
   cursor: pointer;
   font-size: smaller;
   line-height: 1;
   padding: 0;
 }
 
+/* Info popups */
 .costInfoPopup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #2d2d2d;
-  border-radius: 4px;
+  background-color: var(--color-bg-medium);
+  border-radius: var(--radius-md);
   backdrop-filter: blur(2px);
   animation: fadeIn 0.3s ease-out;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid #fff;
+  box-shadow: var(--shadow-popup);
+  border: 1px solid var(--color-border-light);
   max-width: 400px;
   width: 90%;
-  padding: 25px;
+  padding: var(--spacing-xl);
   z-index: 1001;
   text-align: left;
   font-size: small;
@@ -439,54 +466,57 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #2d2d2d;
-  border-radius: 4px;
+  background-color: var(--color-bg-medium);
+  border-radius: var(--radius-md);
   backdrop-filter: blur(2px);
   animation: fadeIn 0.3s ease-out;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  border: 1px solid #fff;
+  box-shadow: var(--shadow-popup);
+  border: 1px solid var(--color-border-light);
   max-width: 375px;
   width: 90%;
-  padding: 25px;
+  padding: var(--spacing-xl);
   z-index: 1001;
   text-align: left;
   font-size: small;
   font-weight: bold;
 }
 
+/* ============================================
+   Links & Sources
+   ============================================ */
 .sourceLinkContainer {
-  margin-top: 5px;
+  margin-top: var(--spacing-xs);
 }
 
 .vacationLinkContainer {
-  margin-top: 5px;
+  margin-top: var(--spacing-xs);
 }
 
 .sourceLink {
-  color: #fff !important;
+  color: var(--color-text-white) !important;
   text-decoration: underline !important;
   display: inline-block;
   padding: 6px 6px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-medium);
   font-size: x-small;
   font-weight: normal;
   text-underline-offset: 3px;
 }
 
 .sourcesList {
-  padding-left: 20px;
-  margin: 10px 0;
-  color: #ccc;
+  padding-left: var(--spacing-lg);
+  margin: var(--spacing-sm) 0;
+  color: var(--color-text-gray);
   font-size: small;
-  font-weight: normal; 
+  font-weight: normal;
   padding: 0px;
 }
 
 .sourcesList a {
   font-size: small;
   font-weight: none;
-  color: #fff;
+  color: var(--color-text-white);
 }
 
 .sourcesList li {
@@ -496,59 +526,59 @@
 }
 
 .sourcesList li::marker {
-  color: #ffa500;
+  color: var(--color-primary-orange);
 }
 
 .costInfoLink {
-  color: #ffa500;
+  color: var(--color-primary-orange);
   text-decoration: none;
 }
 
 .costInfoLink:hover {
-  color: #ff8c00;
+  color: var(--color-primary-orange-dark);
   text-decoration: underline;
 }
 
 .sourceButtonContainer {
-  margin: 5px 0;
+  margin: var(--spacing-xs) 0;
   text-align: center;
 }
 
 .sourceButton {
   background: none;
   border: none;
-  color: #fff;
+  color: var(--color-text-white);
   cursor: pointer;
   font-size: 1em;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .vacationInfoLink {
-  color: #ffa500;
+  color: var(--color-primary-orange);
   text-decoration: none;
 }
 
 .vacationInfoLink:hover {
-  color: #ff8c00;
+  color: var(--color-primary-orange-dark);
   text-decoration: underline;
 }
 
 .vacationButtonContainer {
-  margin: 5px 0;
+  margin: var(--spacing-xs) 0;
   text-align: center;
 }
 
 .vacationButton {
   background: none;
   border: none;
-  color: #fff;
+  color: var(--color-text-white);
   cursor: pointer;
   font-size: 1em;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
