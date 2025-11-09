@@ -15,6 +15,28 @@
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    to right,
+    #1a1a1a 0%,
+    #2d2d2d 20%,
+    #1a1a1a 40%,
+    #1a1a1a 100%
+  );
+  background-size: 800px 104px;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: var(--radius-lg);
+}
+
 /* ============================================
    Layout Components
    ============================================ */

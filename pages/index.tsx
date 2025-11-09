@@ -275,6 +275,27 @@ const Home: React.FC<HomeProps> = ({
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
           rel="stylesheet"
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Is Trump Golfing Today?",
+              "url": "https://istrumpgolfing.today",
+              "description": "Track Donald Trump's golf trips during his presidency with real-time updates on taxpayer costs and verified sources.",
+              "about": {
+                "@type": "Thing",
+                "name": "Presidential Golf Trip Tracking",
+                "description": "Detailed tracking and cost analysis of presidential golf trips"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Is Trump Golfing Today"
+              }
+            })
+          }}
+        />
       </Head>
 
       <main className={styles.main}>
@@ -286,7 +307,7 @@ const Home: React.FC<HomeProps> = ({
             <img
               id="golfImage"
               src={currentImage}
-              alt="pic of fascist"
+              alt="Donald Trump at golf course"
               className={styles.golfImage}
               width={300}
               height={300}
@@ -319,6 +340,8 @@ const Home: React.FC<HomeProps> = ({
                 <button
                   className={styles.vacationButton}
                   onClick={() => setShowVacationInfo(!showVacationInfo)}
+                  aria-label="View vacation days comparison with other presidents"
+                  aria-expanded={showVacationInfo}
                 >
                   But what about other presidents?
                 </button>
@@ -379,6 +402,7 @@ const Home: React.FC<HomeProps> = ({
                     <button
                       className={styles.closeButton}
                       onClick={() => setShowVacationInfo(false)}
+                      aria-label="Close vacation comparison popup"
                     >
                       <svg
                         className={styles.closeIcon}
@@ -388,7 +412,7 @@ const Home: React.FC<HomeProps> = ({
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
-                        role="button"
+                        aria-hidden="true"
                       >
                         <path d="M18 6L6 18M6 6l12 12" />
                       </svg>
@@ -420,6 +444,8 @@ const Home: React.FC<HomeProps> = ({
                 <button
                   className={styles.sourceButton}
                   onClick={() => setShowCostInfo(!showCostInfo)}
+                  aria-label="View cost estimate sources and references"
+                  aria-expanded={showCostInfo}
                 >
                   Sources
                 </button>
@@ -456,6 +482,7 @@ const Home: React.FC<HomeProps> = ({
                     <button
                       className={styles.closeButton}
                       onClick={() => setShowCostInfo(false)}
+                      aria-label="Close sources popup"
                     >
                       <svg
                         className={styles.closeIcon}
@@ -465,7 +492,7 @@ const Home: React.FC<HomeProps> = ({
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
-                        role="button"
+                        aria-hidden="true"
                       >
                         <path d="M18 6L6 18M6 6l12 12" />
                       </svg>
@@ -482,23 +509,17 @@ const Home: React.FC<HomeProps> = ({
           // and on the initial client load. It's static and has no client-side dependencies.
           <div>
             <div
+              className={styles.skeleton}
               style={{
                 height: '300px',
                 width: '300px',
-                backgroundColor: '#1a1a1a',
-                margin: 'auto',
-                borderRadius: '10px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#666'
+                margin: '0 auto 2rem'
               }}
-            >
-              Loading...
-            </div>
-            <div className={styles.status} style={{ opacity: 0.5 }}>...</div>
-            <div className={styles.blurb}>
-              <p>Loading golf tracking data...</p>
+            />
+            <div className={`${styles.skeleton}`} style={{ height: '5rem', width: '200px', margin: '1rem auto 2rem' }} />
+            <div className={`${styles.blurb}`}>
+              <div className={styles.skeleton} style={{ height: '1.4rem', marginBottom: '1rem' }} />
+              <div className={styles.skeleton} style={{ height: '1.4rem', width: '80%' }} />
             </div>
           </div>
         )}
@@ -524,11 +545,11 @@ const Home: React.FC<HomeProps> = ({
 
         {modalOpen &&
           selectedEvent && (
-            <div ref={modalRef} className={styles.modal}>
+            <div ref={modalRef} className={styles.modal} role="dialog" aria-modal="true" aria-labelledby="modal-title">
               <button
                 className={styles.closeButton}
                 onClick={() => setModalOpen(false)}
-                aria-label="Close modal"
+                aria-label="Close event details modal"
               >
                 <svg
                   className={styles.closeIcon}
@@ -538,12 +559,13 @@ const Home: React.FC<HomeProps> = ({
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
+                  aria-hidden="true"
                 >
                   <path d="M18 6L6 18M6 6l12 12" />
                 </svg>
               </button>
               <div className={styles.modalContent}>
-                <h3>{formatDate(selectedEvent.date)}</h3>
+                <h3 id="modal-title">{formatDate(selectedEvent.date)}</h3>
                 <p>{getEventLabel(selectedEvent.data.type)}</p>
                 <p>Location: {selectedEvent.data.location}</p>
                 <div className={styles.sourceLinkContainer}>
