@@ -80,6 +80,12 @@
     font-weight: bold;
 }
 
+/* Right-align cost values in second column */
+.table td:nth-child(2) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
 .subItem {
     padding-left: 30px !important;
     font-style: italic;

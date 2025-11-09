@@ -278,8 +278,8 @@ const Home: React.FC<HomeProps> = ({
       </Head>
 
       <main className={styles.main}>
-        <h2>Is Trump Golfing Today?</h2>
-        
+        <h1>Is Trump Golfing Today?</h1>
+
         {/* Conditional rendering based on hasMounted */}
         {hasMounted ? (
           <>
@@ -306,7 +306,6 @@ const Home: React.FC<HomeProps> = ({
                 <span id="daysSinceStart">{effectiveDaysSinceStart}</span> days (
                 {percentage}%) since his second term began.
               </p>
-              <p></p>
               <p>
                 This has cost taxpayers{" "}
                 <span className={styles.cost}>
@@ -397,8 +396,7 @@ const Home: React.FC<HomeProps> = ({
                   </div>
                 )}
               </div>
-              
-              <p></p>
+
               <p>
                 During his first term, he golfed 293 days (20%), costing $151.5
                 million.
@@ -410,12 +408,11 @@ const Home: React.FC<HomeProps> = ({
               </p>
 
               <p>
-                  Wondering why these trips cost so much? 
-              </p>
-              <p>
-                  We've put together a detailed guide on the factors that influence the total cost.
-                  <br/><br/>
-                  <Link href="/cost-breakdown"><a className={styles.costInfoLink}>View the Cost Breakdown</a></Link>
+                Wondering why these trips cost so much? We've put together a{" "}
+                <Link href="/cost-breakdown">
+                  <a className={styles.costInfoLink}>detailed cost breakdown</a>
+                </Link>{" "}
+                explaining the factors that drive these expenses.
               </p>
 
               {/* MOVED BLOCK STARTS HERE */}
@@ -484,10 +481,24 @@ const Home: React.FC<HomeProps> = ({
           // This is the placeholder content that will be rendered on the server
           // and on the initial client load. It's static and has no client-side dependencies.
           <div>
-            <div style={{ height: '300px', width: '300px', backgroundColor: '#333', margin: 'auto' }} />
-            <div className={styles.status}>Loading pic of fascist...</div>
+            <div
+              style={{
+                height: '300px',
+                width: '300px',
+                backgroundColor: '#1a1a1a',
+                margin: 'auto',
+                borderRadius: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#666'
+              }}
+            >
+              Loading...
+            </div>
+            <div className={styles.status} style={{ opacity: 0.5 }}>...</div>
             <div className={styles.blurb}>
-              <p>Calculating...</p>
+              <p>Loading golf tracking data...</p>
             </div>
           </div>
         )}
