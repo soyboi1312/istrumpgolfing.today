@@ -727,18 +727,6 @@ const Home: React.FC<HomeProps> = ({
                 alt="Bluesky Social"
               />
             </a>
-            <a
-              href="https://www.pcrf.net/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Free Palestine"
-            >
-              <img
-                src="/files/icons/palestine.svg"
-                className={styles.palestineIcon}
-                alt="Free Palestine"
-              />
-            </a>
           </div>
         </div>
       </main>
