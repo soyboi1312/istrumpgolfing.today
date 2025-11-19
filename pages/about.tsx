@@ -175,7 +175,7 @@ const About = () => {
           <ul className={styles.sourcesList}>
             <li>
               <a href="https://www.pcrf.net/" target="_blank" rel="noopener noreferrer" style={{ color: '#ffa500' }}>
-                Palestine Children's Relief Fund (PCRF)
+                PCRF.net
               </a>
             </li>
           </ul>
