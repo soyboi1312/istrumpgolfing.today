@@ -234,10 +234,6 @@ const Home: React.FC<HomeProps> = ({
           name="description"
           content="Is Trump golfing today? The official real-time counter for presidential golf trips. Track daily updates, taxpayer costs, and verified location data."
         ></meta>
-        <meta
-          name="keywords"
-          content="is trump golfing today, trump golf tracker, trump golfing, how many days has trump golfed, trump golf counter, trump golf trips cost, presidential golf tracker, trump vacation days, trump mar-a-lago trips"
-        />
         <meta name="msapplication-TileColor" content="#ae8160" />
         <meta name="application-name" content="Is Trump Golfing Today?" />
 
