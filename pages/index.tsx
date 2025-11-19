@@ -232,7 +232,7 @@ const Home: React.FC<HomeProps> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
-          content="Is Trump golfing today? Real-time Trump golf tracker with daily updates. Track presidential golf trips, taxpayer costs ($151.5M first term), and verified sources. Official Trump golf counter."
+          content="Is Trump golfing today? The official real-time counter for presidential golf trips. Track daily updates, taxpayer costs, and verified location data."
         ></meta>
         <meta
           name="keywords"
@@ -280,7 +280,7 @@ const Home: React.FC<HomeProps> = ({
           href="/files/fav/apple-touch-icon.png"
         />
         <title>
-          Is Trump Golfing Today? Trump Golf Tracker & Taxpayer Cost Calculator
+          Is Trump Golfing Today? Golf Tracker & Cost Calculator
         </title>
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
