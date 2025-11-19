@@ -361,7 +361,7 @@ const Home: React.FC<HomeProps> = ({
             <img
               id="golfImage"
               src={currentImage}
-              alt="Donald Trump at golf course"
+              alt="Donald Trump, fascist, at golf course"
               className={styles.golfImage}
               width={300}
               height={300}
