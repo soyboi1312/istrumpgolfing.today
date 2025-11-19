@@ -92,7 +92,7 @@ const useClickOutside = (
  */
 const IMAGE_SETS = {
   sad: ["istrumpgolfing.webp", "sad.webp", "sad1.webp"],
-  golf: ["istrumpgolfing.webp", "golf.webp", "golf1.webp", "golf2.webp"],
+  golf: ["golf.webp", "golf1.webp", "golf2.webp"],
 } as const;
 
 /**
