@@ -16,7 +16,7 @@ const About = () => {
         <title>About - Is Trump Golfing Today? Methodology & Sources</title>
         <meta name="description" content="Learn how we track Trump's golf trips, our methodology for calculating costs, and the verified sources we use for all data on this presidential golf tracker." />
         <meta name="keywords" content="trump golf tracker methodology, how to track presidential golf, trump golf data sources, presidential travel costs" />
-        <link rel="canonical" href="https://istrumpgolfing.today/about" />
+        <link rel="canonical" href="https://istrumpgolfing.today/about/" />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
           rel="stylesheet"
