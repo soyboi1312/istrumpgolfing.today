@@ -17,7 +17,7 @@ const Comparison = () => {
         <title>Trump Golf vs Other Presidents - Presidential Vacation Comparison</title>
         <meta name="description" content="Compare Trump's 293 golf days and 378 vacation days to Obama, Bush, Biden, Clinton, Reagan. See which president took the most time off and how much it cost taxpayers." />
         <meta name="keywords" content="trump golf vs obama, presidential vacation days, trump vacation comparison, how many days did trump golf, presidential golf comparison, biden vacation days" />
-        <link rel="canonical" href="https://istrumpgolfing.today/comparison" />
+        <link rel="canonical" href="https://istrumpgolfing.today/comparison/" />
 
         {/* Open Graph */}
         <meta property="og:type" content="article" />
