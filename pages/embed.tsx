@@ -55,7 +55,7 @@ const Embed = () => {
         <title>Embed Widget - Is Trump Golfing Today?</title>
         <meta name="description" content="Free embeddable Trump golf tracker widget for journalists and websites. Add real-time golf statistics to your site with our simple embed code." />
         <meta name="keywords" content="trump golf widget, embed trump tracker, golf statistics widget, presidential golf embed" />
-        <link rel="canonical" href="https://istrumpgolfing.today/embed" />
+        <link rel="canonical" href="https://istrumpgolfing.today/embed/" />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
           rel="stylesheet"
