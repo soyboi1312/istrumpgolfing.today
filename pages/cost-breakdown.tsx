@@ -33,9 +33,10 @@ const CostBreakdown = () => {
       <main className={styles.main}>
         <h1 className={styles.title}>Presidential Golf Trip Cost Breakdown</h1>
         <div className={`${styles.blurb} ${styles.blurbContainer}`}>
-            <p>The taxpayer cost of presidential golf trips varies dramatically depending on the destination, with the primary cost drivers being flight distance, the type of aircraft required, and location-specific security needs. A Government Accountability Office (GAO) report on four of President Trump's trips to his Mar-a-Lago club in Florida established a baseline cost of approximately $3.4 million per weekend. This high cost is driven by the use of the large Air Force One (a modified Boeing 747), the necessity of C-17 cargo planes to transport the presidential motorcade, and a unique, expensive maritime security operation by the U.S. Coast Guard required by the resort's coastal location.</p>
-            <p>In contrast, a trip to the Trump National Golf Club in Bedminster, New Jersey, represents a low-to-mid-range cost scenario, estimated at approximately $350,000 per 3-day trip. Due to its proximity to Washington, DC (approximately 50 miles), Bedminster trips avoid the need for large aircraft like Air Force One or C-17 cargo planes. Instead, travel relies primarily on Marine One helicopters, local aircraft support, and motorcade operations, with no maritime security requirements. The lowest-cost scenario is a day trip to the Trump National Golf Club in Sterling, Virginia. Because this location is even closer to the White House, travel is conducted entirely by motorcade, eliminating all aircraft expenses—the largest component of travel costs. The total for a Sterling trip is estimated to be under $100,000, composed mainly of vehicle operating costs and personnel overtime.</p>
-            <p>Using this same framework, a hypothetical weekend trip to Las Vegas would be even more expensive than one to Mar-a-Lago, with an estimated cost of over $5 million. This higher figure is primarily due to the much longer flight time from Washington, D.C., which significantly increases the operational costs for both Air Force One and the C-17 cargo planes needed to transport the motorcade.</p>
+            <p>The taxpayer cost of presidential golf trips varies dramatically depending on the destination, with the primary cost drivers being flight distance, the type of aircraft required, and location-specific security needs. A Government Accountability Office (GAO) report on four of President Trump's trips to his Mar-a-Lago club in Florida established a baseline cost of approximately $3.4 million per weekend. This high cost is driven by the use of the large Air Force One (a modified Boeing 747), the necessity of <strong>C-5M Super Galaxy</strong> heavy airlift aircraft (or multiple C-17s) to transport the presidential motorcade, and a unique, expensive maritime security operation by the U.S. Coast Guard required by the resort's coastal location.</p>
+            <p>In contrast, a trip to the Trump National Golf Club in Bedminster, New Jersey, represents a low-to-mid-range cost scenario, estimated at approximately $350,000 per 3-day trip. Due to its proximity to Washington, DC (approximately 50 miles), Bedminster trips avoid the need for large aircraft like Air Force One or heavy cargo planes. Instead, travel relies primarily on Marine One helicopters, local aircraft support, and motorcade operations, with no maritime security requirements. The lowest-cost scenario is a day trip to the Trump National Golf Club in Sterling, Virginia. Because this location is even closer to the White House, travel is conducted entirely by motorcade, eliminating all aircraft expenses—the largest component of travel costs. The total for a Sterling trip is estimated to be under $100,000, composed mainly of vehicle operating costs and personnel overtime.</p>
+            <p>Using this same framework, a hypothetical weekend trip to Las Vegas would be even more expensive than one to Mar-a-Lago, with an estimated cost of over $5 million. This higher figure is primarily due to the much longer flight time from Washington, D.C., which significantly increases the operational costs for both Air Force One and the cargo support (C-5M or C-17) needed to transport the motorcade.</p>
+            
             <h2 className={styles.subtitle}>Location-Based Cost Breakdowns</h2>
             <div className={styles.tableContainer}>
             <h3 className={styles.tableTitle}>Cost Component (Per Weekend Trip to Mar-a-Lago, FL)</h3>
@@ -178,7 +179,7 @@ const CostBreakdown = () => {
                         <td>~$2,730,000</td>
                     </tr>
                     <tr>
-                        <td>C-17 Cargo Flights</td>
+                        <td>Cargo Support (C-5M/C-17)</td>
                         <td>~$1,500,000+</td>
                     </tr>
                     <tr>
@@ -205,6 +206,7 @@ const CostBreakdown = () => {
             <li><a href="https://gao.gov/assets/gao-19-178.pdf" target="_blank" rel="noopener noreferrer">GAO-19-178, PRESIDENTIAL TRAVEL: Secret Service and DOD Need to Ensure That Expenditure Reports Are Prepared and Submitted to Congress</a></li>
             <li><a href="https://elections101.iowa.gov/wp-content/uploads/2021/09/Trumps-Golf-Costs-HuffPost.docx" target="_blank" rel="noopener noreferrer">Trump's Golf Costs - Elections 101</a></li>
             <li><a href="https://americanprogressaction.org/article/president-trump-track-charge-taxpayers-240-million-golf-trips" target="_blank" rel="noopener noreferrer">President Trump on Track to Charge Taxpayers $237 Million for Golf Trips</a></li>
+            <li><a href="https://www.palmbeachpost.com/story/news/2025/04/11/trump-air-force-one-mar-lago-florida-how-much-cost-boeing/82753367007/" target="_blank" rel="noopener noreferrer">Trump Air Force One Mar-a-Lago Logistics - Palm Beach Post</a></li>
           </ul>
         </div>
 
@@ -219,5 +221,3 @@ const CostBreakdown = () => {
 };
 
 export default CostBreakdown;
-
-
