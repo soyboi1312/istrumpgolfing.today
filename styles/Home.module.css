@@ -10,7 +10,8 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 0 20px;
-  padding-top: 80px; /* Space for sticky nav */
+  /* Ensure this matches navbar height + spacing on ALL screen sizes */
+  padding-top: 80px; 
 }
 
 /* --- Sticky Navbar --- */
@@ -20,13 +21,13 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: rgba(5, 5, 5, 0.85);
+  background: rgba(5, 5, 5, 0.95); /* Slightly more opaque for better readability */
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: 1000; /* Increased z-index to stay on top of everything */
 }
 
 .navContent {
@@ -36,6 +37,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  height: 100%;
 }
 
 .navLogo {
@@ -44,8 +46,11 @@
   color: var(--color-primary-orange);
   font-size: 1.1rem;
   letter-spacing: -0.5px;
+  z-index: 1002; /* Ensure logo is clickable over menu overlay */
+  position: relative;
 }
 
+/* Desktop Links */
 .navLinks {
   display: flex;
   gap: 20px;
@@ -61,6 +66,84 @@
 .navLink:hover {
   color: var(--color-text-white);
 }
+
+/* --- Mobile Menu Styles --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1002; /* Keep button above overlay */
+  padding: 0;
+}
+
+.hamburgerLine {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text-white);
+  transition: all 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+/* Hamburger Animation States */
+.hamburgerLineOpen:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburgerLineOpen:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerLineOpen:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Menu Overlay */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.98);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1001;
+}
+
+.mobileMenuOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileMenuLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+}
+
+.mobileMenuLink {
+  font-family: 'Merriweather', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-white);
+  text-decoration: none;
+}
+
+.mobileMenuLink:hover {
+  color: var(--color-primary-orange);
+}
+
 
 /* --- Hero & Status --- */
 .heroSection {
@@ -442,7 +525,8 @@
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
   .main {
-    padding-top: 20px; 
+    /* FIX: Restore sufficient top padding to clear the 60px navbar */
+    padding-top: 80px; 
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -453,7 +537,11 @@
   }
   
   .navLinks {
-    display: none;
+    display: none; /* Hide desktop links */
+  }
+
+  .hamburger {
+    display: flex; /* Show mobile menu toggle */
   }
   
   .statusBadge {
