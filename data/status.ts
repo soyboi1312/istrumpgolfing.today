@@ -16,6 +16,11 @@ export const statusData: StatusData = {
         // ========================================
         // November 2025
         // ========================================
+        '2025-11-25': {
+            location: GolfLocation.WEST_PALM,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'arrival',
+        },
         '2025-11-16':{
             location: GolfLocation.WEST_PALM,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
@@ -46,10 +51,20 @@ export const statusData: StatusData = {
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
+        '2025-11-02': {
+            location: GolfLocation.WEST_PALM,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'departure',
+        },
         '2025-11-01':{
             location: GolfLocation.WEST_PALM,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
+        },
+        '2025-10-31': {
+            location: GolfLocation.WEST_PALM,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'arrival',
         },
 
         // ========================================
@@ -99,10 +114,20 @@ export const statusData: StatusData = {
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
+        '2025-09-14': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf_departure',
+        },
         '2025-09-13': {
             location: GolfLocation.BEDMINSTER,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
+        },
+        '2025-09-12': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf_arrival',
         },
         '2025-09-06': {
             location: GolfLocation.WASHINGTON_DC,
@@ -182,6 +207,11 @@ export const statusData: StatusData = {
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'departure',
         },
+        '2025-07-28': {
+            location: GolfLocation.SCOTLAND,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
         '2025-07-27': {
             location: GolfLocation.SCOTLAND,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
@@ -206,7 +236,12 @@ export const statusData: StatusData = {
             location: GolfLocation.WASHINGTON_DC,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
-        },        
+        },
+        '2025-07-13': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
         '2025-07-12': {
             location: GolfLocation.BEDMINSTER,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
@@ -219,6 +254,11 @@ export const statusData: StatusData = {
         },
         '2025-07-05': {
             location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
+        '2025-07-04': {
+            location: GolfLocation.WASHINGTON_DC,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
@@ -235,6 +275,31 @@ export const statusData: StatusData = {
             location: GolfLocation.WASHINGTON_DC,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
+        },
+        '2025-06-21': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf_departure',
+        },
+        '2025-06-20': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'arrival',
+        },
+        '2025-06-08': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
+        '2025-06-07': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf_departure',
+        },
+        '2025-06-06': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'arrival',
         },
         '2025-06-01': {
             location: GolfLocation.WASHINGTON_DC,
@@ -259,6 +324,16 @@ export const statusData: StatusData = {
             location: GolfLocation.BEDMINSTER,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
+        },
+        '2025-05-24': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
+        '2025-05-23': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf_arrival',
         },
         '2025-05-18': {
             location: GolfLocation.WASHINGTON_DC,
@@ -294,6 +369,11 @@ export const statusData: StatusData = {
         // ========================================
         // April 2025
         // ========================================
+        '2025-04-27': {
+            location: GolfLocation.BEDMINSTER,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
         '2025-04-20': {
             location: GolfLocation.WASHINGTON_DC,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
@@ -437,6 +517,11 @@ export const statusData: StatusData = {
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
             type: 'golf',
         },
+        '2025-02-16': {
+            location: GolfLocation.WEST_PALM,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
         '2025-02-15': {
             location: GolfLocation.WEST_PALM,
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
@@ -495,6 +580,11 @@ export const statusData: StatusData = {
             location: GolfLocation.FLORIDA,
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
             type: 'arrival',
+        },
+        '2025-01-24': {
+            location: GolfLocation.LAS_VEGAS,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
         },
     },
     termStart: new Date(2025, 0, 20),
