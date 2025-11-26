@@ -287,7 +287,7 @@ export const statusData: StatusData = {
         },
         '2025-05-01': {
             location: GolfLocation.FLORIDA,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
 
@@ -336,7 +336,7 @@ export const statusData: StatusData = {
         },
         '2025-04-03': {
             location: GolfLocation.FLORIDA,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
 
@@ -355,12 +355,12 @@ export const statusData: StatusData = {
         },
         '2025-03-28': {
             location: GolfLocation.FLORIDA,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
         '2025-03-23': {
             location: GolfLocation.PHILADELPHIA,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'departure',
         },
         '2025-03-22': {
@@ -370,7 +370,7 @@ export const statusData: StatusData = {
         },
         '2025-03-21': {
             location: GolfLocation.NEW_JERSEY,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
         '2025-03-16': {
@@ -385,22 +385,22 @@ export const statusData: StatusData = {
         },
         '2025-03-14': {
             location: GolfLocation.FLORIDA,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
         '2025-03-09': {
             location: GolfLocation.WEST_PALM,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf_departure',
         },
         '2025-03-08': {
             location: GolfLocation.WEST_PALM,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
         '2025-03-07': {
             location: GolfLocation.FLORIDA,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
         '2025-03-02': {
@@ -415,7 +415,7 @@ export const statusData: StatusData = {
         },
         '2025-02-28': {
             location: GolfLocation.FLORIDA,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
 
@@ -444,7 +444,7 @@ export const statusData: StatusData = {
         },
         '2025-02-14': {
             location: GolfLocation.FLORIDA,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
         '2025-02-09': {
@@ -459,7 +459,7 @@ export const statusData: StatusData = {
         },
         '2025-02-07': {
             location: GolfLocation.FLORIDA,
-            url: '',
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'arrival',
         },
         '2025-02-02': {
