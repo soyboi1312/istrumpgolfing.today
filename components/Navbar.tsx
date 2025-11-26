@@ -13,17 +13,21 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navContent}>
-        <Link href="/">
-          <a className={styles.navLogo} onClick={() => setIsOpen(false)}>
+        <Link href="/" className={styles.navLogo} onClick={() => setIsOpen(false)}>
             IS TRUMP GOLFING?
-          </a>
         </Link>
 
         {/* Desktop Links */}
         <div className={styles.navLinks}>
-          <Link href="/comparison"><a className={styles.navLink}>Comparison</a></Link>
-          <Link href="/cost-breakdown"><a className={styles.navLink}>Cost Breakdown</a></Link>
-          <Link href="/about"><a className={styles.navLink}>About</a></Link>
+          <Link href="/comparison" className={styles.navLink}>
+            Comparison
+          </Link>
+          <Link href="/cost-breakdown" className={styles.navLink}>
+            Cost Breakdown
+          </Link>
+          <Link href="/about" className={styles.navLink}>
+            About
+          </Link>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -41,17 +45,17 @@ const Navbar = () => {
         {/* Mobile Menu Overlay */}
         <div className={`${styles.mobileMenu} ${isOpen ? styles.mobileMenuOpen : ''}`}>
           <div className={styles.mobileMenuLinks}>
-            <Link href="/comparison">
-              <a className={styles.mobileMenuLink} onClick={toggleMenu}>Comparison</a>
+            <Link href="/comparison" className={styles.mobileMenuLink} onClick={toggleMenu}>
+              Comparison
             </Link>
-            <Link href="/cost-breakdown">
-              <a className={styles.mobileMenuLink} onClick={toggleMenu}>Cost Breakdown</a>
+            <Link href="/cost-breakdown" className={styles.mobileMenuLink} onClick={toggleMenu}>
+              Cost Breakdown
             </Link>
-            <Link href="/about">
-              <a className={styles.mobileMenuLink} onClick={toggleMenu}>About</a>
+            <Link href="/about" className={styles.mobileMenuLink} onClick={toggleMenu}>
+              About
             </Link>
-            <Link href="/embed">
-              <a className={styles.mobileMenuLink} onClick={toggleMenu}>Embed Widget</a>
+            <Link href="/embed" className={styles.mobileMenuLink} onClick={toggleMenu}>
+              Embed Widget
             </Link>
           </div>
         </div>
