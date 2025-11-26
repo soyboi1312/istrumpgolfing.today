@@ -10,6 +10,10 @@ const CostBreakdown = () => {
         <title>Cost Breakdown | Is Trump Golfing Today?</title>
         <meta name="description" content="Analysis of taxpayer costs for presidential golf trips." />
         <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="The Cost of Presidential Golf" />
+        <meta property="og:description" content="Breakdown of the $3.4M Mar-a-Lago weekends vs local trips." />
+        <meta property="og:image" content="https://istrumpgolfing.today/files/istrumpgolfing.webp" />
       </Head>
 
       <Navbar />
@@ -18,12 +22,12 @@ const CostBreakdown = () => {
         <h1 className={styles.pageTitle}>Taxpayer Cost Breakdown</h1>
 
         <section className={styles.sectionCard}>
-          <h2 className={styles.sectionTitle}>Overview</h2>
+          <h2 className={styles.sectionTitle}>Executive Summary</h2>
           <p className={styles.textBlock}>
-            The cost of a presidential golf trip varies wildly based on location. A flight to Florida on Air Force One is significantly more expensive than a motorcade drive to a local course in Virginia.
+            The taxpayer cost of presidential golf trips varies dramatically depending on the destination. The primary cost drivers are <strong>flight distance</strong>, the <strong>type of aircraft</strong> required, and <strong>location-specific security needs</strong>.
           </p>
           <p className={styles.textBlock}>
-            Below are the estimated costs per trip type, based on GAO reports and Department of Defense flight hour data.
+            Below is an analysis based on Government Accountability Office (GAO) reports and Department of Defense flight hour data.
           </p>
         </section>
 
@@ -32,6 +36,9 @@ const CostBreakdown = () => {
           <p className={styles.textBlock}>
             <strong>Location:</strong> West Palm Beach, FL<br/>
             <strong>Cost:</strong> ~$3.4 Million per trip
+          </p>
+          <p className={styles.textBlock}>
+            This high cost is driven by the use of <strong>Air Force One</strong> (Boeing 747) and the necessity of <strong>C-5M Super Galaxy</strong> or C-17 heavy airlift aircraft to transport the motorcade. Additionally, the resort's coastal location requires a unique and expensive maritime security operation by the U.S. Coast Guard.
           </p>
           <div className={styles.tableContainer}>
             <table className={styles.dataTable}>
@@ -63,10 +70,13 @@ const CostBreakdown = () => {
             <strong>Location:</strong> New Jersey<br/>
             <strong>Cost:</strong> ~$350,000 per trip
           </p>
+          <p className={styles.textBlock}>
+            A low-to-mid-range cost scenario. Due to its proximity to Washington, DC (~50 miles), these trips avoid the need for heavy cargo planes.
+          </p>
           <ul className={styles.contentList}>
-            <li>Cheaper because it is a shorter flight.</li>
-            <li>Often uses Marine One (helicopter) or smaller aircraft instead of full motorcade transport via C-17s.</li>
-            <li>No extensive maritime security required.</li>
+            <li>Travel relies primarily on <strong>Marine One</strong> helicopters and local aircraft support.</li>
+            <li>No heavy airlift (C-5M) required for motorcade.</li>
+            <li>No maritime security requirements.</li>
           </ul>
         </section>
 
@@ -76,10 +86,20 @@ const CostBreakdown = () => {
             <strong>Location:</strong> Sterling, VA (Trump National)<br/>
             <strong>Cost:</strong> &lt; $100,000
           </p>
-          <ul className={styles.contentList}>
-            <li>Motorcade only (no flight costs).</li>
-            <li>Primary cost is Secret Service overtime and local police coordination.</li>
-          </ul>
+          <p className={styles.textBlock}>
+            The lowest-cost scenario. Because this location is near the White House, travel is conducted entirely by motorcade, <strong>eliminating all aircraft expenses</strong>—the largest component of travel costs. The total cost consists mainly of vehicle operations and personnel overtime.
+          </p>
+        </section>
+
+        <section className={styles.sectionCard}>
+          <h2 className={styles.sectionTitle}>4. Hypothetical: Long Distance</h2>
+          <p className={styles.textBlock}>
+            <strong>Location:</strong> e.g., Las Vegas, NV<br/>
+            <strong>Cost:</strong> &gt; $5.0 Million per trip
+          </p>
+          <p className={styles.textBlock}>
+             Using this framework, a trip to the West Coast would be significantly more expensive than Mar-a-Lago. The higher figure is primarily due to the <strong>flight time</strong> (5+ hours vs 2 hours), which doubles the operational costs for both Air Force One and the heavy cargo support needed to transport the motorcade.
+          </p>
         </section>
 
         <div className={styles.footer}>
