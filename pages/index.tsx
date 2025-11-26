@@ -318,14 +318,14 @@ const Home: React.FC<HomeProps> = ({
             for Secret Service accommodations. 
             <br />
             {/* Improved Anchor Text */}
-            <Link href="/cost-breakdown"><a className={styles.contextLink}>View full Trump Golf Cost Breakdown &rarr;</a></Link>
+            <Link href="/cost-breakdown"><a className={styles.contextLink}>View Full Trump Golf Cost Breakdown &rarr;</a></Link>
           </p>
           <p className={styles.contextText}>
             Curious how this stacks up against history? Trump golfed more in one term 
             than many presidents did in two. 
             <br />
             {/* Improved Anchor Text */}
-            <Link href="/comparison"><a className={styles.contextLink}>Compare Trump vs Obama & Bush Golf Stats &rarr;</a></Link>
+            <Link href="/comparison"><a className={styles.contextLink}>Compare Trump vs Other Presidents Golf Stats &rarr;</a></Link>
           </p>
         </section>
 
