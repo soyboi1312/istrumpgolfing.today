@@ -736,11 +736,6 @@
   opacity: 0.9;
 }
 
-// ... existing code ...
-.copyButton:hover {
-  opacity: 0.9;
-}
-
 /* --- Share Buttons --- */
 .shareButtons {
   text-align: center;
