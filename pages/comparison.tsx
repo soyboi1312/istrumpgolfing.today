@@ -212,7 +212,7 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated }) => {
               <thead>
                 <tr>
                   <th>President</th>
-                  <th>Estimated 4-Year Travel Cost</th>
+                  <th>Estimated Travel Cost</th>
                   <th>Notes</th>
                 </tr>
               </thead>
@@ -220,7 +220,7 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated }) => {
                 <tr>
                   <td>Donald Trump</td>
                   <td>$151.5 million</td>
-                  <td>Golf trips only; visited own properties 428 times</td>
+                  <td>First term. Golf trips only; visited own properties 428 times</td>
                 </tr>
                 <tr>
                   <td>Barack Obama</td>
