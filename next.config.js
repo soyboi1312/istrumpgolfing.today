@@ -5,10 +5,6 @@ module.exports = {
         unoptimized: true
     },
     trailingSlash: true,
-    // Add compiler options
-    compiler: {
-        styledComponents: true,
-    },
     typescript: {
         ignoreBuildErrors: false,
     }
