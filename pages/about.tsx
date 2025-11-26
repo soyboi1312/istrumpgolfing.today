@@ -115,7 +115,7 @@ const About = () => {
           <p className={styles.textBlock}>Presidential golf trip costs typically include:</p>
           <ul className={styles.contentList}>
             <li>Air Force One operation costs (~$200,000/hour flight time)</li>
-            <li>C-17 cargo planes to transport presidential motorcade</li>
+            <li>C-17/C-5M cargo planes to transport presidential motorcade</li>
             <li>Marine One helicopter operations</li>
             <li>Secret Service personnel overtime and per diem</li>
             <li>Local law enforcement coordination</li>
