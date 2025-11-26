@@ -57,6 +57,26 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated }) => {
             })
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://istrumpgolfing.today"
+              },{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Presidential Comparison",
+                "item": "https://istrumpgolfing.today/comparison"
+              }]
+            })
+          }}
+        />
       </Head>
 
       <Navbar />
