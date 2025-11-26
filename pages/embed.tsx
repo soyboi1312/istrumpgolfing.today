@@ -10,7 +10,7 @@ const Embed = () => {
   const embedCode = `<div id="trump-golf-widget"></div>
 <script>
 (function() {
-  fetch('https://istrumpgolfing.today/api/stats')
+  fetch('https://istrumpgolfing.today/stats.json')
     .then(res => res.json())
     .then(data => {
       const widget = document.getElementById('trump-golf-widget');
