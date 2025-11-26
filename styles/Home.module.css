@@ -591,3 +591,147 @@
     font-size: 0.8rem;
   }
 }
+
+/* --- Content Pages (Comparison, Cost, About) --- */
+.pageTitle {
+  font-family: 'Merriweather', serif;
+  color: var(--color-primary-orange);
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.sectionCard {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.sectionTitle {
+  font-family: 'Merriweather', serif;
+  color: var(--color-primary-orange);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+
+.textBlock {
+  color: var(--color-text-gray);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.textBlock strong {
+  color: var(--color-text-white);
+}
+
+.textBlock a {
+  color: var(--color-primary-orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.textBlock a:hover {
+  color: var(--color-text-white);
+}
+
+/* --- Data Tables --- */
+.tableContainer {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-bg-dark);
+  text-align: left;
+}
+
+.dataTable th, .dataTable td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dataTable th {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-primary-orange);
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dataTable td {
+  color: var(--color-text-gray);
+}
+
+.dataTable tr:last-child td {
+  border-bottom: none;
+}
+
+.dataTable tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--color-text-white);
+}
+
+/* --- Lists --- */
+.contentList {
+  list-style-type: none; /* Remove default bullets */
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.contentList li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-text-gray);
+  line-height: 1.6;
+}
+
+.contentList li::before {
+  content: "•";
+  color: var(--color-primary-orange);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* --- Code Snippets (for Embed) --- */
+.codeBlock {
+  background: #111;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #a5d6ff;
+  margin: 1rem 0;
+}
+
+.copyButton {
+  background: var(--color-primary-orange);
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: opacity 0.2s;
+}
+
+.copyButton:hover {
+  opacity: 0.9;
+}
