@@ -2,11 +2,13 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image"; 
-import { useState, useEffect, useRef, DependencyList } from "react";
+import { useState, useEffect, useRef } from "react";
 import { GetStaticProps } from "next";
 import { getStatusData } from "../data/status";
 import styles from "../styles/Home.module.css";
 import useTermDates from "../hooks/useTermDates";
+import useClickOutside from "../hooks/useClickOutside"; 
+import { calculateGolfStats } from "../utils/statsCalculator"; 
 import Calendar from "../components/Calendar";
 import Navbar from "../components/Navbar"; 
 import SEO from "../components/SEO";
@@ -17,37 +19,16 @@ interface HomeProps {
   termStart: TermStart;
   locationCosts: { [key: string]: number };
   daysGolfed: number;
+  totalCost: number; // Added to props to support build-time calculation
 }
-
-interface ClickOutsideHandler {
-  (value: boolean): void;
-}
-
-const useClickOutside = (
-  ref: React.RefObject<HTMLElement | null>,
-  handler: ClickOutsideHandler,
-  dependencies: DependencyList
-) => {
-  useEffect(() => {
-    const handleClick = (event: globalThis.MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        handler(false);
-      }
-    };
-
-    if (dependencies.some((dep) => dep)) {
-      document.addEventListener("mousedown", handleClick);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
-  }, dependencies);
-};
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
     const statusData = getStatusData();
+    
+    // Calculate stats at build time to prevent client-side layout shift
+    const stats = calculateGolfStats(statusData.events, statusData.locationCosts);
+
     return {
       props: {
         events: statusData.events,
@@ -57,9 +38,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
           day: statusData.termStart.getDate(),
         },
         locationCosts: statusData.locationCosts,
-        daysGolfed: Object.values(statusData.events).filter((e): e is EventData =>
-          ["golf", "golf_arrival", "golf_departure"].includes(e.type)
-        ).length,
+        daysGolfed: stats.daysGolfed,
+        totalCost: stats.totalCost, // Pre-calculated and passed to page
       },
     };
   } catch (error) {
@@ -69,6 +49,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
         termStart: { year: 2025, month: 1, day: 20 },
         locationCosts: {},
         daysGolfed: 0,
+        totalCost: 0,
       },
     };
   }
@@ -99,6 +80,7 @@ const Home: React.FC<HomeProps> = ({
   termStart,
   locationCosts,
   daysGolfed,
+  totalCost, // Receive pre-calculated cost from props
 }) => {
   const [hasMounted, setHasMounted] = useState(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -107,9 +89,9 @@ const Home: React.FC<HomeProps> = ({
     data: EventData;
   } | null>(null);
   
-  const [totalCost, setTotalCost] = useState<number>(0);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
+  // Use the extracted hook
   useClickOutside(modalRef, setModalOpen, [modalOpen]);
 
   const { daysSinceStart, isGolfingToday } = useTermDates(termStart, events);
@@ -121,36 +103,8 @@ const Home: React.FC<HomeProps> = ({
 
   useEffect(() => {
     setHasMounted(true);
-
-    // Explicitly sort keys to ensure chronological order calculation
-    const eventDates = Object.keys(events).sort((a, b) => a.localeCompare(b));
-    const trips: { location: string; endDate: string }[] = [];
-
-    eventDates.forEach((date, index) => {
-      const event = events[date];
-      const eventType = event.type;
-      
-      // Look back logic
-      const previousDate = index > 0 ? eventDates[index - 1] : null;
-      const previousEvent = previousDate ? events[previousDate] : null;
-
-      const isEndpoint =
-        eventType === 'golf_departure' ||
-        eventType === 'departure' ||
-        (eventType === 'golf' &&
-          (!previousEvent || !['arrival', 'golf_arrival'].includes(previousEvent.type)));
-
-      if (isEndpoint && ['golf', 'golf_arrival', 'golf_departure'].includes(eventType)) {
-        trips.push({ location: event.location, endDate: date });
-      }
-    });
-
-    const calculatedCost = trips.reduce((acc, trip) => {
-      return acc + (locationCosts[trip.location] || 0);
-    }, 0);
-
-    setTotalCost(calculatedCost);
-  }, [events, locationCosts]);
+    // Removed client-side cost calculation useEffect
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -285,6 +239,7 @@ const Home: React.FC<HomeProps> = ({
           <dl className={styles.statCard}>
             <dt className={styles.statLabel}>Taxpayer Cost</dt>
             <dd className={`${styles.statValue} ${styles.statValueHighlight}`}>
+                {/* Use the prop passed from getStaticProps */}
                 {hasMounted ? `$${(totalCost / 1000000).toFixed(1)}M` : "$-M"}
             </dd>
             <dd className={styles.statSubtext}>
