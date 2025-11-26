@@ -9,6 +9,7 @@ import styles from "../styles/Home.module.css";
 import useTermDates from "../hooks/useTermDates";
 import Calendar from "../components/Calendar";
 import Navbar from "../components/Navbar"; 
+import SEO from "../components/SEO";
 import { Events, EventData, TermStart, EventType } from "../types";
 
 interface HomeProps {
@@ -121,18 +122,23 @@ const Home: React.FC<HomeProps> = ({
   useEffect(() => {
     setHasMounted(true);
 
-    const eventDates = Object.keys(events).sort();
+    // Explicitly sort keys to ensure chronological order calculation
+    const eventDates = Object.keys(events).sort((a, b) => a.localeCompare(b));
     const trips: { location: string; endDate: string }[] = [];
 
     eventDates.forEach((date, index) => {
       const event = events[date];
       const eventType = event.type;
+      
+      // Look back logic
+      const previousDate = index > 0 ? eventDates[index - 1] : null;
+      const previousEvent = previousDate ? events[previousDate] : null;
+
       const isEndpoint =
         eventType === 'golf_departure' ||
         eventType === 'departure' ||
         (eventType === 'golf' &&
-          (index === 0 ||
-            !['arrival', 'golf_arrival'].includes(events[eventDates[index - 1]]?.type)));
+          (!previousEvent || !['arrival', 'golf_arrival'].includes(previousEvent.type)));
 
       if (isEndpoint && ['golf', 'golf_arrival', 'golf_departure'].includes(eventType)) {
         trips.push({ location: event.location, endDate: date });
@@ -148,30 +154,13 @@ const Home: React.FC<HomeProps> = ({
 
   return (
     <div className={styles.container}>
+      <SEO 
+        title="Is Trump Golfing Today? | Live Presidential Golf Tracker"
+        description="Real-time tracker for Donald Trump's presidential golf trips, taxpayer costs, and stats."
+      />
+      
       <Head>
-        <title>Is Trump Golfing Today? | Live Presidential Golf Tracker</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Real-time tracker for Donald Trump's presidential golf trips, taxpayer costs, and stats." />
-        <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
-        <link rel="canonical" href="https://istrumpgolfing.today/" />
-        
-        {/* Open Graph / Facebook / Discord */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://istrumpgolfing.today/" />
-        <meta property="og:title" content="Is Trump Golfing Today?" />
-        <meta property="og:description" content="See live updates on presidential golf trips and taxpayer costs." />
-        <meta property="og:image" content="https://istrumpgolfing.today/files/istrumpgolfing.webp" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Is Trump Golfing Today?" />
-        <meta name="twitter:description" content="See live updates on presidential golf trips and taxpayer costs." />
-        <meta name="twitter:image" content="https://istrumpgolfing.today/files/istrumpgolfing.webp" />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
-        {/* Structured Data (JSON-LD) */}
+        {/* Structured Data (JSON-LD) kept in Head as SEO component doesn't accept children */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -261,7 +250,7 @@ const Home: React.FC<HomeProps> = ({
               <div>
                 <div className={styles.statusBadge}>
                   <span className={`${styles.statusPulse} ${isGolfingToday ? styles.statusPulseYes : styles.statusPulseNo}`} />
-                  {/* Changed H1 to H2 for better hierarchy since H1 is now hidden above */}
+                  {/* Changed H1 to H2 for better hierarchy */}
                   <h2 className={styles.statusText} style={{ margin: 0, display: 'inline' }}>
                     {isGolfingToday ? "YES, HE IS GOLFING" : "NO, HE IS NOT GOLFING"}
                   </h2>
@@ -271,7 +260,7 @@ const Home: React.FC<HomeProps> = ({
           )}
         </section>
 
-        {/* STATS DASHBOARD - Converted to DL for Semantic SEO */}
+        {/* STATS DASHBOARD */}
         <div className={styles.statsGrid}>
           <dl className={styles.statCard}>
             <dt className={styles.statLabel}>Days Golfed</dt>
@@ -317,15 +306,17 @@ const Home: React.FC<HomeProps> = ({
             with roughly <strong>$1.75 million</strong> paid directly to Trump-owned businesses 
             for Secret Service accommodations. 
             <br />
-            {/* Improved Anchor Text */}
-            <Link href="/cost-breakdown"><a className={styles.contextLink}>View Full Trump Golf Cost Breakdown &rarr;</a></Link>
+            <Link href="/cost-breakdown" className={styles.contextLink}>
+                View Full Trump Golf Cost Breakdown &rarr;
+            </Link>
           </p>
           <p className={styles.contextText}>
             Curious how this stacks up against history? Trump golfed more in one term 
             than many presidents did in two. 
             <br />
-            {/* Improved Anchor Text */}
-            <Link href="/comparison"><a className={styles.contextLink}>Compare Trump vs Other Presidents Golf Stats &rarr;</a></Link>
+            <Link href="/comparison" className={styles.contextLink}>
+                Compare Trump vs Other Presidents Golf Stats &rarr;
+            </Link>
           </p>
         </section>
 
@@ -426,13 +417,21 @@ const Home: React.FC<HomeProps> = ({
         {/* FOOTER AREA */}
         <div className={styles.footer}>
           <div className={styles.footerLinks}>
-            <Link href="/comparison"><a className={styles.footerLink}>Presidential Comparison</a></Link>
+            <Link href="/comparison" className={styles.footerLink}>
+                Presidential Comparison
+            </Link>
             <span className={styles.footerSeparator}>|</span>
-            <Link href="/cost-breakdown"><a className={styles.footerLink}>Cost Breakdown</a></Link>
+            <Link href="/cost-breakdown" className={styles.footerLink}>
+                Cost Breakdown
+            </Link>
             <span className={styles.footerSeparator}>|</span>
-            <Link href="/embed"><a className={styles.footerLink}>Embed Widget</a></Link>
+            <Link href="/embed" className={styles.footerLink}>
+                Embed Widget
+            </Link>
             <span className={styles.footerSeparator}>|</span>
-            <Link href="/about"><a className={styles.footerLink}>About</a></Link>
+            <Link href="/about" className={styles.footerLink}>
+                About
+            </Link>
           </div>
           
           <p className={styles.disclaimer}>
