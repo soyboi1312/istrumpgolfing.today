@@ -14,6 +14,26 @@ const CostBreakdown = () => {
         <meta property="og:title" content="The Cost of Presidential Golf" />
         <meta property="og:description" content="Breakdown of the $3.4M Mar-a-Lago weekends vs local trips." />
         <meta property="og:image" content="https://istrumpgolfing.today/files/istrumpgolfing.webp" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://istrumpgolfing.today"
+              },{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Cost Breakdown",
+                "item": "https://istrumpgolfing.today/cost-breakdown"
+              }]
+            })
+          }}
+        />
       </Head>
 
       <Navbar />
