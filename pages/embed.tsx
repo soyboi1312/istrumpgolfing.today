@@ -37,6 +37,7 @@ const Embed = () => {
     <div className={styles.container}>
       <Head>
         <title>Embed Widget | Is Trump Golfing Today?</title>
+        <meta name="robots" content="noindex, follow" />
         <meta name="description" content="Add the Trump Golf Tracker to your website." />
         <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
       </Head>
