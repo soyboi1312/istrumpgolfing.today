@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "start": "next start",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "tsc --noEmit --watch"
+  "build": "ts-node -O '{\"module\":\"commonjs\"}' scripts/generate-stats.ts && next build",
+  "dev": "ts-node -O '{\"module\":\"commonjs\"}' scripts/generate-stats.ts && next dev",
+  "start": "next start",
+  "type-check": "tsc --noEmit",
+  "type-check:watch": "tsc --noEmit --watch"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
