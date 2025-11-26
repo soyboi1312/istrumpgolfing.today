@@ -56,9 +56,9 @@ const Comparison = () => {
                 </tr>
                 <tr>
                   <td>Joe Biden</td>
-                  <td>~150</td>
+                  <td>20</td>
                   <td>1,461</td>
-                  <td>~10.3%</td>
+                  <td>~0.013%</td>
                 </tr>
               </tbody>
             </table>
