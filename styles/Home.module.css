@@ -621,6 +621,14 @@
   padding-bottom: 0.5rem;
 }
 
+.sectionSubtitle {
+  font-family: 'Merriweather', serif;
+  color: var(--color-primary-orange);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
 .textBlock {
   color: var(--color-text-gray);
   line-height: 1.8;

@@ -2,13 +2,31 @@
 import fs from 'fs';
 import path from 'path';
 import { getStatusData } from '../data/status';
-import { calculateGolfStats } from '../utils/statsCalculator'; // Use shared logic
+import { calculateGolfStats } from '../utils/statsCalculator';
+import { GOLF_EVENT_TYPES } from '../types';
 
 console.log('Generating stats.json...');
 
 try {
   const statusData = getStatusData();
   const { events, termStart, locationCosts } = statusData;
+
+  // Data validation - warn about potential issues
+  const warnings: string[] = [];
+  Object.entries(events).forEach(([date, event]) => {
+    if (!event.url) {
+      warnings.push(`Missing source URL for ${date} (${event.location})`);
+    }
+    if (locationCosts[event.location] === undefined) {
+      warnings.push(`Missing location cost for "${event.location}" on ${date}`);
+    }
+  });
+
+  if (warnings.length > 0) {
+    console.log('\n⚠️  Data validation warnings:');
+    warnings.forEach(w => console.log(`   - ${w}`));
+    console.log('');
+  }
 
   // Calculate days since start
   const today = new Date();
@@ -30,7 +48,7 @@ try {
   // Count golf days by location (Additional logic specific to this script)
   const golfDaysByLocation: { [key: string]: number } = {};
   Object.values(events).forEach((event) => {
-    if (['golf', 'golf_arrival', 'golf_departure'].includes(event.type)) {
+    if (GOLF_EVENT_TYPES.includes(event.type as typeof GOLF_EVENT_TYPES[number])) {
        golfDaysByLocation[event.location] = (golfDaysByLocation[event.location] || 0) + 1;
     }
   });
@@ -38,7 +56,7 @@ try {
   // Get 10 most recent golf days
   const recentGolfDays = Object.entries(events)
     .filter(([_, event]) =>
-      ['golf', 'golf_arrival', 'golf_departure'].includes(event.type)
+      GOLF_EVENT_TYPES.includes(event.type as typeof GOLF_EVENT_TYPES[number])
     )
     .sort(([dateA], [dateB]) => dateB.localeCompare(dateA))
     .slice(0, 10)

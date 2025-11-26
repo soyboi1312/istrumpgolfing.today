@@ -38,7 +38,7 @@ const About = () => {
             how much it costs taxpayers.
           </p>
 
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             Why This Matters
           </h3>
           <p className={styles.textBlock}>
@@ -47,7 +47,7 @@ const About = () => {
             align with actions is a fundamental aspect of governmental accountability.
           </p>
 
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             Trump's Own Words
           </h3>
           <ul className={styles.contentList}>
@@ -61,7 +61,7 @@ const About = () => {
         <section className={styles.sectionCard}>
           <h2 className={styles.sectionTitle}>Methodology</h2>
 
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             How We Track Golf Days
           </h3>
           <p className={styles.textBlock}>
@@ -74,7 +74,7 @@ const About = () => {
             <li><strong>Golf course confirmation:</strong> Reports from golf course staff or other reliable witnesses</li>
           </ul>
 
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             Event Types
           </h3>
           <p className={styles.textBlock}>We categorize each event into one of five types:</p>
@@ -109,7 +109,7 @@ const About = () => {
             </li>
           </ul>
 
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             Cost Components
           </h3>
           <p className={styles.textBlock}>Presidential golf trip costs typically include:</p>
@@ -137,7 +137,7 @@ const About = () => {
             <li>Golf course reports and social media (verified accounts only)</li>
           </ul>
 
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             Accuracy & Corrections
           </h3>
           <p className={styles.textBlock}>
@@ -154,7 +154,7 @@ const About = () => {
           </ul>
           <p className={styles.textBlock}>We review all submissions and issue corrections when warranted.</p>
 
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             What We're NOT
           </h3>
           <ul className={styles.contentList}>
@@ -168,7 +168,7 @@ const About = () => {
         <section className={styles.sectionCard}>
           <h2 className={styles.sectionTitle}>Project Information</h2>
           
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             Data Usage
           </h3>
           <p className={styles.textBlock}>
@@ -176,7 +176,7 @@ const About = () => {
             verification, and republication of our data with attribution.
           </p>
 
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             Technical Implementation
           </h3>
           <p className={styles.textBlock}>
@@ -184,7 +184,7 @@ const About = () => {
             maximum uptime. The codebase is optimized for accessibility (WCAG 2.1 compliant) and mobile devices.
           </p>
 
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             Contact & Support
           </h3>
           <ul className={styles.contentList}>
@@ -211,13 +211,13 @@ const About = () => {
 
         <div className={styles.footer}>
           <div className={styles.footerLinks}>
-            <Link href="/"><a className={styles.footerLink}>Home</a></Link>
+            <Link href="/" className={styles.footerLink}>Home</Link>
             <span className={styles.footerSeparator}>|</span>
-            <Link href="/comparison"><a className={styles.footerLink}>Comparison</a></Link>
+            <Link href="/comparison" className={styles.footerLink}>Comparison</Link>
             <span className={styles.footerSeparator}>|</span>
-            <Link href="/cost-breakdown"><a className={styles.footerLink}>Cost Breakdown</a></Link>
+            <Link href="/cost-breakdown" className={styles.footerLink}>Cost Breakdown</Link>
             <span className={styles.footerSeparator}>|</span>
-            <Link href="/embed"><a className={styles.footerLink}>Embed Widget</a></Link>
+            <Link href="/embed" className={styles.footerLink}>Embed Widget</Link>
           </div>
         </div>
       </main>

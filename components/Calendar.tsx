@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, FC } from 'react';
 import styles from '../styles/Home.module.css';
-import { EventData, Events } from '../types';
+import { EventData, Events, GOLF_EVENT_TYPES } from '../types';
 import { getEasternTimeISO } from '../utils/dateHelpers';
 
 interface CalendarProps {
@@ -57,7 +57,7 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
             let onClick: (() => void) | undefined = undefined;
 
             if (event) {
-                if (['golf', 'golf_arrival', 'golf_departure'].includes(event.type)) {
+                if (GOLF_EVENT_TYPES.includes(event.type as typeof GOLF_EVENT_TYPES[number])) {
                     className += ` ${styles.eventDay}`;
                 }
                 if (!isFuture) {

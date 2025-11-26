@@ -507,7 +507,10 @@ export const statusData: StatusData = {
         [GolfLocation.WEST_PALM]: 3400000,
         [GolfLocation.JUPITER_FL]: 3400000,
         [GolfLocation.DORAL_FL]: 3400000,
+        [GolfLocation.FLORIDA]: 3400000,        // Generic Florida (same as Mar-a-Lago trips)
         [GolfLocation.BEDMINSTER]: 350000,
+        [GolfLocation.NEW_JERSEY]: 350000,      // Generic NJ (same as Bedminster)
+        [GolfLocation.PHILADELPHIA]: 350000,    // Departure point for NJ trips
         [GolfLocation.STERLING_VA]: 100000,
         [GolfLocation.WASHINGTON_DC]: 100000,
     }
