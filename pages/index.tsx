@@ -152,8 +152,43 @@ const Home: React.FC<HomeProps> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Real-time tracker for Donald Trump's presidential golf trips, taxpayer costs, and stats." />
         <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
+        <link rel="canonical" href="https://istrumpgolfing.today/" />
+        
+        {/* Open Graph / Facebook / Discord */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://istrumpgolfing.today/" />
+        <meta property="og:title" content="Is Trump Golfing Today?" />
+        <meta property="og:description" content="See live updates on presidential golf trips and taxpayer costs." />
+        <meta property="og:image" content="https://istrumpgolfing.today/files/istrumpgolfing.webp" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Is Trump Golfing Today?" />
+        <meta name="twitter:description" content="See live updates on presidential golf trips and taxpayer costs." />
+        <meta name="twitter:image" content="https://istrumpgolfing.today/files/istrumpgolfing.webp" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Structured Data (JSON-LD) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Dataset",
+              "name": "Trump Golf Tracker",
+              "description": "A database of presidential golf outings and associated costs.",
+              "url": "https://istrumpgolfing.today",
+              "creator": {
+                "@type": "Organization",
+                "name": "Is Trump Golfing Today?"
+              },
+              "variableMeasured": ["Golf Days", "Taxpayer Cost", "Location"],
+              "license": "https://creativecommons.org/licenses/by/4.0/"
+            })
+          }}
+        />
       </Head>
 
       <Navbar />
@@ -174,9 +209,10 @@ const Home: React.FC<HomeProps> = ({
               <div>
                 <div className={styles.statusBadge}>
                   <span className={`${styles.statusPulse} ${isGolfingToday ? styles.statusPulseYes : styles.statusPulseNo}`} />
-                  <span className={styles.statusText}>
+                  {/* Changed span to h1 for SEO hierarchy */}
+                  <h1 className={styles.statusText} style={{ margin: 0, display: 'inline' }}>
                     {isGolfingToday ? "YES, HE IS GOLFING" : "NO, HE IS NOT GOLFING"}
-                  </span>
+                  </h1>
                 </div>
               </div>
             </>
@@ -216,7 +252,7 @@ const Home: React.FC<HomeProps> = ({
           </div>
         </div>
 
-        {/* NEW CONTEXT / SEO SECTION */}
+        {/* CONTEXT / SEO SECTION */}
         <section className={styles.contextSection}>
           <h2 className={styles.contextTitle}>The Cost of Leisure</h2>
           <p className={styles.contextText}>
