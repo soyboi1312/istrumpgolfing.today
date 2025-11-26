@@ -126,7 +126,7 @@ const CostBreakdown = () => {
            <div className={styles.footerLinks}>
             <Link href="/"><a className={styles.footerLink}>Home</a></Link>
             <span className={styles.footerSeparator}>|</span>
-            <Link href="/comparison"><a className={styles.footerLink}>Comparison</a></Link>
+            <Link href="/comparison"><a className={styles.footerLink}>Presidential Comparison</a></Link>
             <span className={styles.footerSeparator}>|</span>
             <Link href="/about"><a className={styles.footerLink}>About</a></Link>
           </div>
