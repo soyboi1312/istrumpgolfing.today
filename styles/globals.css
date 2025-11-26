@@ -1,65 +1,48 @@
 /* styles/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@400;500;700&display=swap');
 
-/* ============================================
-   CSS Custom Properties (Design System)
-   ============================================ */
 :root {
   /* Colors */
   --color-primary-orange: #ffa500;
   --color-primary-orange-dark: #ff8c00;
-  --color-primary-orange-muted: #664400;
-  --color-bg-black: #000;
-  --color-bg-dark: #1a1a1a;
-  --color-bg-medium: #2d2d2d;
-  --color-bg-light: #333;
-  --color-text-white: #fff;
-  --color-text-gray: #ccc;
-  --color-text-muted: #888;
-  --color-text-dark: #666;
-  --color-border: #333;
-  --color-border-light: #fff;
-  --color-indicator: #666;
+  --color-bg-black: #050505;
+  --color-bg-dark: #121212;
+  --color-bg-card: #1e1e1e;
+  --color-text-white: #ffffff;
+  --color-text-gray: #a0a0a0;
+  --color-border: #333333;
+  
+  /* Status Colors */
+  --color-status-yes: #ffa500;
+  --color-status-no: #4a4a4a;
 
-  /* Spacing */
-  --spacing-xs: 5px;
-  --spacing-sm: 10px;
-  --spacing-md: 15px;
-  --spacing-lg: 20px;
-  --spacing-xl: 25px;
-
-  /* Border Radius */
-  --radius-sm: 3px;
-  --radius-md: 4px;
-  --radius-lg: 10px;
-
-  /* Shadows */
-  --shadow-base: 0 4px 6px rgba(0, 0, 0, 0.3);
-  --shadow-glow-core: 0 2px 20px rgba(235, 149, 50, 0.6);
-  --shadow-glow-outer: 0 4px 30px rgba(235, 149, 50, 0.4);
-  --shadow-popup: 0 2px 8px rgba(0, 0, 0, 0.2);
-
-  /* Transitions */
-  --transition-fast: 0.2s ease-in-out;
-  --transition-medium: 0.3s ease;
+  /* Spacing & Radius */
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
 
 html, body {
-  font-family: 'Roboto', Helvetica, sans-serif;
-  color: white;
-  background-color: black;
-  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: var(--color-text-white);
+  background-color: var(--color-bg-black);
+  /* Subtle radial gradient for depth */
+  background-image: radial-gradient(circle at 50% 0%, #2a1a00 0%, #000000 70%);
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 1rem;
-  font-display: swap;
+}
+
+h1, h2, h3 {
+  font-family: 'Merriweather', serif;
 }
 
 a {
-  color: white;
-  transition: color 0.2s ease-in-out;
-  text-decoration: underline;
+  color: inherit;
+  text-decoration: none;
 }
 
-a:hover {
-  color: #ffa500;
+* {
+  box-sizing: border-box;
 }
