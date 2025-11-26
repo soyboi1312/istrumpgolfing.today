@@ -5,7 +5,7 @@ import { GetStaticProps } from 'next';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
 import { getStatusData } from '../data/status';
-import { EventData } from '../types';
+import { EventData, GOLF_EVENT_TYPES } from '../types';
 
 interface TermStats {
   daysGolfed: number;
@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps<ComparisonProps> = async () => {
   // Calculate golf days
   // We filter for explicit golf events, consistent with your index page logic
   const golfDays = Object.values(statusData.events).filter((e): e is EventData =>
-    ["golf", "golf_arrival", "golf_departure"].includes(e.type)
+    GOLF_EVENT_TYPES.includes(e.type as typeof GOLF_EVENT_TYPES[number])
   ).length;
 
   return {
@@ -170,7 +170,7 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
                   <td>Joe Biden (Full Term)</td>
                   <td>20</td>
                   <td>1,461</td>
-                  <td>0.013%</td>
+                  <td>1.4%</td>
                 </tr>
               </tbody>
             </table>
@@ -240,7 +240,7 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
         <section className={styles.sectionCard}>
           <h2 className={styles.sectionTitle}>Key Insights</h2>
           
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             Trump's Golf Habits
           </h3>
           <ul className={styles.contentList}>
@@ -251,7 +251,7 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
             <li><strong>Campaign promise:</strong> Said he would be "too busy" to golf as president</li>
           </ul>
 
-          <h3 style={{ color: 'var(--color-primary-orange)', fontFamily: 'Merriweather, serif', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <h3 className={styles.sectionSubtitle}>
             Historical Context
           </h3>
           <ul className={styles.contentList}>
@@ -335,11 +335,11 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
 
         <div className={styles.footer}>
           <div className={styles.footerLinks}>
-            <Link href="/"><a className={styles.footerLink}>Home</a></Link>
+            <Link href="/" className={styles.footerLink}>Home</Link>
             <span className={styles.footerSeparator}>|</span>
-            <Link href="/cost-breakdown"><a className={styles.footerLink}>Cost Breakdown</a></Link>
+            <Link href="/cost-breakdown" className={styles.footerLink}>Cost Breakdown</Link>
             <span className={styles.footerSeparator}>|</span>
-            <Link href="/about"><a className={styles.footerLink}>About</a></Link>
+            <Link href="/about" className={styles.footerLink}>About</Link>
           </div>
         </div>
       </main>

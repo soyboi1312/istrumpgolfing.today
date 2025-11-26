@@ -1,5 +1,5 @@
 // utils/statsCalculator.ts
-import { Events, EventType } from '../types';
+import { Events, EventType, GOLF_EVENT_TYPES } from '../types';
 
 export interface GolfStats {
   totalCost: number;
@@ -8,12 +8,12 @@ export interface GolfStats {
 }
 
 export const calculateGolfStats = (
-  events: Events, 
+  events: Events,
   locationCosts: Record<string, number>
 ): GolfStats => {
   // 1. Calculate Days Golfed
   const daysGolfed = Object.values(events).filter((e) =>
-    ["golf", "golf_arrival", "golf_departure"].includes(e.type)
+    GOLF_EVENT_TYPES.includes(e.type as typeof GOLF_EVENT_TYPES[number])
   ).length;
 
   // 2. Calculate Trips & Cost
@@ -34,7 +34,7 @@ export const calculateGolfStats = (
       (eventType === 'golf' &&
         (!previousEvent || !['arrival', 'golf_arrival'].includes(previousEvent.type)));
 
-    if (isEndpoint && ['golf', 'golf_arrival', 'golf_departure'].includes(eventType)) {
+    if (isEndpoint && GOLF_EVENT_TYPES.includes(eventType as typeof GOLF_EVENT_TYPES[number])) {
       trips.push({ location: event.location, endDate: date });
     }
   });

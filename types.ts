@@ -6,8 +6,14 @@ export type EventType =
     | 'golf_arrival'
     | 'golf_departure';
 
+/** Event types that count as golf days */
+export const GOLF_EVENT_TYPES = ['golf', 'golf_arrival', 'golf_departure'] as const;
+
+/** All valid event types */
+export const ALL_EVENT_TYPES = ['golf', 'arrival', 'departure', 'golf_arrival', 'golf_departure'] as const;
+
 export const isEventType = (type: string): type is EventType =>
-    ['golf', 'arrival', 'departure', 'golf_arrival', 'golf_departure'].includes(type);
+    ALL_EVENT_TYPES.includes(type as EventType);
 
 export enum GolfLocation {
     MAR_A_LAGO = "Mar-a-Lago",
