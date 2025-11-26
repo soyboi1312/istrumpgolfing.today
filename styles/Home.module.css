@@ -1,678 +1,278 @@
 /* styles/Home.module.css */
 
-/* ============================================
-   Animations
-   ============================================ */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -45%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -468px 0;
-  }
-  100% {
-    background-position: 468px 0;
-  }
-}
-
-.skeleton {
-  background: linear-gradient(
-    to right,
-    #1a1a1a 0%,
-    #2d2d2d 20%,
-    #1a1a1a 40%,
-    #1a1a1a 100%
-  );
-  background-size: 800px 104px;
-  animation: shimmer 1.5s infinite linear;
-  border-radius: var(--radius-lg);
-}
-
-/* ============================================
-   Layout Components
-   ============================================ */
+/* --- Layout --- */
 .container {
-  background-color: var(--color-bg-black);
   min-height: 100vh;
-  padding: var(--spacing-lg);
+  padding-bottom: 4rem;
 }
 
 .main {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 0 20px;
+  padding-top: 80px; /* Space for sticky nav */
 }
 
-/* ============================================
-   Status Display
-   ============================================ */
-.status {
-  font-size: 5rem;
-  font-weight: 900;
-  text-shadow: var(--shadow-base), 0 0 20px rgba(0, 0, 0, 0.3);
-  margin: 1rem 0 2rem;
-  position: relative;
-  display: block;
-}
-
-.statusYes {
-  color: var(--color-text-white);
-  text-shadow:
-    0 4px 10px rgba(0, 0, 0, .5),
-    var(--shadow-glow-core),
-    var(--shadow-glow-outer);
-}
-
-.statusNo {
-  color: var(--color-text-white);
-  -webkit-text-stroke: 3px var(--color-bg-black);
-  text-shadow:
-    0 4px 10px rgba(0, 0, 0, .5),
-    var(--shadow-glow-core),
-    var(--shadow-glow-outer);
-}
-
-.golfImage {
-  width: 100%;
-  max-width: 300px;
-  height: 100%;
-  max-height: 300px;
-  text-align: center;
-  object-fit: cover;
-  transform: scale(0.9);
-  transform-origin: center;
-}
-
-/* ============================================
-   Content Sections
-   ============================================ */
-.subtitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 0 0 1rem 0;
-  color: var(--color-primary-orange);
-  text-align: center;
-}
-
-.blurb {
-  line-height: 1.4;
-  margin: var(--spacing-lg) 0;
-  padding: var(--spacing-lg) var(--spacing-md);
-  background-color: var(--color-bg-dark);
-  border-radius: var(--radius-lg);
-  font-kerning: normal;
-  text-rendering: optimizeLegibility;
-  min-height: 185px;
-  overflow: hidden;
-  display: block;
-  height: auto;
-  font-optical-sizing: auto;
-  font-synthesis: none;
-  text-wrap: pretty;
-}
-
-.blurb a {
-  color: var(--color-text-white);
-  display: inline-block;
-  text-decoration: underline;
-  transition: color var(--transition-fast);
-}
-
-.blurb span {
-  display: inline-block;
-  transition: all var(--transition-medium);
-  font-variant-numeric: tabular-nums;
-  min-width: 0;
-}
-
-.blurb p {
-  margin: 0 0 1rem 0;
-  line-height: 1.4;
-}
-
-.blurb p:last-child {
-  margin-bottom: 0;
-}
-
-@media (max-width: 768px) {
-  .blurb {
-    font-size: 1rem;
-    padding: 15px 12px;
-    margin: 15px 10px; /* Add horizontal margin */
-    text-align: center; /* Ensure center alignment */
-  }
-  
-  /* Fix potential image centering */
-  .golfImage {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
-}
-
-/* ============================================
-   Calendar Legend
-   ============================================ */
-.legend {
-  text-align: center;
-  font-size: small;
-  margin: var(--spacing-lg) 0;
-  color: var(--color-text-gray);
-}
-
-.legendColor {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  background-color: var(--color-primary-orange);
-  margin-right: var(--spacing-sm);
-  vertical-align: middle;
-  border-radius: var(--radius-sm);
-}
-
-.tableCell {
-  background-color: inherit;
-}
-
-/* ============================================
-   Calendar Table
-   ============================================ */
-.calendarTable {
-  margin: var(--spacing-sm) auto;
-  border-collapse: collapse;
-  width: 100%;
-  background-color: var(--color-bg-dark);
-}
-
-.calendarTable th,
-.calendarTable td {
-  font-size: 1rem;
-  padding: var(--spacing-sm);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-white);
-}
-
-.calendarTable th {
-  background-color: var(--color-bg-medium);
-}
-
-@media (max-width: 768px) {
-  .calendarTable {
-    font-size: 16px;
-  }
-
-  .calendarTable td {
-    padding: 8px;
-  }
-}
-
-/* ============================================
-   Calendar Event Days
-   ============================================ */
-.eventDay {
-  background-color: var(--color-primary-orange) !important;
-  color: var(--color-bg-black) !important;
-  font-weight: bold;
-  cursor: pointer;
-  position: relative;
-  overflow: visible !important;
-}
-
-.eventDay:hover {
-  background-color: var(--color-primary-orange-dark);
-}
-
-.arrivalDay {
-  position: relative;
-  overflow: visible !important; /* Override hidden overflow */
-}
-
-/* Arrival indicator (bottom-right triangle) */
-.arrivalDay::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 16px 16px 0 0;
-  border-color: transparent var(--color-indicator) transparent transparent;
-  z-index: 2;
-}
-
-.golf_arrival::after {
-  border-color: transparent var(--color-indicator) transparent transparent;
-}
-
-.departureDay {
-  position: relative;
-  overflow: visible !important;
-}
-
-/* Departure indicator (top-left triangle) */
-.departureDay::after {
-  content: '';
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 14px 14px 0 0;
-  border-color: var(--color-indicator) transparent transparent transparent;
-  z-index: 2;
-}
-
-.eventDay:not(.arrivalDay):not(.departureDay) {
-  background-color: var(--color-primary-orange) !important;
-}
-
-.golf_arrival {
-  background-color: var(--color-primary-orange) !important;
-  position: relative;
-}
-
-.golf_arrival::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 16px 16px 0 0;
-  border-color: transparent var(--color-indicator) transparent transparent;
-}
-
-.golf_departure {
-  background-color: var(--color-primary-orange) !important;
-  position: relative;
-}
-
-.golf_departure::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 20px 20px 0 0;
-  border-color: var(--color-indicator) transparent transparent transparent;
-}
-
-.arrivalDay::after, .golf_arrival::after {
-  bottom: 0;
-  right: 0;
-  border-width: 16px 16px 0 0; /* Slightly larger */
-}
-
-.departureDay::after, .golf_departure::after {
-  top: 0;
-  left: 0;
-  border-width: 16px 16px 0 0; /* Slightly larger */
-}
-
-/* Future day styles (grayed out) */
-.futureDay {
-  background-color: var(--color-bg-light) !important;
-  color: var(--color-text-dark) !important;
-  cursor: default !important;
-}
-
-.futureDay.eventDay {
-  background-color: var(--color-primary-orange-muted) !important;
-  color: var(--color-text-muted) !important;
-}
-
-.futureDay.eventDay.arrivalDay::after {
-  border-color: transparent var(--color-text-dark) transparent transparent;
-}
-
-.futureDay.eventDay.departureDay::after {
-  border-color: var(--color-text-dark) transparent transparent transparent;
-}
-
-.futureDay.golf_arrival::after {
-  border-color: transparent var(--color-primary-orange-muted) transparent transparent;
-}
-
-.futureDay.golf_departure::after {
-  border-color: var(--color-primary-orange-muted) transparent transparent transparent;
-}
-
-/* ============================================
-   Modals & Popups
-   ============================================ */
-.modal {
+/* --- Sticky Navbar --- */
+.navbar {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  will-change: transform;
-  transform: translate(-50%, -50%);
-  background-color: var(--color-bg-medium);
-  border-radius: var(--radius-md);
-  backdrop-filter: blur(2px);
-  animation: fadeIn 0.3s ease-out;
-  box-shadow: var(--shadow-popup);
-  z-index: 1000;
-  padding: var(--spacing-md);
-  border: 1px solid var(--color-border-light);
-  max-width: 200px;
-  width: 90%;
-  line-height: 1.1;
-  will-change: opacity, transform;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
 
-.modalContent {
-  text-align: center;
-  font-size: small;
+.navContent {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
-.closeIcon {
-  width: 20px;
-  height: 20px;
-  color: var(--color-text-white);
-  transition: opacity var(--transition-fast);
-}
-
-.closeIcon:hover {
-  opacity: 0.7;
-}
-
-/* ============================================
-   Footer
-   ============================================ */
-.footer {
-  margin-top: var(--spacing-lg);
-  color: var(--color-text-muted);
-  font-size: x-small;
-}
-
-.footer a {
-  color: var(--color-text-white);
-  text-decoration: underline;
-  display: inline-block;
-  margin: var(--spacing-sm) 0;
-}
-
-.footer a:hover {
-  color: var(--color-text-gray);
-}
-
-.navigationLinks {
-  margin-bottom: 1rem;
+.navLogo {
+  font-family: 'Merriweather', serif;
+  font-weight: 900;
+  color: var(--color-primary-orange);
   font-size: 1.1rem;
-  font-weight: 600;
+}
+
+.navLinks {
+  display: flex;
+  gap: 20px;
 }
 
 .navLink {
-  color: var(--color-primary-orange);
-  text-decoration: none;
-  transition: color 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-gray);
+  transition: color 0.2s;
 }
 
 .navLink:hover {
-  color: #ff8c00;
-  text-decoration: underline;
+  color: var(--color-text-white);
 }
 
-/* Share Buttons */
-.shareButtons {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background-color: rgba(45, 45, 45, 0.5);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(128, 128, 128, 0.3);
-}
-
-.shareText {
-  margin: 0 0 1rem 0;
-  font-weight: 600;
-  color: #ccc;
+/* --- Hero & Status --- */
+.heroSection {
   text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeIn 0.8s ease-out;
 }
 
-.shareButtonGroup {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
+.golfImage {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--color-bg-card);
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
+  margin-bottom: 1.5rem;
 }
 
-.shareButton {
+.statusBadge {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  background-color: #555;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  font-size: 0.9rem;
+  gap: 12px;
+  padding: 12px 24px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
 }
 
-.shareButton:hover {
-  background-color: #666;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-}
-
-.shareButton svg {
-  flex-shrink: 0;
-}
-
-/* Social media icons */
-.socialIcon {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-  margin: 0 var(--spacing-xs);
-  color: var(--color-text-white);
-  filter: brightness(0) invert(1);
-  transition: opacity var(--transition-fast);
-}
-
-.socialLink {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: var(--spacing-md);
-  justify-content: center;
-}
-
-.socialIcon:hover {
-  opacity: 0.8;
-}
-
-.palestineIcon {
-  width: 48px;
-  height: 24px;
-  vertical-align: middle;
-  margin: 0 var(--spacing-xs);
-  transition: opacity var(--transition-fast);
-  border: 1px solid #222;
-}
-
-.palestineIcon:hover {
-  opacity: 0.8;
-}
-
-.cost {
+.statusPulse {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
   position: relative;
-  display: inline-block;
-  font-weight: bold;
-  display: inline-block;
-  min-width: 2.5em; /* Adjust based on max expected number width */
-  text-align: center;
 }
 
-/* ============================================
-   Buttons
-   ============================================ */
-.closeButton {
-  position: absolute;
-  top: 4px;
-  right: 8px;
-  background: none;
-  border: none;
-  color: var(--color-text-white);
-  cursor: pointer;
-  font-size: smaller;
-  line-height: 1;
-  padding: 0;
+.statusPulseYes {
+  background-color: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: pulseGreen 2s infinite;
 }
 
-/* Info popups */
-.costInfoPopup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--color-bg-medium);
-  border-radius: var(--radius-md);
-  backdrop-filter: blur(2px);
-  animation: fadeIn 0.3s ease-out;
-  box-shadow: var(--shadow-popup);
-  border: 1px solid var(--color-border-light);
-  max-width: 400px;
-  width: 90%;
-  padding: var(--spacing-xl);
-  z-index: 1001;
+.statusPulseNo {
+  background-color: #ef4444;
+  box-shadow: 0 0 10px #ef4444;
+  animation: pulseRed 2s infinite;
+}
+
+.statusText {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* --- Stats Dashboard --- */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.statCard {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
   text-align: left;
-  font-size: small;
-  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
 }
 
-.vacationInfoPopup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--color-bg-medium);
-  border-radius: var(--radius-md);
-  backdrop-filter: blur(2px);
-  animation: fadeIn 0.3s ease-out;
-  box-shadow: var(--shadow-popup);
-  border: 1px solid var(--color-border-light);
-  max-width: 375px;
-  width: 90%;
-  padding: var(--spacing-xl);
-  z-index: 1001;
-  text-align: left;
-  font-size: small;
-  font-weight: bold;
+.statCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary-orange);
 }
 
-/* ============================================
-   Links & Sources
-   ============================================ */
-.sourceLinkContainer {
-  margin-top: var(--spacing-xs);
-}
-
-.vacationLinkContainer {
-  margin-top: var(--spacing-xs);
-}
-
-.sourceLink {
-  color: var(--color-text-white) !important;
-  text-decoration: underline !important;
-  display: inline-block;
-  padding: 6px 6px;
-  border-radius: var(--radius-md);
-  transition: all var(--transition-medium);
-  font-size: x-small;
-  font-weight: normal;
-  text-underline-offset: 3px;
-}
-
-.sourcesList {
-  padding-left: var(--spacing-lg);
-  margin: var(--spacing-sm) 0;
+.statLabel {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   color: var(--color-text-gray);
-  font-size: small;
-  font-weight: normal;
-  padding: 0px;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
-.sourcesList a {
-  font-size: small;
-  font-weight: none;
+.statValue {
+  font-size: 2rem;
+  font-weight: 700;
   color: var(--color-text-white);
+  font-family: 'Roboto', sans-serif;
 }
 
-.sourcesList li {
-  margin-bottom: 12px;
-  line-height: 1;
-  list-style-type: disc;
-}
-
-.sourcesList li::marker {
+.statValueHighlight {
   color: var(--color-primary-orange);
 }
 
-.costInfoLink {
-  color: var(--color-primary-orange);
-  text-decoration: none;
+.statSubtext {
+  font-size: 0.8rem;
+  color: var(--color-text-gray);
+  margin-top: 0.5rem;
 }
 
-.costInfoLink:hover {
-  color: var(--color-primary-orange-dark);
-  text-decoration: underline;
+/* --- Calendar Controls --- */
+.calendarWrapper {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.sourceButtonContainer {
-  margin: var(--spacing-xs) 0;
-  text-align: center;
+.calendarControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
 }
 
-.sourceButton {
-  background: none;
-  border: none;
+.controlButton {
+  background: transparent;
+  border: 1px solid var(--color-border);
   color: var(--color-text-white);
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 1em;
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  transition: all 0.2s;
 }
 
-.vacationInfoLink {
+.controlButton:hover:not(:disabled) {
+  background: var(--color-border);
   color: var(--color-primary-orange);
-  text-decoration: none;
 }
 
-.vacationInfoLink:hover {
-  color: var(--color-primary-orange-dark);
-  text-decoration: underline;
+.controlButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
-.vacationButtonContainer {
-  margin: var(--spacing-xs) 0;
+.currentMonthLabel {
+  font-family: 'Merriweather', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* --- Calendar Table Overrides --- */
+.calendarTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 4px;
+}
+
+.calendarTable th {
+  padding: 10px;
+  color: var(--color-text-gray);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.tableCell {
+  height: 50px; /* Fixed height for squares */
   text-align: center;
+  border-radius: 6px;
+  background: var(--color-bg-dark);
+  font-size: 0.9rem;
+  border: 1px solid transparent;
+  transition: all 0.2s;
 }
 
-.vacationButton {
-  background: none;
-  border: none;
-  color: var(--color-text-white);
-  cursor: pointer;
-  font-size: 1em;
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.eventDay {
+  background-color: var(--color-primary-orange) !important;
+  color: #000 !important;
+  font-weight: bold;
+}
+
+.eventDay:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.4);
+  z-index: 2;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGreen {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+@keyframes pulseRed {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .navLinks {
+    display: none; /* Consider a hamburger menu for extensive links, or just simple icons */
+  }
+  
+  .statusBadge {
+    width: 100%;
+    justify-content: center;
+  }
 }
