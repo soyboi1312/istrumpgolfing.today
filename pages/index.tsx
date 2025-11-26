@@ -216,6 +216,29 @@ const Home: React.FC<HomeProps> = ({
           </div>
         </div>
 
+        {/* NEW CONTEXT / SEO SECTION */}
+        <section className={styles.contextSection}>
+          <h2 className={styles.contextTitle}>The Cost of Leisure</h2>
+          <p className={styles.contextText}>
+            Presidential golf trips are not just leisure; they are massive logistical operations. 
+            In his first term alone, Donald Trump visited his own properties <strong>428 times</strong>, 
+            golfing on 293 of those days.
+          </p>
+          <p className={styles.contextText}>
+            These trips resulted in an estimated <strong>$151.5 million</strong> burden on taxpayers, 
+            with roughly <strong>$1.75 million</strong> paid directly to Trump-owned businesses 
+            for Secret Service accommodations. 
+            <br />
+            <Link href="/cost-breakdown"><a className={styles.contextLink}>See the detailed cost breakdown &rarr;</a></Link>
+          </p>
+          <p className={styles.contextText}>
+            Curious how this stacks up against history? Trump golfed more in one term 
+            than many presidents did in two. 
+            <br />
+            <Link href="/comparison"><a className={styles.contextLink}>Compare with Obama, Bush, and others &rarr;</a></Link>
+          </p>
+        </section>
+
         {/* CALENDAR SECTION */}
         <Calendar
           events={events}
