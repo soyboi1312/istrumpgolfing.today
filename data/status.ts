@@ -127,7 +127,7 @@ export const statusData: StatusData = {
         '2025-09-12': {
             location: GolfLocation.BEDMINSTER,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
-            type: 'golf_arrival',
+            type: 'arrival',
         },
         '2025-09-06': {
             location: GolfLocation.WASHINGTON_DC,
@@ -517,11 +517,6 @@ export const statusData: StatusData = {
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
             type: 'golf',
         },
-        '2025-02-16': {
-            location: GolfLocation.WEST_PALM,
-            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
-            type: 'golf',
-        },
         '2025-02-15': {
             location: GolfLocation.WEST_PALM,
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
@@ -569,7 +564,7 @@ export const statusData: StatusData = {
         '2025-01-27': {
             location: GolfLocation.DORAL_FL,
             url: 'https://www.washingtonpost.com/opinions/2025/02/20/trump-second-term-golfing-resorts/',
-            type: 'golf_departure',
+            type: 'departure',
         },
         '2025-01-26': {
             location: GolfLocation.DORAL_FL,
