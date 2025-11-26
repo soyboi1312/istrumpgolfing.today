@@ -9,7 +9,9 @@ interface CalendarProps {
 }
 
 const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
-    const [currentDate, setCurrentDate] = useState(new Date());
+    // Initialize with a date, but we'll sync to ET in useEffect
+    const [currentDate, setCurrentDate] = useState(new Date()); 
+    const [todayET, setTodayET] = useState<string>(''); // Store "YYYY-MM-DD" in ET
     const [calendarView, setCalendarView] = useState<JSX.Element | null>(null);
 
     // Helpers to navigate months
@@ -28,6 +30,25 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
     []);
 
     useEffect(() => {
+        // 1. Determine "Today" in US Eastern Time to match site logic
+        const formatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'America/New_York',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        });
+        
+        const parts = formatter.formatToParts(new Date());
+        const y = parts.find(p => p.type === 'year')?.value;
+        const m = parts.find(p => p.type === 'month')?.value;
+        const d = parts.find(p => p.type === 'day')?.value;
+        
+        const etDateString = `${y}-${m}-${d}`;
+        setTodayET(etDateString);
+
+    }, []);
+
+    useEffect(() => {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
         
@@ -36,7 +57,6 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
         const firstDayOfWeek = firstDay.getDay();
         
         const monthName = firstDay.toLocaleString('default', { month: 'long' });
-        const monthKey = `${year}-${(month + 1).toString().padStart(2, '0')}`;
 
         const rows: JSX.Element[] = [];
         let currentRow: JSX.Element[] = [];
@@ -46,14 +66,16 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
             currentRow.push(<td key={`empty-${i}`} className={styles.tableCell} />);
         }
 
-        const today = new Date();
-        today.setHours(0,0,0,0);
-
+        // We compare against the string YYYY-MM-DD in ET
+        // to determine if a cell is in the future.
+        
         for (let day = 1; day <= lastDay; day++) {
             const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-            const cellDate = new Date(year, month, day);
             const event = events[dateStr];
-            const isFuture = cellDate > today;
+            
+            // Simple string comparison works for ISO dates: "2025-11-26" > "2025-11-25"
+            const isFuture = todayET ? dateStr > todayET : false;
+            const isToday = dateStr === todayET;
 
             let className = styles.tableCell;
             let onClick: (() => void) | null = null;
@@ -62,20 +84,23 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
                 if (['golf', 'golf_arrival', 'golf_departure'].includes(event.type)) {
                     className += ` ${styles.eventDay}`;
                 }
-                // Simplified classes for modern look
                 if (!isFuture) {
                     onClick = () => onDateSelect({ date: dateStr, data: event });
                 }
             }
 
             if (isFuture) className += ` ${styles.futureDay}`;
+            if (isToday) className += ` ${styles.currentDay}`; // Optional: Add style for today border if desired
 
             currentRow.push(
                 <td
                     key={day}
                     className={className}
                     onClick={onClick || undefined}
-                    style={{ cursor: onClick ? 'pointer' : 'default' }}
+                    style={{ 
+                        cursor: onClick ? 'pointer' : 'default',
+                        border: isToday ? '1px solid var(--color-primary-orange)' : undefined 
+                    }}
                 >
                     {day}
                 </td>
@@ -98,7 +123,7 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
                 <div className={styles.calendarControls}>
                     <button onClick={prevMonth} className={styles.controlButton}>&larr; Prev</button>
                     <span className={styles.currentMonthLabel}>{monthName} {year}</span>
-                    <button onClick={nextMonth} className={styles.controlButton} disabled={currentDate > today}>Next &rarr;</button>
+                    <button onClick={nextMonth} className={styles.controlButton}>Next &rarr;</button>
                 </div>
                 <table className={styles.calendarTable}>
                     <thead><tr>{dayHeaders}</tr></thead>
@@ -106,7 +131,7 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
                 </table>
             </div>
         );
-    }, [currentDate, events]);
+    }, [currentDate, events, todayET]);
 
     return <div className={styles.calendarWrapper}>{calendarView}</div>;
 };
