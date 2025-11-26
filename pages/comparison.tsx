@@ -93,7 +93,7 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated }) => {
         </section>
 
         <section className={styles.sectionCard}>
-          <h2 className={styles.sectionTitle}>Golf Days by President (First Term)</h2>
+          <h2 className={styles.sectionTitle}>Golf Days by President</h2>
           <div className={styles.tableContainer}>
             <table className={styles.dataTable}>
               <thead>
@@ -105,6 +105,13 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated }) => {
                 </tr>
               </thead>
               <tbody>
+                {/* Live Term 2 Data Row */}
+                <tr style={{ background: 'rgba(255, 165, 0, 0.15)', borderLeft: '4px solid #ffa500' }}>
+                  <td><strong>Donald Trump (Term 2)</strong> <span style={{fontSize: '0.7em', textTransform: 'uppercase', color: '#ffa500'}}>Live</span></td>
+                  <td><strong>{term2Stats.daysGolfed}</strong></td>
+                  <td><strong>{term2Stats.daysInOffice}</strong></td>
+                  <td><strong>{term2Stats.percentage}%</strong></td>
+                </tr>
                 <tr>
                   <td>Donald Trump (Term 1)</td>
                   <td>293</td>
