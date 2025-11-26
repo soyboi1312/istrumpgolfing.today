@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import { getStatusData } from '../data/status';
+import { calculateGolfStats } from '../utils/statsCalculator'; // Use shared logic
 
 console.log('Generating stats.json...');
 
@@ -17,53 +18,22 @@ try {
     Math.floor((today.getTime() - termStart.getTime()) / (1000 * 60 * 60 * 24))
   );
 
-  // Count golf days
-  const golfDays = Object.values(events).filter((event) =>
-    ['golf', 'golf_arrival', 'golf_departure'].includes(event.type)
-  );
-  const totalGolfDays = golfDays.length;
+  // USE UTILITY: Get consistent stats
+  const stats = calculateGolfStats(events, locationCosts);
 
   // Calculate percentage
   const percentage =
     daysSinceStart > 0
-      ? ((totalGolfDays / daysSinceStart) * 100).toFixed(1)
+      ? ((stats.daysGolfed / daysSinceStart) * 100).toFixed(1)
       : '0.0';
 
-  // Count golf days by location
+  // Count golf days by location (Additional logic specific to this script)
   const golfDaysByLocation: { [key: string]: number } = {};
-  golfDays.forEach((event) => {
-    golfDaysByLocation[event.location] =
-      (golfDaysByLocation[event.location] || 0) + 1;
-  });
-
-  // Calculate total cost (same logic as API)
-  const eventDates = Object.keys(events).sort();
-  const trips: { location: string; endDate: string }[] = [];
-
-  eventDates.forEach((date, index) => {
-    const event = events[date];
-    const eventType = event.type;
-    const isEndpoint =
-      eventType === 'golf_departure' ||
-      eventType === 'departure' ||
-      (eventType === 'golf' &&
-        (index === 0 ||
-          !['arrival', 'golf_arrival'].includes(
-            events[eventDates[index - 1]]?.type
-          )));
-
-    if (
-      isEndpoint &&
-      ['golf', 'golf_arrival', 'golf_departure'].includes(eventType)
-    ) {
-      trips.push({ location: event.location, endDate: date });
+  Object.values(events).forEach((event) => {
+    if (['golf', 'golf_arrival', 'golf_departure'].includes(event.type)) {
+       golfDaysByLocation[event.location] = (golfDaysByLocation[event.location] || 0) + 1;
     }
   });
-
-  const estimatedTotalCost = trips.reduce((acc, trip) => {
-    const cost = locationCosts[trip.location] || 0;
-    return acc + cost;
-  }, 0);
 
   // Get 10 most recent golf days
   const recentGolfDays = Object.entries(events)
@@ -83,9 +53,9 @@ try {
     termStart: termStart.toISOString().split('T')[0],
     currentDate: today.toISOString().split('T')[0],
     daysSinceStart,
-    totalGolfDays,
+    totalGolfDays: stats.daysGolfed,
     percentageGolfed: percentage,
-    estimatedTotalCost,
+    estimatedTotalCost: stats.totalCost,
     golfDaysByLocation,
     recentGolfDays,
     metadata: {
