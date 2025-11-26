@@ -165,6 +165,45 @@
   margin-top: 0.5rem;
 }
 
+/* --- Context/Analysis Section --- */
+.contextSection {
+  text-align: left;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.contextTitle {
+  font-family: 'Merriweather', serif;
+  color: var(--color-primary-orange);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.contextText {
+  color: var(--color-text-gray);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.contextText strong {
+  color: var(--color-text-white);
+}
+
+.contextLink {
+  color: var(--color-primary-orange);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.contextLink:hover {
+  color: var(--color-text-white);
+}
+
 /* --- Calendar Controls --- */
 .calendarWrapper {
   background: var(--color-bg-card);
@@ -180,7 +219,7 @@
   align-items: center;
   margin-bottom: 1.5rem;
   padding: 0;
-  gap: 10px; /* Prevent buttons touching text */
+  gap: 10px;
 }
 
 .controlButton {
@@ -208,8 +247,8 @@
   font-family: 'Merriweather', serif;
   font-size: 1.2rem;
   font-weight: 700;
-  flex: 1; /* Allows label to take up available space */
-  text-align: center; /* Centers the label */
+  flex: 1;
+  text-align: center;
   line-height: 1.2;
 }
 
@@ -218,7 +257,7 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 4px;
-  table-layout: fixed; /* Ensures even columns */
+  table-layout: fixed;
 }
 
 .calendarTable th {
@@ -403,7 +442,7 @@
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
   .main {
-    padding-top: 20px; /* Less top padding since navbar might change behavior or just spacing */
+    padding-top: 20px; 
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -422,6 +461,10 @@
     justify-content: center;
   }
   
+  .contextSection {
+    padding: 1.5rem;
+  }
+  
   .footerLinks {
     flex-direction: column;
     gap: 0.8rem;
@@ -433,15 +476,15 @@
 
   /* Calendar Mobile Optimization */
   .calendarWrapper {
-    padding: 15px 10px; /* Reduced side padding significantly */
+    padding: 15px 10px;
   }
 
   .calendarTable {
-    border-spacing: 2px; /* Tighter spacing between cells */
+    border-spacing: 2px;
   }
 
   .tableCell {
-    height: 42px; /* Smaller cells */
+    height: 42px;
     font-size: 0.85rem;
     border-radius: 4px;
   }
@@ -452,7 +495,7 @@
   }
 
   .currentMonthLabel {
-    font-size: 1rem; /* Slightly smaller to fit better */
+    font-size: 1rem;
   }
 
   .controlButton {
