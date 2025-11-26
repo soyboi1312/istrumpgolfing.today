@@ -1,13 +1,13 @@
 /* pages/index.tsx */
 import Head from "next/head";
 import Link from "next/link";
-import { useState, useEffect, useRef, DependencyList, useCallback } from "react";
+import { useState, useEffect, useRef, DependencyList } from "react";
 import { GetStaticProps } from "next";
 import { getStatusData } from "../data/status";
 import styles from "../styles/Home.module.css";
 import useTermDates from "../hooks/useTermDates";
 import Calendar from "../components/Calendar";
-import Navbar from "../components/Navbar"; // Ensure you created this component as suggested
+import Navbar from "../components/Navbar"; 
 import { Events, EventData, TermStart, EventType } from "../types";
 
 interface HomeProps {
@@ -21,9 +21,6 @@ interface ClickOutsideHandler {
   (value: boolean): void;
 }
 
-/**
- * Custom hook to detect clicks outside of a referenced element
- */
 const useClickOutside = (
   ref: React.RefObject<HTMLElement | null>,
   handler: ClickOutsideHandler,
@@ -75,9 +72,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   }
 };
 
-/**
- * Helper to format ISO dates to readable strings
- */
 const formatDate = (dateString: string): string => {
   const [year, month, day] = dateString.split("-");
   const monthNames = [
@@ -87,9 +81,6 @@ const formatDate = (dateString: string): string => {
   return `${monthNames[parseInt(month, 10) - 1]} ${day}, ${year}`;
 };
 
-/**
- * Helper to get human-readable event labels
- */
 const getEventLabel = (type: EventType): string => {
   const labels: Record<EventType, string> = {
     golf: "Golfed",
@@ -117,22 +108,18 @@ const Home: React.FC<HomeProps> = ({
   const [totalCost, setTotalCost] = useState<number>(0);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
-  // Close modal when clicking outside
   useClickOutside(modalRef, setModalOpen, [modalOpen]);
 
-  // Hook for date calculations
   const { daysSinceStart, isGolfingToday } = useTermDates(termStart, events);
   
   const effectiveDaysSinceStart = Math.max(daysSinceStart || 0, 1);
   const percentage = ((daysGolfed / effectiveDaysSinceStart) * 100).toFixed(1);
 
-  // Logic to determine which image to show
   const statusImage = isGolfingToday ? "/files/golf.webp" : "/files/sad.webp";
 
   useEffect(() => {
     setHasMounted(true);
 
-    // Calculate total cost (using original logic: per trip + endpoints)
     const eventDates = Object.keys(events).sort();
     const trips: { location: string; endDate: string }[] = [];
 
@@ -165,7 +152,6 @@ const Home: React.FC<HomeProps> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Real-time tracker for Donald Trump's presidential golf trips, taxpayer costs, and stats." />
         <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
-        {/* Preload fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </Head>
@@ -174,7 +160,7 @@ const Home: React.FC<HomeProps> = ({
 
       <main className={styles.main}>
         
-        {/* HERO SECTION: Status Badge & Image */}
+        {/* HERO SECTION */}
         <section className={styles.heroSection}>
           {hasMounted && (
             <>
@@ -197,7 +183,7 @@ const Home: React.FC<HomeProps> = ({
           )}
         </section>
 
-        {/* STATS DASHBOARD: Grid Layout */}
+        {/* STATS DASHBOARD */}
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
             <span className={styles.statLabel}>Days Golfed</span>
@@ -279,10 +265,28 @@ const Home: React.FC<HomeProps> = ({
 
         {/* FOOTER AREA */}
         <div className={styles.footer}>
-          <p>
+          <div className={styles.footerLinks}>
+            <Link href="/comparison"><a className={styles.footerLink}>Presidential Comparison</a></Link>
+            <span className={styles.footerSeparator}>|</span>
+            <Link href="/cost-breakdown"><a className={styles.footerLink}>Cost Breakdown</a></Link>
+            <span className={styles.footerSeparator}>|</span>
+            <Link href="/embed"><a className={styles.footerLink}>Embed Widget</a></Link>
+            <span className={styles.footerSeparator}>|</span>
+            <Link href="/about"><a className={styles.footerLink}>About</a></Link>
+          </div>
+          
+          <p className={styles.disclaimer}>
             This data is produced with publicly available information and is not
             authorized or endorsed by any political organization.
           </p>
+          
+          <p className={styles.disclaimer}>
+            Need to get ahold of us?{" "}
+            <a href="mailto:mail@istrumpgolfing.today" className={styles.contactLink}>
+              mail@istrumpgolfing.today
+            </a>
+          </p>
+          
           <div className={styles.socialLink}>
             <a
               href="https://bsky.app/profile/istrumpgolfing.today"
