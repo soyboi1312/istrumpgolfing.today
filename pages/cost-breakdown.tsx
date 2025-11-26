@@ -7,7 +7,7 @@ const CostBreakdown = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Cost Breakdown | Is Trump Golfing Today?</title>
+        <title>Trump Golf Cost to Taxpayers - Breakdown & Analysis | Is Trump Golfing Today?</title>
         <meta name="description" content="Analysis of taxpayer costs for presidential golf trips." />
         <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
         {/* Open Graph Tags */}
