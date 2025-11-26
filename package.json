@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
+    "generate": "ts-node scripts/generate-stats.ts",
+    "build": "npm run generate && next build",
+    "dev": "npm run generate && next dev",
     "start": "next start",
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch"
@@ -13,7 +14,8 @@
     "typescript": "^5.0.0",
     "@types/react": "^18.0.0",
     "@types/node": "^20.0.0",
-    "next": "^14.0.0"
+    "next": "^14.0.0",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "next": "^14.1.0",
