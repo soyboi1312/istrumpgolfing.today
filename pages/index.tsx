@@ -1,7 +1,6 @@
 /* pages/index.tsx */
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image"; //
 import { useState, useEffect, useRef, DependencyList } from "react";
 import { GetStaticProps } from "next";
 import { getStatusData } from "../data/status";
@@ -241,67 +240,61 @@ const Home: React.FC<HomeProps> = ({
 
       <main className={styles.main}>
         
-        {/* Hidden H1 for SEO */}
-        <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }}>
-          Donald Trump Presidential Golf Tracker & Statistics
-        </h1>
-
         {/* HERO SECTION */}
         <section className={styles.heroSection}>
           {hasMounted && (
             <>
-              <Image
+              <img
                 src={statusImage}
-                alt={isGolfingToday ? "Donald Trump Golfing at Mar-a-Lago" : "Donald Trump working"}
+                alt={isGolfingToday ? "Trump Golfing" : "Trump Not Golfing"}
                 className={styles.golfImage}
                 width={180}
                 height={180}
-                priority
               />
               <div>
                 <div className={styles.statusBadge}>
                   <span className={`${styles.statusPulse} ${isGolfingToday ? styles.statusPulseYes : styles.statusPulseNo}`} />
-                  {/* Changed H1 to H2 for better hierarchy since H1 is now hidden above */}
-                  <h2 className={styles.statusText} style={{ margin: 0, display: 'inline' }}>
+                  {/* Changed span to h1 for SEO hierarchy */}
+                  <h1 className={styles.statusText} style={{ margin: 0, display: 'inline' }}>
                     {isGolfingToday ? "YES, HE IS GOLFING" : "NO, HE IS NOT GOLFING"}
-                  </h2>
+                  </h1>
                 </div>
               </div>
             </>
           )}
         </section>
 
-        {/* STATS DASHBOARD - Converted to DL for Semantic SEO */}
+        {/* STATS DASHBOARD */}
         <div className={styles.statsGrid}>
-          <dl className={styles.statCard}>
-            <dt className={styles.statLabel}>Days Golfed</dt>
-            <dd className={styles.statValue}>
+          <div className={styles.statCard}>
+            <span className={styles.statLabel}>Days Golfed</span>
+            <div className={styles.statValue}>
                 {hasMounted ? daysGolfed : "-"}
-            </dd>
-            <dd className={styles.statSubtext}>
+            </div>
+            <div className={styles.statSubtext}>
                 Out of {effectiveDaysSinceStart} days in office
-            </dd>
-          </dl>
+            </div>
+          </div>
 
-          <dl className={styles.statCard}>
-            <dt className={styles.statLabel}>Time Spent</dt>
-            <dd className={styles.statValue}>
+          <div className={styles.statCard}>
+            <span className={styles.statLabel}>Time Spent</span>
+            <div className={styles.statValue}>
                 {hasMounted ? `${percentage}%` : "-%"}
-            </dd>
-            <dd className={styles.statSubtext}>
+            </div>
+            <div className={styles.statSubtext}>
                 Of his presidency so far
-            </dd>
-          </dl>
+            </div>
+          </div>
 
-          <dl className={styles.statCard}>
-            <dt className={styles.statLabel}>Taxpayer Cost</dt>
-            <dd className={`${styles.statValue} ${styles.statValueHighlight}`}>
+          <div className={styles.statCard}>
+            <span className={styles.statLabel}>Taxpayer Cost</span>
+            <div className={`${styles.statValue} ${styles.statValueHighlight}`}>
                 {hasMounted ? `$${(totalCost / 1000000).toFixed(1)}M` : "$-M"}
-            </dd>
-            <dd className={styles.statSubtext}>
+            </div>
+            <div className={styles.statSubtext}>
                 Estimated travel expenses
-            </dd>
-          </dl>
+            </div>
+          </div>
         </div>
 
         {/* CONTEXT / SEO SECTION */}
@@ -317,19 +310,12 @@ const Home: React.FC<HomeProps> = ({
             with roughly <strong>$1.75 million</strong> paid directly to Trump-owned businesses 
             for Secret Service accommodations. 
             <br />
-            {/* Improved Anchor Text */}
-            <Link href="/cost-breakdown"><a className={styles.contextLink}>View full Trump Golf Cost Breakdown &rarr;</a></Link>
+            <Link href="/cost-breakdown"><a className={styles.contextLink}>See the detailed cost breakdown &rarr;</a></Link>
           </p>
           <p className={styles.contextText}>
             Curious how this stacks up against history? Trump golfed more in one term 
             than many presidents did in two. 
             <br />
-            {/* Improved Anchor Text */}
-            <Link href="/comparison"><a className={styles.contextLink}>Compare Trump vs Obama & Bush Golf Stats &rarr;</a></Link>
-          </p>
-        </section>
-
-        // ... existing code ...
             <Link href="/comparison"><a className={styles.contextLink}>Compare with Obama, Bush, and others &rarr;</a></Link>
           </p>
         </section>
@@ -380,7 +366,7 @@ const Home: React.FC<HomeProps> = ({
             </a>
           </div>
         </div>
-        
+
         {/* CALENDAR SECTION */}
         <Calendar
           events={events}
