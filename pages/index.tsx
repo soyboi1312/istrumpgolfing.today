@@ -241,8 +241,8 @@ const Home: React.FC<HomeProps> = ({
 
       <main className={styles.main}>
         
-        {/* Hidden H1 for SEO */}
-        <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0 }}>
+        {/* Visible H1 for SEO and UX */}
+        <h1 className={styles.pageTitle}>
           Donald Trump Presidential Golf Tracker & Statistics
         </h1>
 
