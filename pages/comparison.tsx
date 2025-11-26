@@ -1,7 +1,21 @@
+/* pages/comparison.tsx */
 import Head from 'next/head';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
+
+interface ComparisonProps {
+  lastUpdated: string;
+}
+
+export const getStaticProps: GetStaticProps<ComparisonProps> = async () => {
+  return {
+    props: {
+      lastUpdated: new Date().toISOString(),
+    },
+  };
+};
 
 /**
  * Presidential Golf & Vacation Comparison Page
@@ -9,7 +23,7 @@ import styles from '../styles/Home.module.css';
  * Compares Trump's golf and vacation days with other modern presidents.
  * Data sourced from verified news reports and governmental records.
  */
-const Comparison = () => {
+const Comparison: React.FC<ComparisonProps> = ({ lastUpdated }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -39,7 +53,7 @@ const Comparison = () => {
                 "name": "Is Trump Golfing Today"
               },
               "datePublished": "2025-11-09",
-              "dateModified": "2025-11-09"
+              "dateModified": lastUpdated
             })
           }}
         />
