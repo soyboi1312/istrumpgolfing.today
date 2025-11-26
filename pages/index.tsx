@@ -115,7 +115,7 @@ const Home: React.FC<HomeProps> = ({
   const effectiveDaysSinceStart = Math.max(daysSinceStart || 0, 1);
   const percentage = ((daysGolfed / effectiveDaysSinceStart) * 100).toFixed(1);
 
-  const statusImage = isGolfingToday ? "/files/golf.webp" : "/files/sad.webp";
+  const statusImage = isGolfingToday ? "/files/golf.webp" : "/files/sad1.webp";
 
   useEffect(() => {
     setHasMounted(true);
