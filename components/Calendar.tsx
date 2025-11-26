@@ -9,11 +9,9 @@ interface CalendarProps {
 }
 
 const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
-    // Initialize with a date
     const [currentDate, setCurrentDate] = useState(new Date()); 
-    const [todayET, setTodayET] = useState<string>(''); // Store "YYYY-MM-DD" in ET
+    const [todayET, setTodayET] = useState<string>(''); 
 
-    // Helpers to navigate months
     const nextMonth = () => {
         setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
     };
@@ -29,12 +27,9 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
     []);
 
     useEffect(() => {
-        // Determine "Today" in US Eastern Time on the client side only
-        // to avoid hydration mismatch with server rendering
         setTodayET(getEasternTimeISO());
     }, []);
 
-    // Render Logic
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
     const firstDay = new Date(year, month, 1);
@@ -55,12 +50,11 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
             const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
             const event = events[dateStr];
             
-            // Simple string comparison for ISO dates
             const isFuture = todayET ? dateStr > todayET : false;
             const isToday = dateStr === todayET;
 
             let className = styles.tableCell;
-            let onClick: (() => void) | null = null;
+            let onClick: (() => void) | undefined = undefined;
 
             if (event) {
                 if (['golf', 'golf_arrival', 'golf_departure'].includes(event.type)) {
@@ -74,27 +68,43 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
             if (isFuture) className += ` ${styles.futureDay}`;
             if (isToday) className += ` ${styles.currentDay}`;
 
+            // ACCESSIBILITY FIX: Use button for interactive elements
             cells.push(
-                <td
-                    key={day}
-                    className={className}
-                    onClick={onClick || undefined}
-                    style={{ 
-                        cursor: onClick ? 'pointer' : 'default',
-                        border: isToday ? '1px solid var(--color-primary-orange)' : undefined 
-                    }}
-                >
-                    {day}
+                <td key={day} className={styles.cellWrapper}>
+                    {event && !isFuture ? (
+                         <button
+                            className={className}
+                            onClick={onClick}
+                            style={{ 
+                                width: '100%', 
+                                height: '100%', 
+                                border: isToday ? '1px solid var(--color-primary-orange)' : 'none',
+                                cursor: 'pointer',
+                                color: 'inherit',
+                                font: 'inherit'
+                            }}
+                            aria-label={`Select ${dateStr}`}
+                         >
+                            {day}
+                         </button>
+                    ) : (
+                        <div 
+                            className={className}
+                            style={{ 
+                                border: isToday ? '1px solid var(--color-primary-orange)' : undefined 
+                            }}
+                        >
+                            {day}
+                        </div>
+                    )}
                 </td>
             );
         }
 
-        // Fill remaining cells to complete the last row
         while (cells.length % 7 !== 0) {
             cells.push(<td key={`empty-end-${cells.length}`} className={styles.tableCell} />);
         }
 
-        // Group into rows
         const rows: React.ReactNode[] = [];
         for (let i = 0; i < cells.length; i += 7) {
             rows.push(<tr key={`row-${i/7}`}>{cells.slice(i, i + 7)}</tr>);
