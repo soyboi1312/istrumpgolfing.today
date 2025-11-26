@@ -1,7 +1,7 @@
-// components/Calendar.tsx
 import React, { JSX, useState, useEffect, useMemo, FC } from 'react';
 import styles from '../styles/Home.module.css';
 import { EventData, Events } from '../types';
+import { getEasternTimeISO } from '../utils/dateHelpers';
 
 interface CalendarProps {
     events: Events;
@@ -9,7 +9,7 @@ interface CalendarProps {
 }
 
 const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
-    // Initialize with a date, but we'll sync to ET in useEffect
+    // Initialize with a date
     const [currentDate, setCurrentDate] = useState(new Date()); 
     const [todayET, setTodayET] = useState<string>(''); // Store "YYYY-MM-DD" in ET
     const [calendarView, setCalendarView] = useState<JSX.Element | null>(null);
@@ -30,22 +30,9 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
     []);
 
     useEffect(() => {
-        // 1. Determine "Today" in US Eastern Time to match site logic
-        const formatter = new Intl.DateTimeFormat('en-US', {
-            timeZone: 'America/New_York',
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-        });
-        
-        const parts = formatter.formatToParts(new Date());
-        const y = parts.find(p => p.type === 'year')?.value;
-        const m = parts.find(p => p.type === 'month')?.value;
-        const d = parts.find(p => p.type === 'day')?.value;
-        
-        const etDateString = `${y}-${m}-${d}`;
-        setTodayET(etDateString);
-
+        // REPLACED: Manual Intl logic with utility function
+        // Determine "Today" in US Eastern Time to match site logic
+        setTodayET(getEasternTimeISO());
     }, []);
 
     useEffect(() => {
@@ -68,7 +55,6 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
 
         // We compare against the string YYYY-MM-DD in ET
         // to determine if a cell is in the future.
-        
         for (let day = 1; day <= lastDay; day++) {
             const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
             const event = events[dateStr];
@@ -90,7 +76,7 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
             }
 
             if (isFuture) className += ` ${styles.futureDay}`;
-            if (isToday) className += ` ${styles.currentDay}`; // Optional: Add style for today border if desired
+            if (isToday) className += ` ${styles.currentDay}`;
 
             currentRow.push(
                 <td
@@ -131,7 +117,7 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
                 </table>
             </div>
         );
-    }, [currentDate, events, todayET]);
+    }, [currentDate, events, todayET, dayHeaders]);
 
     return <div className={styles.calendarWrapper}>{calendarView}</div>;
 };
