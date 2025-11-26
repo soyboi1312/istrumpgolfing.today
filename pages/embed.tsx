@@ -1,21 +1,13 @@
-import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/CostBreakdown.module.css';
+import { useState } from 'react';
+import Navbar from '../components/Navbar';
+import styles from '../styles/Home.module.css';
 
-/**
- * Embed Widget Page
- *
- * Provides embeddable widget code for journalists and websites
- * to display Trump golf statistics on their own sites.
- *
- * @returns Embed widget page with code examples
- */
 const Embed = () => {
   const [copied, setCopied] = useState(false);
 
-  const embedCode = `<!-- Trump Golf Tracker Widget -->
-<div id="trump-golf-widget"></div>
+  const embedCode = `<div id="trump-golf-widget"></div>
 <script>
 (function() {
   fetch('https://istrumpgolfing.today/api/stats')
@@ -23,23 +15,15 @@ const Embed = () => {
     .then(data => {
       const widget = document.getElementById('trump-golf-widget');
       widget.innerHTML = \`
-        <div style="border: 2px solid #ffa500; border-radius: 10px; padding: 20px; max-width: 400px; font-family: Arial, sans-serif; background: #1a1a1a; color: #fff;">
-          <h3 style="margin: 0 0 15px 0; color: #ffa500; font-size: 1.3rem;">Trump Golf Tracker</h3>
-          <p style="margin: 10px 0; font-size: 1.1rem;">
-            <strong>\${data.totalGolfDays}</strong> golf days (\${data.percentageGolfed}%)
-          </p>
-          <p style="margin: 10px 0; color: #ccc;">
-            Estimated cost: <strong style="color: #ffa500;">~$\${data.estimatedTotalCost.toLocaleString()}</strong>
-          </p>
-          <p style="margin: 15px 0 0 0; font-size: 0.85rem;">
-            <a href="https://istrumpgolfing.today" target="_blank" style="color: #ffa500; text-decoration: none;">
-              View full tracker →
-            </a>
-          </p>
+        <div style="border: 1px solid #333; border-radius: 8px; padding: 15px; max-width: 300px; font-family: sans-serif; background: #1a1a1a; color: #fff;">
+          <h3 style="margin: 0 0 10px 0; color: #ffa500;">Trump Golf Tracker</h3>
+          <p style="margin: 5px 0;"><strong>\${data.totalGolfDays}</strong> days golfed</p>
+          <p style="margin: 5px 0; color: #aaa;">Cost: ~$\${(data.estimatedTotalCost/1000000).toFixed(1)}M</p>
+          <a href="https://istrumpgolfing.today" style="color: #ffa500; font-size: 0.8rem;">View Full Tracker &rarr;</a>
         </div>
       \`;
     })
-    .catch(err => console.error('Trump Golf Widget Error:', err));
+    .catch(console.error);
 })();
 </script>`;
 
@@ -52,180 +36,56 @@ const Embed = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Embed Widget - Is Trump Golfing Today?</title>
-        <meta name="description" content="Free embeddable Trump golf tracker widget for journalists and websites. Add real-time golf statistics to your site with our simple embed code." />
-        <meta name="keywords" content="trump golf widget, embed trump tracker, golf statistics widget, presidential golf embed" />
-        <link rel="canonical" href="https://istrumpgolfing.today/embed/" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
+        <title>Embed Widget | Is Trump Golfing Today?</title>
+        <meta name="description" content="Add the Trump Golf Tracker to your website." />
+        <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
       </Head>
 
+      <Navbar />
+
       <main className={styles.main}>
-        <h1 className={styles.title}>Embeddable Widget</h1>
+        <h1 className={styles.pageTitle}>Embed Widget</h1>
 
-        <div className={`${styles.blurb} ${styles.blurbContainer}`}>
-          <h2 className={styles.subtitle}>Add Trump Golf Stats to Your Website</h2>
-          <p>
-            Journalists, bloggers, and website owners can embed our Trump golf tracker on their sites for free.
-            The widget pulls live data from our API and displays current statistics with attribution.
+        <section className={styles.sectionCard}>
+          <h2 className={styles.sectionTitle}>Add to your site</h2>
+          <p className={styles.textBlock}>
+            Copy and paste the code below to add a live-updating widget to your website or blog. It's free to use with attribution.
           </p>
 
-          <h3 className={styles.tableTitle}>Widget Preview</h3>
-          <div style={{ margin: '2rem 0', display: 'flex', justifyContent: 'center' }}>
-            <div id="trump-golf-widget-demo" style={{
-              border: '2px solid #ffa500',
-              borderRadius: '10px',
-              padding: '20px',
-              maxWidth: '400px',
-              fontFamily: 'Arial, sans-serif',
-              background: '#1a1a1a',
-              color: '#fff'
-            }}>
-              <h3 style={{ margin: '0 0 15px 0', color: '#ffa500', fontSize: '1.3rem' }}>Trump Golf Tracker</h3>
-              <p style={{ margin: '10px 0', fontSize: '1.1rem' }}>
-                <strong>Loading...</strong>
-              </p>
-              <p style={{ margin: '15px 0 0 0', fontSize: '0.85rem' }}>
-                <a href="https://istrumpgolfing.today" target="_blank" rel="noopener noreferrer" style={{ color: '#ffa500', textDecoration: 'none' }}>
-                  View full tracker →
-                </a>
-              </p>
-            </div>
+          <div className={styles.codeBlock}>
+            {embedCode}
           </div>
+          
+          <button onClick={handleCopy} className={styles.copyButton}>
+            {copied ? '✓ Copied!' : 'Copy Code'}
+          </button>
+        </section>
 
-          <h3 className={styles.tableTitle}>Embed Code</h3>
-          <p>Copy and paste this code anywhere in your HTML:</p>
-
-          <div style={{ position: 'relative', margin: '1.5rem 0' }}>
-            <pre style={{
-              background: '#2d2d2d',
-              padding: '1.5rem',
-              borderRadius: '8px',
-              overflow: 'auto',
-              fontSize: '0.85rem',
-              lineHeight: '1.5',
-              color: '#f8f8f2'
-            }}>
-              <code>{embedCode}</code>
-            </pre>
-            <button
-              onClick={handleCopy}
-              style={{
-                position: 'absolute',
-                top: '10px',
-                right: '10px',
-                padding: '0.5rem 1rem',
-                background: '#ffa500',
-                border: 'none',
-                borderRadius: '5px',
-                color: '#000',
-                fontWeight: 'bold',
-                cursor: 'pointer'
-              }}
-            >
-              {copied ? '✓ Copied!' : 'Copy Code'}
-            </button>
-          </div>
-
-          <h3 className={styles.tableTitle}>Using Our API</h3>
-          <p>
-            For more advanced integrations, you can use our public JSON API:
-          </p>
+        <section className={styles.sectionCard}>
+          <h2 className={styles.sectionTitle}>Preview</h2>
           <div style={{
-            background: '#2d2d2d',
-            padding: '1rem',
+            border: '1px solid #333',
             borderRadius: '8px',
-            fontSize: '0.9rem',
-            color: '#f8f8f2',
-            margin: '1rem 0'
+            padding: '15px',
+            maxWidth: '300px',
+            background: '#1a1a1a',
+            margin: '0 auto'
           }}>
-            <code>GET https://istrumpgolfing.today/api/stats</code>
+            <h3 style={{ margin: '0 0 10px 0', color: '#ffa500', fontFamily: 'Merriweather, serif' }}>Trump Golf Tracker</h3>
+            <p style={{ margin: '5px 0', color: '#fff' }}><strong>69</strong> days golfed</p>
+            <p style={{ margin: '5px 0', color: '#aaa' }}>Cost: ~$151.5M</p>
+            <span style={{ color: '#ffa500', fontSize: '0.8rem', textDecoration: 'underline' }}>View Full Tracker &rarr;</span>
           </div>
-
-          <h3 className={styles.tableTitle}>API Response Format</h3>
-          <pre style={{
-            background: '#2d2d2d',
-            padding: '1.5rem',
-            borderRadius: '8px',
-            overflow: 'auto',
-            fontSize: '0.85rem',
-            lineHeight: '1.5',
-            color: '#f8f8f2',
-            margin: '1rem 0'
-          }}>
-            <code>{`{
-  "termStart": "2025-01-20",
-  "currentDate": "2025-11-09",
-  "daysSinceStart": 293,
-  "totalGolfDays": 0,
-  "percentageGolfed": "0.0",
-  "estimatedTotalCost": 0,
-  "golfDaysByLocation": {},
-  "recentGolfDays": [],
-  "metadata": {
-    "dataVersion": "2.0",
-    "lastUpdated": "2025-11-09T...",
-    "attribution": "Is Trump Golfing Today?",
-    "website": "https://istrumpgolfing.today"
-  }
-}`}</code>
-          </pre>
-
-          <h3 className={styles.tableTitle}>Terms of Use</h3>
-          <ul className={styles.sourcesList}>
-            <li><strong>Free to use:</strong> No API key or registration required</li>
-            <li><strong>Attribution required:</strong> Keep the "View full tracker" link in the widget</li>
-            <li><strong>No modifications:</strong> Don't alter the data or misrepresent its source</li>
-            <li><strong>Rate limits:</strong> API responses are cached for 1 hour. Please don't hammer our servers</li>
-            <li><strong>No warranty:</strong> Data provided as-is. Verify important information independently</li>
-          </ul>
-
-          <h3 className={styles.tableTitle}>Support & Questions</h3>
-          <p>
-            For technical support, custom integrations, or questions, email us at{' '}
-            <a href="mailto:mail@istrumpgolfing.today" style={{ color: '#ffa500' }}>
-              mail@istrumpgolfing.today
-            </a>
-          </p>
-        </div>
+        </section>
 
         <div className={styles.footer}>
-          <Link href="/">
-            <a className={styles.homeLink}>← Back to Main Tracker</a>
-          </Link>
+           <div className={styles.footerLinks}>
+            <Link href="/"><a className={styles.footerLink}>Home</a></Link>
+            <span className={styles.footerSeparator}>|</span>
+            <Link href="/about"><a className={styles.footerLink}>About</a></Link>
+          </div>
         </div>
       </main>
-
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          (function() {
-            fetch('https://istrumpgolfing.today/api/stats')
-              .then(res => res.json())
-              .then(data => {
-                const widget = document.getElementById('trump-golf-widget-demo');
-                if (widget) {
-                  widget.innerHTML = \`
-                    <h3 style="margin: 0 0 15px 0; color: #ffa500; font-size: 1.3rem;">Trump Golf Tracker</h3>
-                    <p style="margin: 10px 0; font-size: 1.1rem;">
-                      <strong>\${data.totalGolfDays}</strong> golf days (\${data.percentageGolfed}%)
-                    </p>
-                    <p style="margin: 10px 0; color: #ccc;">
-                      Estimated cost: <strong style="color: #ffa500;">~$\${data.estimatedTotalCost.toLocaleString()}</strong>
-                    </p>
-                    <p style="margin: 15px 0 0 0; font-size: 0.85rem;">
-                      <a href="https://istrumpgolfing.today" target="_blank" style="color: #ffa500; text-decoration: none;">
-                        View full tracker →
-                      </a>
-                    </p>
-                  \`;
-                }
-              })
-              .catch(err => console.error('Trump Golf Widget Error:', err));
-          })();
-        `
-      }} />
     </div>
   );
 };
