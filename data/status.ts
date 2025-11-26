@@ -359,7 +359,7 @@ export const statusData: StatusData = {
             type: 'arrival',
         },
         '2025-03-23': {
-            location: 'Philly',
+            location: 'Philadelphia, PA',
             url: '',
             type: 'departure',
         },
@@ -497,7 +497,7 @@ export const statusData: StatusData = {
             type: 'arrival',
         },
     },
-    termStart: new Date(2025, 0, 19),
+    termStart: new Date(2025, 0, 20),
     // Location costs per trip (based on GAO reports and distance/aircraft analysis)
     // See /cost-breakdown page for detailed breakdowns
     locationCosts: {
