@@ -4,15 +4,45 @@ import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
+import { getStatusData } from '../data/status';
+import { EventData } from '../types';
+
+interface TermStats {
+  daysGolfed: number;
+  daysInOffice: number;
+  percentage: string;
+}
 
 interface ComparisonProps {
   lastUpdated: string;
+  term2Stats: TermStats;
 }
 
 export const getStaticProps: GetStaticProps<ComparisonProps> = async () => {
+  const statusData = getStatusData();
+  const termStart = statusData.termStart;
+  const today = new Date();
+  
+  // Calculate days in office (ensure at least 1 to avoid division by zero)
+  const daysInOffice = Math.max(
+    1,
+    Math.floor((today.getTime() - termStart.getTime()) / (1000 * 60 * 60 * 24))
+  );
+
+  // Calculate golf days
+  // We filter for explicit golf events, consistent with your index page logic
+  const golfDays = Object.values(statusData.events).filter((e): e is EventData =>
+    ["golf", "golf_arrival", "golf_departure"].includes(e.type)
+  ).length;
+
   return {
     props: {
       lastUpdated: new Date().toISOString(),
+      term2Stats: {
+        daysGolfed: golfDays,
+        daysInOffice: daysInOffice,
+        percentage: ((golfDays / daysInOffice) * 100).toFixed(1)
+      },
     },
   };
 };
@@ -23,7 +53,7 @@ export const getStaticProps: GetStaticProps<ComparisonProps> = async () => {
  * Compares Trump's golf and vacation days with other modern presidents.
  * Data sourced from verified news reports and governmental records.
  */
-const Comparison: React.FC<ComparisonProps> = ({ lastUpdated }) => {
+const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
   return (
     <div className={styles.container}>
       <Head>
