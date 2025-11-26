@@ -1,4 +1,4 @@
-import React, { JSX, useState, useEffect, useMemo, FC } from 'react';
+import React, { useState, useEffect, useMemo, FC } from 'react';
 import styles from '../styles/Home.module.css';
 import { EventData, Events } from '../types';
 import { getEasternTimeISO } from '../utils/dateHelpers';
@@ -12,7 +12,6 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
     // Initialize with a date
     const [currentDate, setCurrentDate] = useState(new Date()); 
     const [todayET, setTodayET] = useState<string>(''); // Store "YYYY-MM-DD" in ET
-    const [calendarView, setCalendarView] = useState<JSX.Element | null>(null);
 
     // Helpers to navigate months
     const nextMonth = () => {
@@ -30,36 +29,33 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
     []);
 
     useEffect(() => {
-        // REPLACED: Manual Intl logic with utility function
-        // Determine "Today" in US Eastern Time to match site logic
+        // Determine "Today" in US Eastern Time on the client side only
+        // to avoid hydration mismatch with server rendering
         setTodayET(getEasternTimeISO());
     }, []);
 
-    useEffect(() => {
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth();
-        
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0).getDate();
-        const firstDayOfWeek = firstDay.getDay();
-        
-        const monthName = firstDay.toLocaleString('default', { month: 'long' });
+    // Render Logic
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0).getDate();
+    const firstDayOfWeek = firstDay.getDay();
+    const monthName = firstDay.toLocaleString('default', { month: 'long' });
 
-        const rows: JSX.Element[] = [];
-        let currentRow: JSX.Element[] = [];
+    const renderCalendarCells = () => {
+        const cells: React.ReactNode[] = [];
 
         // Empty cells for padding start of month
         for (let i = 0; i < firstDayOfWeek; i++) {
-            currentRow.push(<td key={`empty-${i}`} className={styles.tableCell} />);
+            cells.push(<td key={`empty-start-${i}`} className={styles.tableCell} />);
         }
 
-        // We compare against the string YYYY-MM-DD in ET
-        // to determine if a cell is in the future.
+        // Days of the month
         for (let day = 1; day <= lastDay; day++) {
             const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
             const event = events[dateStr];
             
-            // Simple string comparison works for ISO dates: "2025-11-26" > "2025-11-25"
+            // Simple string comparison for ISO dates
             const isFuture = todayET ? dateStr > todayET : false;
             const isToday = dateStr === todayET;
 
@@ -78,7 +74,7 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
             if (isFuture) className += ` ${styles.futureDay}`;
             if (isToday) className += ` ${styles.currentDay}`;
 
-            currentRow.push(
+            cells.push(
                 <td
                     key={day}
                     className={className}
@@ -91,20 +87,24 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
                     {day}
                 </td>
             );
-
-            if ((firstDayOfWeek + day) % 7 === 0 || day === lastDay) {
-                // Fill remaining cells if last row
-                if (day === lastDay && currentRow.length < 7) {
-                    for (let k = currentRow.length; k < 7; k++) {
-                        currentRow.push(<td key={`empty-end-${k}`} className={styles.tableCell} />);
-                    }
-                }
-                rows.push(<tr key={`row-${day}`}>{currentRow}</tr>);
-                currentRow = [];
-            }
         }
 
-        setCalendarView(
+        // Fill remaining cells to complete the last row
+        while (cells.length % 7 !== 0) {
+            cells.push(<td key={`empty-end-${cells.length}`} className={styles.tableCell} />);
+        }
+
+        // Group into rows
+        const rows: React.ReactNode[] = [];
+        for (let i = 0; i < cells.length; i += 7) {
+            rows.push(<tr key={`row-${i/7}`}>{cells.slice(i, i + 7)}</tr>);
+        }
+
+        return rows;
+    };
+
+    return (
+        <div className={styles.calendarWrapper}>
             <div className={styles.calendarContainer}>
                 <div className={styles.calendarControls}>
                     <button onClick={prevMonth} className={styles.controlButton}>&larr; Prev</button>
@@ -113,13 +113,11 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
                 </div>
                 <table className={styles.calendarTable}>
                     <thead><tr>{dayHeaders}</tr></thead>
-                    <tbody>{rows}</tbody>
+                    <tbody>{renderCalendarCells()}</tbody>
                 </table>
             </div>
-        );
-    }, [currentDate, events, todayET, dayHeaders]);
-
-    return <div className={styles.calendarWrapper}>{calendarView}</div>;
+        </div>
+    );
 };
 
 export default Calendar;
