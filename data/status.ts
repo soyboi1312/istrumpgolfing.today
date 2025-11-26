@@ -488,21 +488,20 @@ export const statusData: StatusData = {
         },
     },
     termStart: new Date(2025, 0, 20),
-    // Location costs per trip (based on GAO reports and distance/aircraft analysis)
-    // Keys matched to GolfLocation enum
+    // Per-day costs (derived from GAO per-trip estimates divided by avg trip length)
     locationCosts: {
-        [GolfLocation.SCOTLAND]: 1700000,
-        [GolfLocation.LAS_VEGAS]: 5000000,
-        [GolfLocation.MAR_A_LAGO]: 3400000,
-        [GolfLocation.WEST_PALM]: 3400000,
-        [GolfLocation.JUPITER_FL]: 3400000,
-        [GolfLocation.DORAL_FL]: 3400000,
-        [GolfLocation.FLORIDA]: 3400000,        // Generic Florida (same as Mar-a-Lago trips)
-        [GolfLocation.BEDMINSTER]: 350000,
-        [GolfLocation.NEW_JERSEY]: 350000,      // Generic NJ (same as Bedminster)
-        [GolfLocation.PHILADELPHIA]: 350000,    // Departure point for NJ trips
+        [GolfLocation.SCOTLAND]: 1500000,       // Transatlantic AF1 flight (~7hrs each way at $200K/hr)
+        [GolfLocation.LAS_VEGAS]: 2000000,      // ~4.5hr flight each way, longer than Florida
+        [GolfLocation.MAR_A_LAGO]: 1360000,     // $3.4M per trip / ~2.5 days
+        [GolfLocation.WEST_PALM]: 1360000,
+        [GolfLocation.JUPITER_FL]: 1360000,
+        [GolfLocation.DORAL_FL]: 1360000,
+        [GolfLocation.FLORIDA]: 1360000,
+        [GolfLocation.BEDMINSTER]: 140000,      // $350K per trip / ~2.5 days
+        [GolfLocation.NEW_JERSEY]: 140000,
+        [GolfLocation.PHILADELPHIA]: 140000,
         [GolfLocation.STERLING_VA]: 100000,
-        [GolfLocation.WASHINGTON_DC]: 100000,
+        [GolfLocation.WASHINGTON_DC]: 100000,   // Day trips, minimal additional cost
     }
 };
 

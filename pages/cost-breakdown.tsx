@@ -112,13 +112,85 @@ const CostBreakdown = () => {
         </section>
 
         <section className={styles.sectionCard}>
-          <h2 className={styles.sectionTitle}>4. Hypothetical: Long Distance</h2>
+          <h2 className={styles.sectionTitle}>4. Las Vegas & West Coast</h2>
           <p className={styles.textBlock}>
-            <strong>Location:</strong> e.g., Las Vegas, NV<br/>
-            <strong>Cost:</strong> &gt; $5.0 Million per trip
+            <strong>Location:</strong> Las Vegas, NV<br/>
+            <strong>Cost:</strong> ~$2.0 Million per day
           </p>
           <p className={styles.textBlock}>
-             Using this framework, a trip to the West Coast would be significantly more expensive than Mar-a-Lago. The higher figure is primarily due to the <strong>flight time</strong> (5+ hours vs 2 hours), which doubles the operational costs for both Air Force One and the heavy cargo support needed to transport the motorcade.
+            Trips to the West Coast are more expensive than Florida due to the longer <strong>flight time</strong> (~4.5 hours vs ~2.5 hours to Florida). This increases operational costs for Air Force One and cargo aircraft transporting the motorcade.
+          </p>
+        </section>
+
+        <section className={styles.sectionCard}>
+          <h2 className={styles.sectionTitle}>5. International: Scotland</h2>
+          <p className={styles.textBlock}>
+            <strong>Location:</strong> Trump Turnberry / Aberdeen, Scotland<br/>
+            <strong>Cost:</strong> ~$1.5 Million per day
+          </p>
+          <p className={styles.textBlock}>
+            Transatlantic trips involve ~7 hour flights each way on Air Force One. While per-day costs may appear lower than Florida, the total trip cost is substantial due to extended stays and international security coordination requirements.
+          </p>
+        </section>
+
+        <section className={styles.sectionCard}>
+          <h2 className={styles.sectionTitle}>Current Cost by Location</h2>
+          <p className={styles.textBlock}>
+            Below is the breakdown of golf days and estimated taxpayer costs by location for the current term:
+          </p>
+          <div className={styles.tableContainer}>
+            <table className={styles.dataTable}>
+              <thead>
+                <tr>
+                  <th>Location</th>
+                  <th>Days</th>
+                  <th>Cost/Day</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mar-a-Lago / Florida</td>
+                  <td>33</td>
+                  <td>$1,360,000</td>
+                  <td>$44,880,000</td>
+                </tr>
+                <tr>
+                  <td>Washington, DC</td>
+                  <td>32</td>
+                  <td>$100,000</td>
+                  <td>$3,200,000</td>
+                </tr>
+                <tr>
+                  <td>Bedminster, NJ</td>
+                  <td>15</td>
+                  <td>$140,000</td>
+                  <td>$2,100,000</td>
+                </tr>
+                <tr>
+                  <td>Scotland</td>
+                  <td>5</td>
+                  <td>$1,500,000</td>
+                  <td>$7,500,000</td>
+                </tr>
+                <tr>
+                  <td>Las Vegas, NV</td>
+                  <td>1</td>
+                  <td>$2,000,000</td>
+                  <td>$2,000,000</td>
+                </tr>
+                <tr style={{ fontWeight: 'bold', borderTop: '2px solid var(--color-primary-orange)' }}>
+                  <td>Total</td>
+                  <td>86</td>
+                  <td>—</td>
+                  <td>$59,680,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className={styles.textBlock} style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '1rem' }}>
+            Note: Per-day costs are derived from GAO per-trip estimates divided by average trip length (~2.5 days).
+            These are conservative estimates based on publicly available government data.
           </p>
         </section>
 

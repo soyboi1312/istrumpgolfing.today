@@ -131,6 +131,13 @@ const About = () => {
             Every golf day in our database includes a link to its source. We prioritize sources in this order:
           </p>
           <ul className={styles.contentList}>
+            <li>
+              <strong>Factbase/Rollcall Presidential Calendar:</strong> The official presidential public schedule
+              compiled by Factbase at{' '}
+              <a href="https://rollcall.com/factbase/trump/topic/calendar/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-orange)' }}>
+                rollcall.com/factbase/trump/topic/calendar/
+              </a>
+            </li>
             <li>Official White House pool reports</li>
             <li>Major news organizations (AP, Reuters, NY Times, Washington Post, CNN, Fox News, etc.)</li>
             <li>Photographic evidence from credible sources</li>
