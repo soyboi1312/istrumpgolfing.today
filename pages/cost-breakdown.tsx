@@ -151,9 +151,9 @@ const CostBreakdown = () => {
               <tbody>
                 <tr>
                   <td>Mar-a-Lago</td>
-                  <td>30</td>
+                  <td>31</td>
                   <td>$1,360,000</td>
-                  <td>$40,800,000</td>
+                  <td>$42,160,000</td>
                 </tr>
                 <tr>
                   <td>Washington, DC</td>
@@ -187,9 +187,9 @@ const CostBreakdown = () => {
                 </tr>
                 <tr style={{ fontWeight: 'bold', borderTop: '2px solid var(--color-primary-orange)' }}>
                   <td>Total</td>
-                  <td>85</td>
+                  <td>86</td>
                   <td>—</td>
-                  <td>$60,820,000</td>
+                  <td>$62,180,000</td>
                 </tr>
               </tbody>
             </table>
