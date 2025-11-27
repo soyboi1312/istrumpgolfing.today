@@ -406,10 +406,12 @@ const Home: React.FC<HomeProps> = ({
               rel="noopener noreferrer"
               aria-label="Follow us on Bluesky"
             >
-              <img
+              <Image
                 src="/files/icons/bluesky.svg"
                 className={styles.socialIcon}
                 alt="Bluesky"
+                width={24}
+                height={24}
               />
             </a>
           </div>

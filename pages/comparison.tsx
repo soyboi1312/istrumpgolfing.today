@@ -113,8 +113,8 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
               </thead>
               <tbody>
                 {/* Live Term 2 Data Row */}
-                <tr style={{ background: 'rgba(255, 165, 0, 0.15)', borderLeft: '4px solid #ffa500' }}>
-                  <td><strong>Donald Trump (Term 2)</strong> <span style={{fontSize: '0.7em', textTransform: 'uppercase', color: '#ffa500'}}>Live</span></td>
+                <tr className={styles.liveDataRow}>
+                  <td><strong>Donald Trump (Term 2)</strong> <span className={styles.liveBadge}>Live</span></td>
                   <td><strong>{term2Stats.daysGolfed}</strong></td>
                   <td><strong>{term2Stats.daysInOffice}</strong></td>
                   <td><strong>{term2Stats.percentage}%</strong></td>
@@ -269,7 +269,7 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
               </tbody>
             </table>
           </div>
-          <p className={styles.textBlock} style={{ fontStyle: 'italic', fontSize: '0.9rem' }}>
+          <p className={`${styles.textBlock} ${styles.noteText}`}>
             Note: Presidential travel costs vary significantly based on destination. Trips requiring Air Force One, cargo planes, and extensive security details cost far more than visits to nearby locations or personal properties with existing infrastructure.
           </p>
         </section>
