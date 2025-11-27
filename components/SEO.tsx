@@ -6,7 +6,7 @@ interface SEOProps {
   description?: string;
   image?: string;
   path?: string;
-  isGolfing?: boolean; // New optional prop
+  isGolfing?: boolean; 
 }
 
 const SEO: React.FC<SEOProps> = ({ 
@@ -18,14 +18,16 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const url = `https://istrumpgolfing.today${path}`;
   
-  // Determine dynamic favicon
-  // Default to golf-mode if undefined, or you can keep your old .webp as a fallback
+  // Default to "Work Mode" (Presidential Seal)
+  // We use your 'work-mode.svg' filename here as per your request, 
+  // but this should be the file containing the Presidential Seal content.
   let favicon = "/files/fav/work-mode.svg"; 
+  let iconKey = "work";
+
+  // If confirmed golfing, switch to Golf Mode
   if (isGolfing === true) {
     favicon = "/files/fav/golf-mode.svg";
-  } else if (isGolfing === undefined) {
-    // Optional: Fallback for pages where we don't know the status (like About page)
-    favicon = "/files/fav/work-mode.svg"; 
+    iconKey = "golf";
   }
 
   return (
@@ -34,8 +36,16 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
       
-      {/* Dynamic Favicon */}
-      <link rel="icon" type="image/svg+xml" href={favicon} />
+      {/* FIX: Added 'key' to force replacement and '?v=' to bust browser cache.
+         The 'key' ensures Next.js knows this is the SAME tag changing, not a new one.
+      */}
+      <link 
+        rel="icon" 
+        type="image/svg+xml" 
+        href={`${favicon}?v=1`} 
+        key="dynamic-favicon" 
+      />
+      
       <link rel="alternate icon" href="/files/fav/favicon.ico" /> 
       
       {/* Open Graph */}
