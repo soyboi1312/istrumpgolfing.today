@@ -9,9 +9,8 @@ export const getEasternTimeDate = (): Date => {
   const y = parts.find(p => p.type === 'year')?.value;
   const m = parts.find(p => p.type === 'month')?.value;
   const d = parts.find(p => p.type === 'day')?.value;
-
-  // Values are already zero-padded due to '2-digit' option
-  return new Date(`${y}-${m}-${d}`);
+  
+  return new Date(`${y}-${m!.padStart(2, '0')}-${d!.padStart(2, '0')}`);
 };
 
 export const getEasternTimeISO = (): string => {
