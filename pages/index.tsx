@@ -18,9 +18,8 @@ import { Events, EventData, TermStart, EventType } from "../types";
 interface HomeProps {
   events: Events;
   termStart: TermStart;
-  locationCosts: { [key: string]: number };
   daysGolfed: number;
-  totalCost: number; // Added to props to support build-time calculation
+  totalCost: number;
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
@@ -38,9 +37,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
           month: statusData.termStart.getMonth() + 1,
           day: statusData.termStart.getDate(),
         },
-        locationCosts: statusData.locationCosts,
         daysGolfed: stats.daysGolfed,
-        totalCost: stats.totalCost, // Pre-calculated and passed to page
+        totalCost: stats.totalCost,
       },
     };
   } catch (error) {
@@ -48,7 +46,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       props: {
         events: {},
         termStart: { year: 2025, month: 1, day: 20 },
-        locationCosts: {},
         daysGolfed: 0,
         totalCost: 0,
       },
@@ -79,9 +76,8 @@ const getEventLabel = (type: EventType): string => {
 const Home: React.FC<HomeProps> = ({
   events,
   termStart,
-  locationCosts,
   daysGolfed,
-  totalCost, // Receive pre-calculated cost from props
+  totalCost,
 }) => {
   const hasMounted = useHasMounted();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
