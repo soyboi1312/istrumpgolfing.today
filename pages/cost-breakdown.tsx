@@ -126,10 +126,10 @@ const CostBreakdown = () => {
           <h2 className={styles.sectionTitle}>5. International: Scotland</h2>
           <p className={styles.textBlock}>
             <strong>Location:</strong> Trump Turnberry / Aberdeen, Scotland<br/>
-            <strong>Cost:</strong> ~$1.5 Million per day
+            <strong>Cost:</strong> ~$2.0 Million per day
           </p>
           <p className={styles.textBlock}>
-            Transatlantic trips involve ~7 hour flights each way on Air Force One. While per-day costs may appear lower than Florida, the total trip cost is substantial due to extended stays and international security coordination requirements.
+            Transatlantic trips involve ~7 hour flights each way on Air Force One (~$2.8M each way). Combined with cargo aircraft, international security coordination, and extended advance team deployments, these are among the most expensive presidential trips.
           </p>
         </section>
 
@@ -170,8 +170,8 @@ const CostBreakdown = () => {
                 <tr>
                   <td>Scotland</td>
                   <td>5</td>
-                  <td>$1,500,000</td>
-                  <td>$7,500,000</td>
+                  <td>$2,000,000</td>
+                  <td>$10,000,000</td>
                 </tr>
                 <tr>
                   <td>Las Vegas, NV</td>
@@ -189,7 +189,7 @@ const CostBreakdown = () => {
                   <td>Total</td>
                   <td>85</td>
                   <td>—</td>
-                  <td>$58,320,000</td>
+                  <td>$60,820,000</td>
                 </tr>
               </tbody>
             </table>
