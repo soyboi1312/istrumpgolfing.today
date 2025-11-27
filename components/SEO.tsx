@@ -43,6 +43,7 @@ const SEO: React.FC<SEOProps> = ({
       <link rel="alternate icon" href="/files/fav/favicon.ico" /> 
       
       {/* Open Graph */}
+      <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

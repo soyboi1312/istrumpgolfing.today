@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, FC } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, FC } from 'react';
 import styles from '../styles/Home.module.css';
 import { EventData, Events, isGolfEventType } from '../types';
 import { getEasternTimeISO } from '../utils/dateHelpers';
@@ -9,8 +9,8 @@ interface CalendarProps {
 }
 
 const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
-    const [currentDate, setCurrentDate] = useState(new Date()); 
-    const [todayET, setTodayET] = useState<string>(''); 
+    const [currentDate, setCurrentDate] = useState(new Date());
+    const [todayET, setTodayET] = useState<string>('');
 
     const nextMonth = () => {
         setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
@@ -37,7 +37,15 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
     const firstDayOfWeek = firstDay.getDay();
     const monthName = firstDay.toLocaleString('default', { month: 'long' });
 
-    // Memoized styles for interactive buttons to prevent recreation on every render
+    // Single event handler using data attributes - avoids creating functions per day
+    const handleDayClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+        const dateStr = e.currentTarget.dataset.date;
+        if (dateStr && events[dateStr]) {
+            onDateSelect({ date: dateStr, data: events[dateStr] });
+        }
+    }, [events, onDateSelect]);
+
+    // Memoized styles for interactive buttons
     const buttonBaseStyle = useMemo(() => ({
         width: '100%',
         height: '100%',
@@ -64,27 +72,21 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
             const isToday = dateStr === todayET;
 
             let className = styles.tableCell;
-            let handleClick: (() => void) | undefined = undefined;
 
-            if (event) {
-                if (isGolfEventType(event.type)) {
-                    className += ` ${styles.eventDay}`;
-                }
-                if (!isFuture) {
-                    handleClick = () => onDateSelect({ date: dateStr, data: event });
-                }
+            if (event && isGolfEventType(event.type)) {
+                className += ` ${styles.eventDay}`;
             }
-
             if (isFuture) className += ` ${styles.futureDay}`;
             if (isToday) className += ` ${styles.currentDay}`;
 
-            // ACCESSIBILITY FIX: Use button for interactive elements
+            // Use button for interactive elements, div for non-interactive
             cells.push(
                 <td key={day} className={styles.cellWrapper}>
                     {event && !isFuture ? (
                          <button
                             className={className}
-                            onClick={handleClick}
+                            onClick={handleDayClick}
+                            data-date={dateStr}
                             style={{
                                 ...buttonBaseStyle,
                                 border: isToday ? '1px solid var(--color-primary-orange)' : 'none',
@@ -117,7 +119,7 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
         }
 
         return rows;
-    }, [year, month, firstDayOfWeek, lastDay, todayET, events, onDateSelect, buttonBaseStyle]);
+    }, [year, month, firstDayOfWeek, lastDay, todayET, events, handleDayClick, buttonBaseStyle]);
 
     return (
         <div className={styles.calendarWrapper}>
