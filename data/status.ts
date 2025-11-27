@@ -481,11 +481,7 @@ export const statusData: StatusData = {
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
             type: 'golf',
         },
-        '2025-01-18': {
-            location: GolfLocation.WEST_PALM,
-            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
-            type: 'golf',
-        },
+        // Note: 2025-01-18 excluded - before inauguration (Jan 20, 2025)
     },
     termStart: new Date(2025, 0, 20),
     // Per-day costs (derived from GAO per-trip estimates divided by avg trip length)
