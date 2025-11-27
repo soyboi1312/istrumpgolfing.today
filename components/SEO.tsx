@@ -19,16 +19,10 @@ const SEO: React.FC<SEOProps> = ({
   const url = `https://istrumpgolfing.today${path}`;
   
   // Default to "Work Mode" (Presidential Seal)
-  // We use your 'work-mode.svg' filename here as per your request, 
-  // but this should be the file containing the Presidential Seal content.
-  let favicon = "/files/fav/work-mode.svg"; 
-  let iconKey = "work";
-
   // If confirmed golfing, switch to Golf Mode
-  if (isGolfing === true) {
-    favicon = "/files/fav/golf-mode.svg";
-    iconKey = "golf";
-  }
+  const favicon = isGolfing === true
+    ? "/files/fav/golf-mode.svg"
+    : "/files/fav/work-mode.svg";
 
   return (
     <Head>
@@ -55,6 +49,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:image" content={image} />
       
       {/* Twitter */}
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />

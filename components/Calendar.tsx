@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback, FC } from 'react';
+import React, { useState, useEffect, useMemo, FC } from 'react';
 import styles from '../styles/Home.module.css';
 import { EventData, Events, isGolfEventType } from '../types';
 import { getEasternTimeISO } from '../utils/dateHelpers';
@@ -46,7 +46,8 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
         font: 'inherit'
     }), []);
 
-    const renderCalendarCells = useCallback(() => {
+    // Memoize calendar rows to prevent unnecessary recalculations
+    const calendarRows = useMemo(() => {
         const cells: React.ReactNode[] = [];
 
         // Empty cells for padding start of month
@@ -63,14 +64,14 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
             const isToday = dateStr === todayET;
 
             let className = styles.tableCell;
-            let onClick: (() => void) | undefined = undefined;
+            let handleClick: (() => void) | undefined = undefined;
 
             if (event) {
                 if (isGolfEventType(event.type)) {
                     className += ` ${styles.eventDay}`;
                 }
                 if (!isFuture) {
-                    onClick = () => onDateSelect({ date: dateStr, data: event });
+                    handleClick = () => onDateSelect({ date: dateStr, data: event });
                 }
             }
 
@@ -83,7 +84,7 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
                     {event && !isFuture ? (
                          <button
                             className={className}
-                            onClick={onClick}
+                            onClick={handleClick}
                             style={{
                                 ...buttonBaseStyle,
                                 border: isToday ? '1px solid var(--color-primary-orange)' : 'none',
@@ -117,9 +118,6 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
 
         return rows;
     }, [year, month, firstDayOfWeek, lastDay, todayET, events, onDateSelect, buttonBaseStyle]);
-
-    // Memoize calendar cells to prevent unnecessary recalculations
-    const calendarRows = useMemo(() => renderCalendarCells(), [renderCalendarCells]);
 
     return (
         <div className={styles.calendarWrapper}>

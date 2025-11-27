@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Events, TermStart, isGolfEventType } from '../types';
 import { getEasternTimeDate, getEasternTimeISO } from '../utils/dateHelpers';
+import useHasMounted from './useHasMounted';
 
 interface UseTermDatesResult {
     daysSinceStart: number | null;
@@ -13,11 +14,7 @@ export default function useTermDates(
 ): UseTermDatesResult {
     const [daysSinceStart, setDaysSinceStart] = useState<number | null>(null);
     const [isGolfingToday, setIsGolfingToday] = useState<boolean | null>(null);
-    const [hasMounted, setHasMounted] = useState(false);
-
-    useEffect(() => {
-        setHasMounted(true);
-    }, []);
+    const hasMounted = useHasMounted();
 
     useEffect(() => {
         if (hasMounted) {
