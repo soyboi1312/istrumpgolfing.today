@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo, FC } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, FC } from 'react';
 import styles from '../styles/Home.module.css';
-import { EventData, Events, GOLF_EVENT_TYPES } from '../types';
+import { EventData, Events, isGolfEventType } from '../types';
 import { getEasternTimeISO } from '../utils/dateHelpers';
 
 interface CalendarProps {
@@ -37,7 +37,16 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
     const firstDayOfWeek = firstDay.getDay();
     const monthName = firstDay.toLocaleString('default', { month: 'long' });
 
-    const renderCalendarCells = () => {
+    // Memoized styles for interactive buttons to prevent recreation on every render
+    const buttonBaseStyle = useMemo(() => ({
+        width: '100%',
+        height: '100%',
+        cursor: 'pointer',
+        color: 'inherit',
+        font: 'inherit'
+    }), []);
+
+    const renderCalendarCells = useCallback(() => {
         const cells: React.ReactNode[] = [];
 
         // Empty cells for padding start of month
@@ -49,7 +58,7 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
         for (let day = 1; day <= lastDay; day++) {
             const dateStr = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
             const event = events[dateStr];
-            
+
             const isFuture = todayET ? dateStr > todayET : false;
             const isToday = dateStr === todayET;
 
@@ -57,7 +66,7 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
             let onClick: (() => void) | undefined = undefined;
 
             if (event) {
-                if (GOLF_EVENT_TYPES.includes(event.type as typeof GOLF_EVENT_TYPES[number])) {
+                if (isGolfEventType(event.type)) {
                     className += ` ${styles.eventDay}`;
                 }
                 if (!isFuture) {
@@ -75,23 +84,19 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
                          <button
                             className={className}
                             onClick={onClick}
-                            style={{ 
-                                width: '100%', 
-                                height: '100%', 
+                            style={{
+                                ...buttonBaseStyle,
                                 border: isToday ? '1px solid var(--color-primary-orange)' : 'none',
-                                cursor: 'pointer',
-                                color: 'inherit',
-                                font: 'inherit'
                             }}
                             aria-label={`Select ${dateStr}`}
                          >
                             {day}
                          </button>
                     ) : (
-                        <div 
+                        <div
                             className={className}
-                            style={{ 
-                                border: isToday ? '1px solid var(--color-primary-orange)' : undefined 
+                            style={{
+                                border: isToday ? '1px solid var(--color-primary-orange)' : undefined
                             }}
                         >
                             {day}
@@ -111,7 +116,10 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
         }
 
         return rows;
-    };
+    }, [year, month, firstDayOfWeek, lastDay, todayET, events, onDateSelect, buttonBaseStyle]);
+
+    // Memoize calendar cells to prevent unnecessary recalculations
+    const calendarRows = useMemo(() => renderCalendarCells(), [renderCalendarCells]);
 
     return (
         <div className={styles.calendarWrapper}>
@@ -122,8 +130,9 @@ const Calendar: FC<CalendarProps> = ({ events, onDateSelect }) => {
                     <button onClick={nextMonth} className={styles.controlButton}>Next &rarr;</button>
                 </div>
                 <table className={styles.calendarTable}>
+                    <caption className="sr-only">Golf events calendar for {monthName} {year}</caption>
                     <thead><tr>{dayHeaders}</tr></thead>
-                    <tbody>{renderCalendarCells()}</tbody>
+                    <tbody>{calendarRows}</tbody>
                 </table>
             </div>
         </div>

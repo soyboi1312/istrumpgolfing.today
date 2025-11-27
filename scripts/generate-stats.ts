@@ -3,7 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { getStatusData } from '../data/status';
 import { calculateGolfStats } from '../utils/statsCalculator';
-import { GOLF_EVENT_TYPES } from '../types';
+import { isGolfEventType } from '../types';
+import { getEasternTimeDate, getEasternTimeISO } from '../utils/dateHelpers';
 
 console.log('Generating stats.json...');
 
@@ -28,9 +29,9 @@ try {
     console.log('');
   }
 
-  // Calculate days since start
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  // Calculate days since start using Eastern Time for consistency
+  const today = getEasternTimeDate();
+  const todayISO = getEasternTimeISO();
   const daysSinceStart = Math.max(
     0,
     Math.floor((today.getTime() - termStart.getTime()) / (1000 * 60 * 60 * 24))
@@ -48,16 +49,14 @@ try {
   // Count golf days by location (Additional logic specific to this script)
   const golfDaysByLocation: { [key: string]: number } = {};
   Object.values(events).forEach((event) => {
-    if (GOLF_EVENT_TYPES.includes(event.type as typeof GOLF_EVENT_TYPES[number])) {
+    if (isGolfEventType(event.type)) {
        golfDaysByLocation[event.location] = (golfDaysByLocation[event.location] || 0) + 1;
     }
   });
 
   // Get 10 most recent golf days
   const recentGolfDays = Object.entries(events)
-    .filter(([_, event]) =>
-      GOLF_EVENT_TYPES.includes(event.type as typeof GOLF_EVENT_TYPES[number])
-    )
+    .filter(([_, event]) => isGolfEventType(event.type))
     .sort(([dateA], [dateB]) => dateB.localeCompare(dateA))
     .slice(0, 10)
     .map(([date, event]) => ({
@@ -69,7 +68,7 @@ try {
 
   const response = {
     termStart: termStart.toISOString().split('T')[0],
-    currentDate: today.toISOString().split('T')[0],
+    currentDate: todayISO,
     daysSinceStart,
     totalGolfDays: stats.daysGolfed,
     percentageGolfed: percentage,

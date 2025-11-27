@@ -15,6 +15,10 @@ export const ALL_EVENT_TYPES = ['golf', 'arrival', 'departure', 'golf_arrival', 
 export const isEventType = (type: string): type is EventType =>
     ALL_EVENT_TYPES.includes(type as EventType);
 
+/** Check if an event type counts as a golf day */
+export const isGolfEventType = (type: EventType): boolean =>
+    GOLF_EVENT_TYPES.includes(type as typeof GOLF_EVENT_TYPES[number]);
+
 export enum GolfLocation {
     MAR_A_LAGO = "Mar-a-Lago",
     WEST_PALM = "West Palm Beach, FL",
@@ -31,7 +35,7 @@ export enum GolfLocation {
 }
 
 export interface EventData {
-    location: string;
+    location: GolfLocation;
     url: string;
     type: EventType;
     duration?: number | undefined;

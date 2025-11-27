@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Events, TermStart } from '../types';
+import { Events, TermStart, isGolfEventType } from '../types';
 import { getEasternTimeDate, getEasternTimeISO } from '../utils/dateHelpers';
 
 interface UseTermDatesResult {
@@ -43,7 +43,7 @@ export default function useTermDates(
 
             // Check if golfing today based on the EST date string
             const golfEvents = Object.keys(events).filter(date =>
-                ['golf', 'golf_arrival', 'golf_departure'].includes(events[date].type)
+                isGolfEventType(events[date].type)
             );
             setIsGolfingToday(golfEvents.includes(todayISO));
         }
