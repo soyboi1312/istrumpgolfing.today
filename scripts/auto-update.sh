@@ -5,10 +5,21 @@
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Ensure PATH includes node
+export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
+
+# Get project directory (parent of scripts/)
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
 cd "$PROJECT_DIR"
+echo "[$(date)] Working directory: $(pwd)"
+
+# Verify we're in a git repo
+if [ ! -d ".git" ]; then
+    echo "[$(date)] ERROR: Not a git repository at $PROJECT_DIR"
+    exit 1
+fi
 
 echo "========================================"
 echo "[$(date)] Starting auto-update..."
