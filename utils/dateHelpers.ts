@@ -11,7 +11,7 @@ export const getEasternTimeDate = (): Date => {
   const m = parts.find(p => p.type === 'month')?.value;
   const d = parts.find(p => p.type === 'day')?.value;
   
-  return new Date(`${y}-${m}-${d}`);
+  return new Date(`${y}-${m!.padStart(2, '0')}-${d!.padStart(2, '0')}`);
 };
 
 export const getEasternTimeISO = (): string => {
