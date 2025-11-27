@@ -4,7 +4,7 @@
   "daysSinceStart": 311,
   "totalGolfDays": 86,
   "percentageGolfed": "27.7",
-  "estimatedTotalCost": 31840000,
+  "estimatedTotalCost": 62180000,
   "golfDaysByLocation": {
     "Mar-a-Lago": 31,
     "Washington, DC": 32,
@@ -78,7 +78,7 @@
   ],
   "metadata": {
     "dataVersion": "2.0",
-    "lastUpdated": "2025-11-27T23:31:56.355Z",
+    "lastUpdated": "2025-11-27T23:35:15.350Z",
     "attribution": "Is Trump Golfing Today?",
     "website": "https://istrumpgolfing.today"
   }

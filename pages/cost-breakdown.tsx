@@ -10,8 +10,7 @@ import { isGolfEventType } from '../types';
 interface LocationCostData {
   location: string;
   days: number;
-  trips: number;
-  costPerTrip: number;
+  costPerDay: number;
   totalCost: number;
 }
 
@@ -34,25 +33,18 @@ export const getStaticProps: GetStaticProps<CostBreakdownProps> = async () => {
     }
   });
 
-  // Count trips and costs by location
-  const tripsByLocation: Record<string, { trips: number; cost: number }> = {};
-  stats.trips.forEach((trip) => {
-    if (!tripsByLocation[trip.location]) {
-      tripsByLocation[trip.location] = { trips: 0, cost: 0 };
-    }
-    tripsByLocation[trip.location].trips++;
-    tripsByLocation[trip.location].cost += locationCosts[trip.location] || 0;
-  });
-
-  // Build location data array
+  // Build location data array with per-day costs
   const locationData: LocationCostData[] = Object.keys(daysByLocation)
-    .map((location) => ({
-      location,
-      days: daysByLocation[location],
-      trips: tripsByLocation[location]?.trips || 0,
-      costPerTrip: locationCosts[location] || 0,
-      totalCost: tripsByLocation[location]?.cost || 0,
-    }))
+    .map((location) => {
+      const days = daysByLocation[location];
+      const costPerDay = locationCosts[location] || 0;
+      return {
+        location,
+        days,
+        costPerDay,
+        totalCost: days * costPerDay,
+      };
+    })
     .sort((a, b) => b.totalCost - a.totalCost);
 
   return {
@@ -173,7 +165,7 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
         <section className={styles.sectionCard}>
           <h2 className={styles.sectionTitle}>Current Cost by Location</h2>
           <p className={styles.textBlock}>
-            Below is the breakdown of golf trips and estimated taxpayer costs by location for the current term:
+            Below is the breakdown of golf days and estimated taxpayer costs by location for the current term:
           </p>
           <div className={styles.tableContainer}>
             <table className={styles.dataTable}>
@@ -181,8 +173,7 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
                 <tr>
                   <th>Location</th>
                   <th>Days</th>
-                  <th>Trips</th>
-                  <th>Cost/Trip</th>
+                  <th>Cost/Day</th>
                   <th>Total</th>
                 </tr>
               </thead>
@@ -191,15 +182,13 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
                   <tr key={loc.location}>
                     <td>{loc.location}</td>
                     <td>{loc.days}</td>
-                    <td>{loc.trips}</td>
-                    <td>${loc.costPerTrip.toLocaleString()}</td>
+                    <td>${loc.costPerDay.toLocaleString()}</td>
                     <td>${loc.totalCost.toLocaleString()}</td>
                   </tr>
                 ))}
                 <tr style={{ fontWeight: 'bold', borderTop: '2px solid var(--color-primary-orange)' }}>
                   <td>Total</td>
                   <td>{totalDays}</td>
-                  <td>{locationData.reduce((sum, loc) => sum + loc.trips, 0)}</td>
                   <td>—</td>
                   <td>${totalCost.toLocaleString()}</td>
                 </tr>
@@ -207,8 +196,8 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
             </table>
           </div>
           <p className={styles.textBlock} style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '1rem' }}>
-            Note: Costs are calculated per trip (consecutive golf days at same location = one trip).
-            Trip costs are based on GAO estimates. These are conservative estimates based on publicly available government data.
+            Note: Per-day costs are derived from GAO per-trip estimates divided by average trip length (~2.5 days).
+            These are conservative estimates based on publicly available government data.
           </p>
         </section>
 

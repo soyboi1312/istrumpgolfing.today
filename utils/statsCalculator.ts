@@ -56,10 +56,10 @@ export const calculateGolfStats = (
     }
   });
 
-  // 3. Calculate total cost based on trips
-  // Cost is per-trip, not per-day
-  const totalCost = trips.reduce((acc, trip) => {
-    return acc + (locationCosts[trip.location] || 0);
+  // 3. Calculate total cost based on golf days
+  // locationCosts are per-day costs (GAO trip cost ÷ avg trip length)
+  const totalCost = golfDays.reduce((acc, [_, event]) => {
+    return acc + (locationCosts[event.location] || 0);
   }, 0);
 
   return { daysGolfed, totalCost, trips };
