@@ -74,7 +74,7 @@ const Embed = () => {
           }}>
             <h3 style={{ margin: '0 0 10px 0', color: '#ffa500', fontFamily: 'Merriweather, serif' }}>Trump Golf Tracker</h3>
             <p style={{ margin: '5px 0', color: '#fff' }}><strong>85</strong> days golfed</p>
-            <p style={{ margin: '5px 0', color: '#aaa' }}>Cost: ~$58.3M</p>
+            <p style={{ margin: '5px 0', color: '#aaa' }}>Cost: ~$60.8M</p>
             <span style={{ color: '#ffa500', fontSize: '0.8rem', textDecoration: 'underline' }}>View Full Tracker &rarr;</span>
           </div>
         </section>

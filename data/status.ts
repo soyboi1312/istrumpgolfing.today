@@ -486,7 +486,7 @@ export const statusData: StatusData = {
     termStart: new Date(2025, 0, 20),
     // Per-day costs (derived from GAO per-trip estimates divided by avg trip length)
     locationCosts: {
-        [GolfLocation.SCOTLAND]: 1500000,       // Transatlantic AF1 flight (~7hrs each way at $200K/hr)
+        [GolfLocation.SCOTLAND]: 2000000,       // Transatlantic AF1 (~$5.6M roundtrip) + intl security coordination
         [GolfLocation.LAS_VEGAS]: 2000000,      // ~4.5hr flight each way, longer than Florida
         [GolfLocation.MAR_A_LAGO]: 1360000,     // $3.4M per trip / ~2.5 days
         [GolfLocation.WEST_PALM]: 1360000,
