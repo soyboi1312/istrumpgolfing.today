@@ -1,46 +1,46 @@
-// scripts/analyze-rollcall.js
-// Analyzes rollcall_calendar.json to find missing arrival/departure dates
+/**
+ * Analyzes rollcall_calendar.json to find missing golf/arrival/departure dates
+ *
+ * Usage: npx tsx scripts/analyze-rollcall.ts
+ *
+ * This script:
+ * 1. Reads golf dates from rollcall_calendar.json
+ * 2. Dynamically reads current status.ts
+ * 3. Reports new dates with detailed parsing of arrivals/departures
+ */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { getStatusData } from '../data/status';
+import { GolfLocation } from '../types';
 
-const rollcallPath = path.join(__dirname, '../data/rollcall_calendar.json');
+const rollcallPath = path.join(process.cwd(), 'data', 'rollcall_calendar.json');
 const rollcallData = JSON.parse(fs.readFileSync(rollcallPath, 'utf8'));
 
-// Existing events in status.ts (hardcoded for comparison)
-const existingDates = new Set([
-  '2025-11-16', '2025-11-15', '2025-11-14', '2025-11-09', '2025-11-08', '2025-11-07', '2025-11-01',
-  '2025-10-19', '2025-10-18', '2025-10-17', '2025-10-11', '2025-10-04',
-  '2025-09-28', '2025-09-27', '2025-09-20', '2025-09-13', '2025-09-06', '2025-09-01',
-  '2025-08-31', '2025-08-30', '2025-08-24', '2025-08-23', '2025-08-17', '2025-08-16', '2025-08-10', '2025-08-09', '2025-08-03', '2025-08-02', '2025-08-01',
-  '2025-07-29', '2025-07-27', '2025-07-26', '2025-07-25', '2025-07-20', '2025-07-19', '2025-07-12', '2025-07-06', '2025-07-05',
-  '2025-06-29', '2025-06-28', '2025-06-01',
-  '2025-05-31', '2025-05-26', '2025-05-25', '2025-05-18', '2025-05-10', '2025-05-04', '2025-05-03', '2025-05-02', '2025-05-01',
-  '2025-04-20', '2025-04-19', '2025-04-13', '2025-04-12', '2025-04-11', '2025-04-06', '2025-04-05', '2025-04-04', '2025-04-03',
-  '2025-03-30', '2025-03-29', '2025-03-28', '2025-03-23', '2025-03-22', '2025-03-21', '2025-03-16', '2025-03-15', '2025-03-14', '2025-03-09', '2025-03-08', '2025-03-07', '2025-03-02', '2025-03-01', '2025-02-28',
-  '2025-02-19', '2025-02-18', '2025-02-17', '2025-02-15', '2025-02-14', '2025-02-09', '2025-02-08', '2025-02-07', '2025-02-02', '2025-02-01', '2025-01-31',
-  '2025-01-27', '2025-01-26', '2025-01-25'
-]);
+// Dynamically get existing dates from status.ts
+const statusData = getStatusData();
+const existingDates = new Set(Object.keys(statusData.events));
 
 const termStart = new Date('2025-01-20');
 const today = new Date();
 
 // Helper: Extract location from detail text
-function extractLocation(text) {
+function extractLocation(text: string): string {
   const lower = text.toLowerCase();
-  if (lower.includes('west palm beach') || lower.includes('mar-a-lago')) return 'WEST_PALM';
+  if (lower.includes('mar-a-lago')) return 'MAR_A_LAGO';
+  if (lower.includes('west palm beach')) return 'WEST_PALM';
   if (lower.includes('bedminster')) return 'BEDMINSTER';
   if (lower.includes('trump national golf club washington') || lower.includes('sterling')) return 'WASHINGTON_DC';
   if (lower.includes('las vegas')) return 'LAS_VEGAS';
   if (lower.includes('doral')) return 'DORAL_FL';
-  if (lower.includes('florida') || lower.includes('palm beach')) return 'FLORIDA';
-  if (lower.includes('new jersey')) return 'NEW_JERSEY';
-  if (lower.includes('scotland') || lower.includes('turnberry')) return 'SCOTLAND';
+  if (lower.includes('florida') || lower.includes('palm beach')) return 'MAR_A_LAGO';
+  if (lower.includes('new jersey')) return 'BEDMINSTER';
+  if (lower.includes('scotland') || lower.includes('turnberry') || lower.includes('aberdeen')) return 'SCOTLAND';
   return '';
 }
 
 // Helper: Check if text indicates arrival at a golf/resort location
-function isArrivalToResort(text) {
+function isArrivalToResort(text: string): boolean {
   const lower = text.toLowerCase();
   return lower.includes('arrives') && (
     lower.includes('mar-a-lago') ||
@@ -52,7 +52,7 @@ function isArrivalToResort(text) {
 }
 
 // Helper: Check if text indicates departure from a golf/resort location
-function isDepartureFromResort(text) {
+function isDepartureFromResort(text: string): boolean {
   const lower = text.toLowerCase();
   return lower.includes('departs') && (
     lower.includes('mar-a-lago') ||
@@ -63,8 +63,17 @@ function isDepartureFromResort(text) {
   ) && (lower.includes('white house') || lower.includes('en route') || lower.includes('joint base'));
 }
 
+interface DayEvent {
+  date: string;
+  hasGolf: boolean;
+  isArrival: boolean;
+  isDeparture: boolean;
+  locations: Set<string>;
+  details: string[];
+}
+
 // Group all entries by date
-const eventsByDate = {};
+const eventsByDate: Record<string, DayEvent> = {};
 
 for (const entry of rollcallData) {
   const date = entry.date;
@@ -121,7 +130,17 @@ for (const entry of rollcallData) {
 }
 
 // Convert to array and filter for relevant events
-const relevantEvents = [];
+interface RelevantEvent {
+  date: string;
+  eventType: string;
+  location: string;
+  hasGolf: boolean;
+  isArrival: boolean;
+  isDeparture: boolean;
+  details: string[];
+}
+
+const relevantEvents: RelevantEvent[] = [];
 
 for (const [date, event] of Object.entries(eventsByDate)) {
   // Only include if golf or arrival/departure at resort location
@@ -130,22 +149,21 @@ for (const [date, event] of Object.entries(eventsByDate)) {
   // Skip if already in existing data
   if (existingDates.has(date)) continue;
 
-  // Determine event type and location
+  // Determine event type - only actual golf days count
   let eventType = '';
-  if (event.hasGolf && event.isArrival) eventType = 'golf_arrival';
-  else if (event.hasGolf && event.isDeparture) eventType = 'golf_departure';
-  else if (event.hasGolf) eventType = 'golf';
+  if (event.hasGolf) eventType = 'golf';
   else if (event.isArrival) eventType = 'arrival';
   else if (event.isDeparture) eventType = 'departure';
 
   // Pick best location
   const locations = Array.from(event.locations);
-  let location = locations[0] || 'UNKNOWN';
+  let location = locations[0] || 'WASHINGTON_DC';
 
   // Prefer more specific locations
-  if (locations.includes('WEST_PALM')) location = 'WEST_PALM';
+  if (locations.includes('MAR_A_LAGO')) location = 'MAR_A_LAGO';
   else if (locations.includes('BEDMINSTER')) location = 'BEDMINSTER';
   else if (locations.includes('WASHINGTON_DC')) location = 'WASHINGTON_DC';
+  else if (locations.includes('SCOTLAND')) location = 'SCOTLAND';
 
   relevantEvents.push({
     date,
@@ -161,28 +179,48 @@ for (const [date, event] of Object.entries(eventsByDate)) {
 // Sort by date descending
 relevantEvents.sort((a, b) => b.date.localeCompare(a.date));
 
-console.log('=== ROLLCALL CALENDAR ANALYSIS ===\n');
-console.log('Total unique dates with golf/arrivals/departures:', Object.keys(eventsByDate).length);
-console.log('New events (not in status.ts):', relevantEvents.length);
+// Separate golf days from arrivals/departures
+const golfDays = relevantEvents.filter(e => e.eventType === 'golf');
+const otherEvents = relevantEvents.filter(e => e.eventType !== 'golf');
 
-console.log('\n=== NEW EVENTS TO ADD ===\n');
-for (const event of relevantEvents) {
-  console.log(`Date: ${event.date}`);
-  console.log(`  Type: ${event.eventType}`);
-  console.log(`  Location: ${event.location}`);
-  console.log(`  Golf: ${event.hasGolf}, Arrival: ${event.isArrival}, Departure: ${event.isDeparture}`);
-  console.log(`  Details: ${event.details.slice(0, 2).join(' | ')}`);
-  console.log('');
+console.log('=== ROLLCALL CALENDAR ANALYSIS ===\n');
+console.log(`📊 Total dates in rollcall with golf/arrivals/departures: ${Object.keys(eventsByDate).length}`);
+console.log(`📊 Current status.ts: ${existingDates.size} golf dates`);
+console.log(`🆕 New confirmed golf days: ${golfDays.length}`);
+console.log(`📍 Arrivals/departures (not golf): ${otherEvents.length}\n`);
+
+if (golfDays.length === 0 && otherEvents.length === 0) {
+  console.log('✅ All dates are in sync! No changes needed.\n');
+  process.exit(0);
 }
 
-// Generate TypeScript entries
-if (relevantEvents.length > 0) {
+if (golfDays.length > 0) {
+  console.log('=== NEW GOLF DAYS TO ADD ===\n');
+  for (const event of golfDays) {
+    console.log(`Date: ${event.date}`);
+    console.log(`  Location: ${event.location}`);
+    console.log(`  Details: ${event.details.slice(0, 2).join(' | ')}`);
+    console.log('');
+  }
+
+  // Generate TypeScript entries
   console.log('\n=== TYPESCRIPT ENTRIES TO ADD ===\n');
-  for (const event of relevantEvents) {
+  for (const event of golfDays) {
     console.log(`        '${event.date}': {`);
     console.log(`            location: GolfLocation.${event.location},`);
     console.log(`            url: 'https://rollcall.com/factbase/trump/topic/calendar/',`);
-    console.log(`            type: '${event.eventType}',`);
+    console.log(`            type: 'golf',`);
     console.log(`        },`);
   }
+
+  console.log('\n📝 Copy the entries above into data/status.ts');
+  console.log('📝 Then run: npm run generate\n');
+}
+
+if (otherEvents.length > 0) {
+  console.log('=== ARRIVALS/DEPARTURES (not counted as golf) ===\n');
+  for (const event of otherEvents) {
+    console.log(`${event.date}: ${event.eventType} at ${event.location}`);
+  }
+  console.log('\n(These are just resort arrivals/departures - golf may have happened but wasn\'t confirmed)\n');
 }
