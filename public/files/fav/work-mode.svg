@@ -1,4 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#d32f2f" rx="8"/>
-  <text x="32" y="38" font-family="Arial, sans-serif" font-weight="900" font-size="18" text-anchor="middle" fill="white">WORK</text>
+  <circle cx="32" cy="32" r="32" fill="#1a237e"/>
+  <circle cx="32" cy="32" r="26" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="4, 3" opacity="0.6"/>
+  <path d="M32 12C34 12 36 10 38 12C44 14 54 18 54 26C54 30 48 32 44 34L46 44L32 50L18 44L20 34C16 32 10 30 10 26C10 18 20 14 26 12C28 10 30 12 32 12Z" fill="#ffc107"/>
+  <path d="M26 26H38V34C38 38 32 42 32 42C32 42 26 38 26 34V26Z" fill="#1a237e"/>
+  <path d="M28 26V34M32 26V38M36 26V34" stroke="#ffffff" stroke-width="1"/>
 </svg>
