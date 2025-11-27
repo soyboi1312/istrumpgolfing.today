@@ -5,6 +5,7 @@
   "scripts": {
     "generate": "npx tsx scripts/generate-stats.ts",
     "sync": "npx tsx scripts/sync-golf-dates.ts",
+    "analyze": "npx tsx scripts/analyze-rollcall.ts",
     "build": "npm run generate && next build",
     "dev": "npm run generate && next dev",
     "start": "next start",
