@@ -1,12 +1,14 @@
 /**
  * Sync golf dates from rollcall_calendar.json to status.ts
  *
- * Usage: npx tsx scripts/sync-golf-dates.ts
+ * Usage:
+ *   npx tsx scripts/sync-golf-dates.ts           # Auto-update status.ts
+ *   npx tsx scripts/sync-golf-dates.ts --dry-run # Preview changes only
  *
  * This script:
  * 1. Reads golf dates from rollcall_calendar.json
  * 2. Compares with current status.ts
- * 3. Reports new dates to add (doesn't auto-modify status.ts)
+ * 3. Automatically adds new dates to status.ts (unless --dry-run)
  */
 
 import fs from 'fs';
@@ -15,6 +17,7 @@ import { getStatusData } from '../data/status';
 import { GolfLocation } from '../types';
 
 const TERM_START = new Date('2025-01-20');
+const DRY_RUN = process.argv.includes('--dry-run');
 
 // Location mapping from rollcall locations to GolfLocation enum
 const locationMap: Record<string, GolfLocation> = {
@@ -32,11 +35,18 @@ const locationMap: Record<string, GolfLocation> = {
 };
 
 function mapLocation(rollcallLocation: string): GolfLocation {
-  return locationMap[rollcallLocation] || GolfLocation.WASHINGTON_DC;
+  return locationMap[rollcallLocation] || GolfLocation.MAR_A_LAGO;
+}
+
+function getLocationEnumKey(location: GolfLocation): string {
+  const key = Object.keys(GolfLocation).find(
+    k => GolfLocation[k as keyof typeof GolfLocation] === location
+  );
+  return key || 'MAR_A_LAGO';
 }
 
 async function main() {
-  console.log('🔄 Syncing golf dates from rollcall_calendar.json...\n');
+  console.log(`🔄 Syncing golf dates from rollcall_calendar.json...${DRY_RUN ? ' (DRY RUN)' : ''}\n`);
 
   // Read rollcall calendar
   const calendarPath = path.join(process.cwd(), 'data', 'rollcall_calendar.json');
@@ -57,12 +67,12 @@ async function main() {
   const statusDates = new Set(Object.keys(statusData.events));
 
   // Find new dates (after term start, not in status.ts)
-  const newDates: Array<{ date: string; location: string }> = [];
+  const newDates: Array<{ date: string; location: GolfLocation }> = [];
 
   rollcallGolfDays.forEach((location: string, date: string) => {
     const dateObj = new Date(date);
     if (dateObj >= TERM_START && !statusDates.has(date)) {
-      newDates.push({ date, location });
+      newDates.push({ date, location: mapLocation(location) });
     }
   });
 
@@ -83,30 +93,58 @@ async function main() {
     return;
   }
 
+  // Sort new dates by date
+  newDates.sort((a, b) => b.date.localeCompare(a.date));
+
   if (newDates.length > 0) {
     console.log(`🆕 NEW DATES TO ADD (${newDates.length}):`);
-    newDates.sort((a, b) => a.date.localeCompare(b.date));
-
     newDates.forEach(({ date, location }) => {
-      const mappedLocation = mapLocation(location);
-      console.log(`
-        '${date}': {
-            location: GolfLocation.${Object.keys(GolfLocation).find(k => GolfLocation[k as keyof typeof GolfLocation] === mappedLocation)},
-            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
-            type: 'golf',
-        },`);
+      console.log(`   + ${date} at ${getLocationEnumKey(location)}`);
     });
-    console.log('\n');
+    console.log('');
+
+    if (!DRY_RUN) {
+      // Auto-update status.ts
+      const statusPath = path.join(process.cwd(), 'data', 'status.ts');
+      let statusContent = fs.readFileSync(statusPath, 'utf-8');
+
+      // Find the events object and insert new entries after "events: {"
+      const eventsStart = statusContent.indexOf('events: {');
+      if (eventsStart === -1) {
+        console.error('❌ Could not find "events: {" in status.ts');
+        process.exit(1);
+      }
+
+      // Find the position right after "events: {"
+      const insertPos = statusContent.indexOf('{', eventsStart) + 1;
+
+      // Generate new entries
+      const newEntries = newDates.map(({ date, location }) => `
+        '${date}': {
+            location: GolfLocation.${getLocationEnumKey(location)},
+            url: 'https://factba.se/biden/calendar',
+            type: 'golf',
+        },`).join('');
+
+      // Insert new entries
+      statusContent = statusContent.slice(0, insertPos) + newEntries + statusContent.slice(insertPos);
+
+      fs.writeFileSync(statusPath, statusContent);
+      console.log(`✅ Added ${newDates.length} new date(s) to status.ts\n`);
+    }
   }
 
   if (removedDates.length > 0) {
-    console.log(`🗑️  DATES TO REMOVE (${removedDates.length}):`);
+    console.log(`⚠️  DATES IN STATUS.TS BUT NOT IN ROLLCALL (${removedDates.length}):`);
     removedDates.forEach(date => console.log(`   - ${date}`));
-    console.log('\n');
+    console.log('\n(These may have been manually added - review before removing)\n');
   }
 
-  console.log('📝 Copy the new entries above into data/status.ts');
-  console.log('📝 Then run: npx tsx scripts/generate-stats.ts');
+  if (DRY_RUN) {
+    console.log('📝 Run without --dry-run to auto-update status.ts');
+  } else if (newDates.length > 0) {
+    console.log('📝 Now run: npm run generate');
+  }
 }
 
 main().catch(console.error);
