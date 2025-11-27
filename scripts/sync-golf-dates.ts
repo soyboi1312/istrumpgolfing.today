@@ -35,7 +35,11 @@ const locationMap: Record<string, GolfLocation> = {
 };
 
 function mapLocation(rollcallLocation: string): GolfLocation {
-  return locationMap[rollcallLocation] || GolfLocation.MAR_A_LAGO;
+  const mapped = locationMap[rollcallLocation];
+  if (!mapped) {
+    console.warn(`⚠️  Unknown location "${rollcallLocation}" - defaulting to Mar-a-Lago`);
+  }
+  return mapped || GolfLocation.MAR_A_LAGO;
 }
 
 function getLocationEnumKey(location: GolfLocation): string {
