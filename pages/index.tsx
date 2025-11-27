@@ -111,7 +111,8 @@ const Home: React.FC<HomeProps> = ({
       <SEO 
         title="Is Trump Golfing Today? | Live Presidential Golf Tracker"
         description="Real-time tracker for Donald Trump's presidential golf trips, taxpayer costs, and stats."
-        isGolfing={isGolfingToday}
+        // FIXED: Convert null to undefined to satisfy TypeScript interface
+        isGolfing={isGolfingToday ?? undefined}
       />
       
       <Head>
