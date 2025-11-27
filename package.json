@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "generate": "npx tsx scripts/generate-stats.ts",
+    "sync": "npx tsx scripts/sync-golf-dates.ts",
     "build": "npm run generate && next build",
     "dev": "npm run generate && next dev",
     "start": "next start",
