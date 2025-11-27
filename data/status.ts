@@ -16,6 +16,11 @@ export const statusData: StatusData = {
         // ========================================
         // November 2025
         // ========================================
+        '2025-11-27': {
+            location: GolfLocation.MAR_A_LAGO,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar/',
+            type: 'golf',
+        },
         '2025-11-26': {
             location: GolfLocation.MAR_A_LAGO,
             url: 'https://rollcall.com/factbase/trump/topic/calendar/',
