@@ -92,8 +92,8 @@ const Home: React.FC<HomeProps> = ({
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 
-  // Use the extracted hook
-  useClickOutside(modalRef, setModalOpen, [modalOpen]);
+  // Use the extracted hook - closes modal when clicking outside
+  useClickOutside(modalRef, setModalOpen, modalOpen);
 
   const { daysSinceStart, isGolfingToday } = useTermDates(termStart, events);
 

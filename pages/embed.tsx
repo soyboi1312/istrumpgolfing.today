@@ -1,10 +1,30 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
+import { GetStaticProps } from 'next';
 import Navbar from '../components/Navbar';
+import SEO from '../components/SEO';
 import styles from '../styles/Home.module.css';
+import { getStatusData } from '../data/status';
+import { calculateGolfStats } from '../utils/statsCalculator';
 
-const Embed = () => {
+interface EmbedProps {
+  totalGolfDays: number;
+  estimatedTotalCost: number;
+}
+
+export const getStaticProps: GetStaticProps<EmbedProps> = async () => {
+  const statusData = getStatusData();
+  const stats = calculateGolfStats(statusData.events, statusData.locationCosts);
+
+  return {
+    props: {
+      totalGolfDays: stats.daysGolfed,
+      estimatedTotalCost: stats.totalCost,
+    },
+  };
+};
+
+const Embed: React.FC<EmbedProps> = ({ totalGolfDays, estimatedTotalCost }) => {
   const [copied, setCopied] = useState(false);
 
   const embedCode = `<div id="trump-golf-widget"></div>
@@ -35,12 +55,11 @@ const Embed = () => {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Embed Widget | Is Trump Golfing Today?</title>
-        <meta name="robots" content="noindex, follow" />
-        <meta name="description" content="Add the Trump Golf Tracker to your website." />
-        <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
-      </Head>
+      <SEO
+        title="Embed Widget | Is Trump Golfing Today?"
+        description="Add the Trump Golf Tracker widget to your website. Free to use with attribution."
+        path="/embed/"
+      />
 
       <Navbar />
 
@@ -73,8 +92,8 @@ const Embed = () => {
             margin: '0 auto'
           }}>
             <h3 style={{ margin: '0 0 10px 0', color: '#ffa500', fontFamily: 'Merriweather, serif' }}>Trump Golf Tracker</h3>
-            <p style={{ margin: '5px 0', color: '#fff' }}><strong>86</strong> days golfed</p>
-            <p style={{ margin: '5px 0', color: '#aaa' }}>Cost: ~$62.2M</p>
+            <p style={{ margin: '5px 0', color: '#fff' }}><strong>{totalGolfDays}</strong> days golfed</p>
+            <p style={{ margin: '5px 0', color: '#aaa' }}>Cost: ~${(estimatedTotalCost / 1000000).toFixed(1)}M</p>
             <span style={{ color: '#ffa500', fontSize: '0.8rem', textDecoration: 'underline' }}>View Full Tracker &rarr;</span>
           </div>
         </section>
