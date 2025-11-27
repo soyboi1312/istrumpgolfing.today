@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "generate": "ts-node scripts/generate-stats.ts",
+    "generate": "npx tsx scripts/generate-stats.ts",
     "build": "npm run generate && next build",
     "dev": "npm run generate && next dev",
     "start": "next start",
