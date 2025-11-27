@@ -203,12 +203,6 @@ const About = () => {
                 @istrumpgolfing.today
               </a>
             </li>
-            <li>
-              Support the cause:{' '}
-              <a href="https://www.pcrf.net/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-orange)' }}>
-                PCRF.net
-              </a>
-            </li>
           </ul>
         </section>
 
