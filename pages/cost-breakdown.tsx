@@ -12,7 +12,7 @@ const CostBreakdown = () => {
         <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
         {/* Open Graph Tags */}
         <meta property="og:title" content="The Cost of Presidential Golf" />
-        <meta property="og:description" content="Breakdown of the $3.4M Mar-a-Lago weekends vs local trips." />
+        <meta property="og:description" content="Breakdown of the $3.4M Mar-a-Lago weekends vs local trips, and see where costs come from." />
         <meta property="og:image" content="https://istrumpgolfing.today/files/istrumpgolfing.webp" />
         <script
           type="application/ld+json"
