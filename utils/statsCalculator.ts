@@ -1,44 +1,63 @@
 // utils/statsCalculator.ts
-import { Events, EventType, GOLF_EVENT_TYPES, isGolfEventType } from '../types';
+import { Events, isGolfEventType } from '../types';
 
 export interface GolfStats {
   totalCost: number;
   daysGolfed: number;
-  trips: { location: string; endDate: string }[];
+  trips: { location: string; startDate: string; endDate: string; days: number }[];
 }
+
+/**
+ * Calculates the difference in days between two date strings (YYYY-MM-DD)
+ */
+const daysBetween = (date1: string, date2: string): number => {
+  const d1 = new Date(date1);
+  const d2 = new Date(date2);
+  return Math.round((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+};
 
 export const calculateGolfStats = (
   events: Events,
   locationCosts: Record<string, number>
 ): GolfStats => {
-  // 1. Calculate Days Golfed
-  const daysGolfed = Object.values(events).filter((e) =>
-    isGolfEventType(e.type)
-  ).length;
+  // 1. Filter to only golf events and sort by date
+  const golfDays = Object.entries(events)
+    .filter(([_, event]) => isGolfEventType(event.type))
+    .sort(([dateA], [dateB]) => dateA.localeCompare(dateB));
 
-  // 2. Calculate Trips & Cost
-  const eventDates = Object.keys(events).sort((a, b) => a.localeCompare(b));
-  const trips: { location: string; endDate: string }[] = [];
+  const daysGolfed = golfDays.length;
 
-  eventDates.forEach((date, index) => {
-    const event = events[date];
-    const eventType = event.type;
-    
-    // Look back logic to determine if this is the end of a trip
-    const previousDate = index > 0 ? eventDates[index - 1] : null;
-    const previousEvent = previousDate ? events[previousDate] : null;
+  // 2. Group consecutive days at the same location into trips
+  // A new trip starts when:
+  // - There's a gap of more than 1 day between golf days
+  // - OR the location changes
+  const trips: { location: string; startDate: string; endDate: string; days: number }[] = [];
 
-    const isEndpoint =
-      eventType === 'golf_departure' ||
-      eventType === 'departure' ||
-      (eventType === 'golf' &&
-        (!previousEvent || !['arrival', 'golf_arrival'].includes(previousEvent.type)));
+  golfDays.forEach(([date, event], index) => {
+    const previousEntry = index > 0 ? golfDays[index - 1] : null;
 
-    if (isEndpoint && isGolfEventType(eventType)) {
-      trips.push({ location: event.location, endDate: date });
+    const isNewTrip = !previousEntry ||
+      daysBetween(previousEntry[0], date) > 1 ||
+      previousEntry[1].location !== event.location;
+
+    if (isNewTrip) {
+      // Start a new trip
+      trips.push({
+        location: event.location,
+        startDate: date,
+        endDate: date,
+        days: 1
+      });
+    } else {
+      // Extend the current trip
+      const currentTrip = trips[trips.length - 1];
+      currentTrip.endDate = date;
+      currentTrip.days++;
     }
   });
 
+  // 3. Calculate total cost based on trips
+  // Cost is per-trip, not per-day
   const totalCost = trips.reduce((acc, trip) => {
     return acc + (locationCosts[trip.location] || 0);
   }, 0);

@@ -6,11 +6,12 @@ export const getEasternTimeDate = (): Date => {
   const parts = formatter.formatToParts(now);
 
   // Reconstruct date object from parts to be "Midnight ET"
-  const y = parts.find(p => p.type === 'year')?.value;
-  const m = parts.find(p => p.type === 'month')?.value;
-  const d = parts.find(p => p.type === 'day')?.value;
-  
-  return new Date(`${y}-${m!.padStart(2, '0')}-${d!.padStart(2, '0')}`);
+  // Note: formatToParts already returns 2-digit padded values
+  const y = parts.find(p => p.type === 'year')?.value ?? '1970';
+  const m = parts.find(p => p.type === 'month')?.value ?? '01';
+  const d = parts.find(p => p.type === 'day')?.value ?? '01';
+
+  return new Date(`${y}-${m}-${d}`);
 };
 
 export const getEasternTimeISO = (): string => {
