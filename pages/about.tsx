@@ -75,19 +75,15 @@ const About = () => {
           </ul>
 
           <h3 className={styles.sectionSubtitle}>
-            Event Types
+            What Counts as a Golf Day
           </h3>
-          <p className={styles.textBlock}>We categorize each event into one of five types:</p>
-          <ul className={styles.contentList}>
-            <li><strong>Golf:</strong> Confirmed golfing on that day</li>
-            <li><strong>Arrival:</strong> Arrived at a golf resort but no confirmed golf activity</li>
-            <li><strong>Departure:</strong> Departed from a golf resort</li>
-            <li><strong>Golf + Arrival:</strong> Arrived and golfed on the same day</li>
-            <li><strong>Golf + Departure:</strong> Golfed and departed on the same day</li>
-          </ul>
+          <p className={styles.textBlock}>
+            We only count days with <strong>confirmed golf activity</strong>. A day is counted when there is evidence
+            from pool reports, photographs, or official schedules showing Trump at a golf course playing golf.
+          </p>
           <p className={styles.textBlock} style={{ fontStyle: 'italic', fontSize: '0.9rem' }}>
-            Note: We only count confirmed golf days. Days where Trump was merely present at a golf property without
-            confirmed golfing are tracked separately for transparency but not included in the golf day count.
+            Note: Days where Trump was merely present at a golf property without confirmed golfing activity
+            are not included in the count. We err on the side of caution and only count verified golf days.
           </p>
         </section>
 
