@@ -1,40 +1,77 @@
-import Head from 'next/head';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
 import Navbar from '../components/Navbar';
+import SEO from '../components/SEO';
 import styles from '../styles/Home.module.css';
+import { getStatusData } from '../data/status';
+import { calculateGolfStats } from '../utils/statsCalculator';
+import { isGolfEventType } from '../types';
 
-const CostBreakdown = () => {
+interface LocationCostData {
+  location: string;
+  days: number;
+  trips: number;
+  costPerTrip: number;
+  totalCost: number;
+}
+
+interface CostBreakdownProps {
+  locationData: LocationCostData[];
+  totalDays: number;
+  totalCost: number;
+}
+
+export const getStaticProps: GetStaticProps<CostBreakdownProps> = async () => {
+  const statusData = getStatusData();
+  const { events, locationCosts } = statusData;
+  const stats = calculateGolfStats(events, locationCosts);
+
+  // Count days by location
+  const daysByLocation: Record<string, number> = {};
+  Object.values(events).forEach((event) => {
+    if (isGolfEventType(event.type)) {
+      daysByLocation[event.location] = (daysByLocation[event.location] || 0) + 1;
+    }
+  });
+
+  // Count trips and costs by location
+  const tripsByLocation: Record<string, { trips: number; cost: number }> = {};
+  stats.trips.forEach((trip) => {
+    if (!tripsByLocation[trip.location]) {
+      tripsByLocation[trip.location] = { trips: 0, cost: 0 };
+    }
+    tripsByLocation[trip.location].trips++;
+    tripsByLocation[trip.location].cost += locationCosts[trip.location] || 0;
+  });
+
+  // Build location data array
+  const locationData: LocationCostData[] = Object.keys(daysByLocation)
+    .map((location) => ({
+      location,
+      days: daysByLocation[location],
+      trips: tripsByLocation[location]?.trips || 0,
+      costPerTrip: locationCosts[location] || 0,
+      totalCost: tripsByLocation[location]?.cost || 0,
+    }))
+    .sort((a, b) => b.totalCost - a.totalCost);
+
+  return {
+    props: {
+      locationData,
+      totalDays: stats.daysGolfed,
+      totalCost: stats.totalCost,
+    },
+  };
+};
+
+const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, totalCost }) => {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Trump Golf Cost to Taxpayers - Breakdown & Analysis | Is Trump Golfing Today?</title>
-        <meta name="description" content="Analysis of taxpayer costs for presidential golf trips." />
-        <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
-        {/* Open Graph Tags */}
-        <meta property="og:title" content="The Cost of Presidential Golf" />
-        <meta property="og:description" content="Breakdown of the $3.4M Mar-a-Lago weekends vs local trips, and see where costs come from." />
-        <meta property="og:image" content="https://istrumpgolfing.today/files/istrumpgolfing.webp" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              "itemListElement": [{
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://istrumpgolfing.today"
-              },{
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Cost Breakdown",
-                "item": "https://istrumpgolfing.today/cost-breakdown"
-              }]
-            })
-          }}
-        />
-      </Head>
+      <SEO
+        title="Trump Golf Cost to Taxpayers - Breakdown & Analysis | Is Trump Golfing Today?"
+        description="Analysis of taxpayer costs for presidential golf trips. See the breakdown of Mar-a-Lago weekends vs local trips."
+        path="/cost-breakdown/"
+      />
 
       <Navbar />
 
@@ -136,7 +173,7 @@ const CostBreakdown = () => {
         <section className={styles.sectionCard}>
           <h2 className={styles.sectionTitle}>Current Cost by Location</h2>
           <p className={styles.textBlock}>
-            Below is the breakdown of golf days and estimated taxpayer costs by location for the current term:
+            Below is the breakdown of golf trips and estimated taxpayer costs by location for the current term:
           </p>
           <div className={styles.tableContainer}>
             <table className={styles.dataTable}>
@@ -144,59 +181,34 @@ const CostBreakdown = () => {
                 <tr>
                   <th>Location</th>
                   <th>Days</th>
-                  <th>Cost/Day</th>
+                  <th>Trips</th>
+                  <th>Cost/Trip</th>
                   <th>Total</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Mar-a-Lago</td>
-                  <td>31</td>
-                  <td>$1,360,000</td>
-                  <td>$42,160,000</td>
-                </tr>
-                <tr>
-                  <td>Washington, DC</td>
-                  <td>32</td>
-                  <td>$100,000</td>
-                  <td>$3,200,000</td>
-                </tr>
-                <tr>
-                  <td>Bedminster, NJ</td>
-                  <td>15</td>
-                  <td>$140,000</td>
-                  <td>$2,100,000</td>
-                </tr>
-                <tr>
-                  <td>Scotland</td>
-                  <td>5</td>
-                  <td>$2,000,000</td>
-                  <td>$10,000,000</td>
-                </tr>
-                <tr>
-                  <td>Las Vegas, NV</td>
-                  <td>1</td>
-                  <td>$2,000,000</td>
-                  <td>$2,000,000</td>
-                </tr>
-                <tr>
-                  <td>Other Florida</td>
-                  <td>2</td>
-                  <td>$1,360,000</td>
-                  <td>$2,720,000</td>
-                </tr>
+                {locationData.map((loc) => (
+                  <tr key={loc.location}>
+                    <td>{loc.location}</td>
+                    <td>{loc.days}</td>
+                    <td>{loc.trips}</td>
+                    <td>${loc.costPerTrip.toLocaleString()}</td>
+                    <td>${loc.totalCost.toLocaleString()}</td>
+                  </tr>
+                ))}
                 <tr style={{ fontWeight: 'bold', borderTop: '2px solid var(--color-primary-orange)' }}>
                   <td>Total</td>
-                  <td>86</td>
+                  <td>{totalDays}</td>
+                  <td>{locationData.reduce((sum, loc) => sum + loc.trips, 0)}</td>
                   <td>—</td>
-                  <td>$62,180,000</td>
+                  <td>${totalCost.toLocaleString()}</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p className={styles.textBlock} style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '1rem' }}>
-            Note: Per-day costs are derived from GAO per-trip estimates divided by average trip length (~2.5 days).
-            These are conservative estimates based on publicly available government data.
+            Note: Costs are calculated per trip (consecutive golf days at same location = one trip).
+            Trip costs are based on GAO estimates. These are conservative estimates based on publicly available government data.
           </p>
         </section>
 

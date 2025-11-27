@@ -3,8 +3,10 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Navbar from '../components/Navbar';
+import SEO from '../components/SEO';
 import styles from '../styles/Home.module.css';
 import { getStatusData } from '../data/status';
+import { getEasternTimeDate } from '../utils/dateHelpers';
 import { EventData, GOLF_EVENT_TYPES } from '../types';
 
 interface TermStats {
@@ -21,8 +23,9 @@ interface ComparisonProps {
 export const getStaticProps: GetStaticProps<ComparisonProps> = async () => {
   const statusData = getStatusData();
   const termStart = statusData.termStart;
-  const today = new Date();
-  
+  // Use Eastern Time for consistent date calculations
+  const today = getEasternTimeDate();
+
   // Calculate days in office (ensure at least 1 to avoid division by zero)
   const daysInOffice = Math.max(
     1,
@@ -56,20 +59,14 @@ export const getStaticProps: GetStaticProps<ComparisonProps> = async () => {
 const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
   return (
     <div className={styles.container}>
+      <SEO
+        title="Trump Golf vs Other Presidents - Presidential Vacation Comparison"
+        description="Compare Trump's 293 golf days and 378 vacation days to Obama, Bush, Biden, etc. See which president took the most time off and how much it cost."
+        path="/comparison/"
+      />
+
       <Head>
-        <title>Trump Golf vs Other Presidents - Presidential Vacation Comparison</title>
-        <meta name="description" content="Compare Trump's 293 golf days and 378 vacation days to Obama, Bush, Biden, etc. See which president took the most time off and how much it cost." />
-        <meta name="keywords" content="trump golf vs obama, presidential vacation days, trump vacation comparison, how many days did trump golf, presidential golf comparison, biden vacation days" />
-        <link rel="canonical" href="https://istrumpgolfing.today/comparison/" />
-        <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
-
-        {/* Open Graph */}
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://istrumpgolfing.today/comparison" />
-        <meta property="og:title" content="Trump Golf vs Other Presidents - Complete Comparison" />
-        <meta property="og:description" content="Trump golfed 293 days in his first term (20%). See how this compares to Obama (333 days), Bush (1,020 days), and other presidents." />
-
-        {/* Structured Data */}
+        {/* Structured Data - kept in Head as SEO component doesn't handle JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -84,26 +81,6 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
               },
               "datePublished": "2025-11-09",
               "dateModified": lastUpdated
-            })
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              "itemListElement": [{
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://istrumpgolfing.today"
-              },{
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Presidential Comparison",
-                "item": "https://istrumpgolfing.today/comparison"
-              }]
             })
           }}
         />

@@ -1,30 +1,34 @@
 // hooks/useClickOutside.ts
-import { useEffect, RefObject, DependencyList } from "react";
+import { useEffect, RefObject } from "react";
 
 interface ClickOutsideHandler {
   (value: boolean): void;
 }
 
+/**
+ * Hook to detect clicks outside a referenced element.
+ * When a click outside is detected and isActive is true, calls handler(false).
+ */
 const useClickOutside = (
   ref: RefObject<HTMLElement | null>,
   handler: ClickOutsideHandler,
-  dependencies: DependencyList
+  isActive: boolean
 ) => {
   useEffect(() => {
+    if (!isActive) return;
+
     const handleClick = (event: globalThis.MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
         handler(false);
       }
     };
 
-    if (dependencies.some((dep) => dep)) {
-      document.addEventListener("mousedown", handleClick);
-    }
+    document.addEventListener("mousedown", handleClick);
 
     return () => {
       document.removeEventListener("mousedown", handleClick);
     };
-  }, dependencies);
+  }, [ref, handler, isActive]);
 };
 
 export default useClickOutside;

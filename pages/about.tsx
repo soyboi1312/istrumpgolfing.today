@@ -1,28 +1,22 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
+import SEO from '../components/SEO';
 import styles from '../styles/Home.module.css';
 
 /**
  * About & Methodology Page
- * * Explains the purpose, methodology, and data sources for the Trump golf tracker.
+ *
+ * Explains the purpose, methodology, and data sources for the Trump golf tracker.
  * Refactored to match the main site design.
  */
 const About = () => {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>About - Is Trump Golfing Today? Methodology & Sources</title>
-        <meta name="description" content="Learn how we track Trump's golf trips, our methodology for calculating costs, and the verified sources we use for all data on this presidential golf tracker." />
-        <meta name="keywords" content="trump golf tracker methodology, how to track presidential golf, trump golf data sources, presidential travel costs" />
-        <link rel="canonical" href="https://istrumpgolfing.today/about/" />
-        <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
-        
-        {/* Open Graph Tags */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="About Is Trump Golfing Today?" />
-        <meta property="og:description" content="Methodology, data sources, and cost calculation breakdown." />
-      </Head>
+      <SEO
+        title="About - Is Trump Golfing Today? Methodology & Sources"
+        description="Learn how we track Trump's golf trips, our methodology for calculating costs, and the verified sources we use for all data on this presidential golf tracker."
+        path="/about/"
+      />
 
       <Navbar />
 
