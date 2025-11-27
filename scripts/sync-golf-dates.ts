@@ -122,7 +122,7 @@ async function main() {
       const newEntries = newDates.map(({ date, location }) => `
         '${date}': {
             location: GolfLocation.${getLocationEnumKey(location)},
-            url: 'https://factba.se/biden/calendar',
+            url: 'url: 'https://rollcall.com/factbase/trump/topic/calendar',
             type: 'golf',
         },`).join('');
 
