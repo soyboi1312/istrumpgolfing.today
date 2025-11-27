@@ -58,7 +58,7 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
     <div className={styles.container}>
       <Head>
         <title>Trump Golf vs Other Presidents - Presidential Vacation Comparison</title>
-        <meta name="description" content="Compare Trump's 293 golf days and 378 vacation days to Obama, Bush, Biden, Clinton, Reagan. See which president took the most time off and how much it cost taxpayers." />
+        <meta name="description" content="Compare Trump's 293 golf days and 378 vacation days to Obama, Bush, Biden, etc. See which president took the most time off and how much it cost." />
         <meta name="keywords" content="trump golf vs obama, presidential vacation days, trump vacation comparison, how many days did trump golf, presidential golf comparison, biden vacation days" />
         <link rel="canonical" href="https://istrumpgolfing.today/comparison/" />
         <link rel="icon" href="/files/fav/icon.svg" type="image/svg+xml" />
