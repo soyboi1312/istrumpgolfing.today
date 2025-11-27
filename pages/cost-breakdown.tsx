@@ -103,7 +103,7 @@ const CostBreakdown = () => {
         <section className={styles.sectionCard}>
           <h2 className={styles.sectionTitle}>3. The "Local" Round</h2>
           <p className={styles.textBlock}>
-            <strong>Location:</strong> Sterling, VA (Trump National)<br/>
+            <strong>Location:</strong> Washington, DC<br/>
             <strong>Cost:</strong> &lt; $100,000
           </p>
           <p className={styles.textBlock}>
