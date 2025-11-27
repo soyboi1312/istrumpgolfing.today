@@ -149,16 +149,10 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
                   <td>20.1%</td>
                 </tr>
                 <tr>
-                  <td>Barack Obama (Term 1)</td>
+                  <td>Barack Obama (Term 1 & 2)</td>
                   <td>98</td>
-                  <td>1,461</td>
-                  <td>6.7%</td>
-                </tr>
-                <tr>
-                  <td>George W. Bush (Term 1)</td>
-                  <td>24</td>
-                  <td>1,461</td>
-                  <td>1.6%</td>
+                  <td>2,922</td>
+                  <td>3.35%</td>
                 </tr>
                 <tr>
                   <td>Bill Clinton (Term 1)</td>
@@ -167,10 +161,16 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
                   <td>1.6%</td>
                 </tr>
                 <tr>
-                  <td>Joe Biden (Full Term)</td>
+                  <td>Joe Biden (Term 1)</td>
                   <td>20</td>
                   <td>1,461</td>
                   <td>1.4%</td>
+                </tr>
+                <tr>
+                  <td>George W. Bush (Term 1 & 2)</td>
+                  <td>24</td>
+                  <td>2,922</td>
+                  <td>0.08%</td>
                 </tr>
               </tbody>
             </table>
