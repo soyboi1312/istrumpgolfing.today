@@ -133,7 +133,7 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
           <h2 className={styles.sectionTitle}>3. The "Local" Round</h2>
           <p className={styles.textBlock}>
             <strong>Location:</strong> Washington, DC<br/>
-            <strong>Cost:</strong> &lt; $100,000
+            <strong>Cost:</strong> &lt; $150,000
           </p>
           <p className={styles.textBlock}>
             The lowest-cost scenario. Because this location is near the White House, travel is conducted entirely by motorcade, <strong>eliminating all aircraft expenses</strong>—the largest component of travel costs. The total cost consists mainly of vehicle operations and personnel overtime.
