@@ -117,15 +117,15 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
           <h2 className={styles.sectionTitle}>2. The "Bedminster" Trip</h2>
           <p className={styles.textBlock}>
             <strong>Location:</strong> New Jersey<br/>
-            <strong>Cost:</strong> ~$1.1 Million per trip
+            <strong>Cost:</strong> ~$1.1 million per trip
           </p>
           <p className={styles.textBlock}>
-            A low-to-mid-range cost scenario. Due to its proximity to Washington, DC (~50 miles), these trips avoid the need for heavy cargo planes.
+            Trips to Bedminster cost approximately $1.1 million each. This cost is lower than florida trips because the President typically uses a smaller <strong>Boeing 757</strong> instead of the 747 (Air Force One).
           </p>
           <ul className={styles.contentList}>
-            <li>Travel relies primarily on <strong>Marine One</strong> helicopters and local aircraft support.</li>
-            <li>No heavy airlift (C-5M) required for motorcade.</li>
+            <li>Travel uses a smaller 757, reducing flight costs compared to the 747.</li>
             <li>No maritime security requirements.</li>
+            <li>Includes costs for secret Service protection and logistics.</li>
           </ul>
         </section>
 
