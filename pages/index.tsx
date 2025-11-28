@@ -214,7 +214,7 @@ const Home: React.FC<HomeProps> = ({
           <dl className={styles.statCard}>
             <dt className={styles.statLabel}>Days Golfed</dt>
             <dd className={styles.statValue}>
-                {hasMounted ? daysGolfed : "-"}
+              {daysGolfed}
             </dd>
             <dd className={styles.statSubtext}>
                 Out of {effectiveDaysSinceStart} days in office
