@@ -17,7 +17,11 @@ const SEO: React.FC<SEOProps> = ({
   path = "/",
   isGolfing
 }) => {
-  const url = `${SITE_URL}${path}`;
+  // FIX: Ensure path ends with a slash if it's not the root, 
+  // because trailingSlash: true is set in next.config.js.
+  // This prevents canonical URL mismatches (e.g., /about vs /about/).
+  const cleanPath = path === '/' ? path : path.replace(/\/$/, '') + '/';
+  const url = `${SITE_URL}${cleanPath}`;
   
   // Default to "Work Mode" (Presidential Seal)
   // If confirmed golfing, switch to Golf Mode
