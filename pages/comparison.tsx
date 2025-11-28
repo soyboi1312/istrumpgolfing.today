@@ -1,9 +1,9 @@
 /* pages/comparison.tsx */
 import Head from 'next/head';
-import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Navbar from '../components/Navbar';
 import SEO from '../components/SEO';
+import Footer from '../components/Footer';
 import styles from '../styles/Home.module.css';
 import { getStatusData } from '../data/status';
 import { getEasternTimeDate } from '../utils/dateHelpers';
@@ -310,15 +310,7 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
           </ul>
         </section>
 
-        <div className={styles.footer}>
-          <div className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink}>Home</Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/cost-breakdown" className={styles.footerLink}>Cost Breakdown</Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/about" className={styles.footerLink}>About</Link>
-          </div>
-        </div>
+        <Footer exclude={['comparison']} />
       </main>
     </div>
   );

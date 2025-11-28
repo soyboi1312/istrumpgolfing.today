@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import { useState } from 'react';
 import { GetStaticProps } from 'next';
 import Navbar from '../components/Navbar';
 import SEO from '../components/SEO';
+import Footer from '../components/Footer';
 import styles from '../styles/Home.module.css';
 import { getStatusData } from '../data/status';
 import { calculateGolfStats } from '../utils/statsCalculator';
@@ -83,28 +83,15 @@ const Embed: React.FC<EmbedProps> = ({ totalGolfDays, estimatedTotalCost }) => {
 
         <section className={styles.sectionCard}>
           <h2 className={styles.sectionTitle}>Preview</h2>
-          <div style={{
-            border: '1px solid #333',
-            borderRadius: '8px',
-            padding: '15px',
-            maxWidth: '300px',
-            background: '#1a1a1a',
-            margin: '0 auto'
-          }}>
-            <h3 style={{ margin: '0 0 10px 0', color: '#ffa500', fontFamily: 'Merriweather, serif' }}>Trump Golf Tracker</h3>
-            <p style={{ margin: '5px 0', color: '#fff' }}><strong>{totalGolfDays}</strong> days golfed</p>
-            <p style={{ margin: '5px 0', color: '#aaa' }}>Cost: ~${(estimatedTotalCost / 1000000).toFixed(1)}M</p>
-            <span style={{ color: '#ffa500', fontSize: '0.8rem', textDecoration: 'underline' }}>View Full Tracker &rarr;</span>
+          <div className={styles.widgetPreview}>
+            <h3 className={styles.widgetTitle}>Trump Golf Tracker</h3>
+            <p className={styles.widgetText}><strong>{totalGolfDays}</strong> days golfed</p>
+            <p className={styles.widgetTextMuted}>Cost: ~${(estimatedTotalCost / 1000000).toFixed(1)}M</p>
+            <span className={styles.widgetLink}>View Full Tracker &rarr;</span>
           </div>
         </section>
 
-        <div className={styles.footer}>
-           <div className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink}>Home</Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/about" className={styles.footerLink}>About</Link>
-          </div>
-        </div>
+        <Footer exclude={['embed']} />
       </main>
     </div>
   );

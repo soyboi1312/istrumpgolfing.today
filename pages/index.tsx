@@ -13,6 +13,7 @@ import { calculateGolfStats } from "../utils/statsCalculator";
 import Calendar from "../components/Calendar";
 import Navbar from "../components/Navbar";
 import SEO from "../components/SEO";
+import Footer from "../components/Footer";
 import { Events, EventData, TermStart, EventType } from "../types";
 
 interface HomeProps {
@@ -199,7 +200,7 @@ const Home: React.FC<HomeProps> = ({
                 <div className={styles.statusBadge}>
                   <span className={`${styles.statusPulse} ${isGolfingToday ? styles.statusPulseYes : styles.statusPulseNo}`} />
                   {/* Changed H1 to H2 for better hierarchy */}
-                  <h2 className={styles.statusText} style={{ margin: 0, display: 'inline' }}>
+                  <h2 className={`${styles.statusText} ${styles.statusTextInline}`}>
                     {isGolfingToday ? "YES, HE IS GOLFING" : "NO, HE IS NOT GOLFING"}
                   </h2>
                 </div>
@@ -368,54 +369,7 @@ const Home: React.FC<HomeProps> = ({
         )}
 
         {/* FOOTER AREA */}
-        <div className={styles.footer}>
-          <div className={styles.footerLinks}>
-            <Link href="/comparison" className={styles.footerLink}>
-                Presidential Comparison
-            </Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/cost-breakdown" className={styles.footerLink}>
-                Cost Breakdown
-            </Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/embed" className={styles.footerLink}>
-                Embed Widget
-            </Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/about" className={styles.footerLink}>
-                About
-            </Link>
-          </div>
-          
-          <p className={styles.disclaimer}>
-            This data is produced with publicly available information and is not
-            authorized or endorsed by any political organization.
-          </p>
-          
-          <p className={styles.disclaimer}>
-            Need to get ahold of us?{" "}
-            <a href="mailto:mail@istrumpgolfing.today" className={styles.contactLink}>
-              mail@istrumpgolfing.today
-            </a>
-          </p>
-          
-          <div className={styles.socialLink}>
-            <a
-              href="https://bsky.app/profile/istrumpgolfing.today"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Follow us on Bluesky"
-            >
-              <Image
-                src="/files/icons/bluesky.svg"
-                className={styles.socialIcon}
-                alt="Bluesky"
-                width={24}
-                height={24}
-              />
-            </a>
-          </div>
-        </div>
+        <Footer exclude={['home']} variant="full" />
 
       </main>
     </div>

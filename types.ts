@@ -1,4 +1,14 @@
 // types.ts
+
+/**
+ * Event types for presidential location tracking.
+ * - 'golf': Confirmed golfing activity
+ * - 'arrival'/'departure': Travel to/from locations (not counted as golf)
+ * - 'golf_arrival'/'golf_departure': Combined travel and golf events
+ *
+ * Note: Currently all events in status.ts use 'golf' type. Other types
+ * are supported for future detailed tracking or historical data import.
+ */
 export type EventType =
     | 'golf'
     | 'arrival'
@@ -38,7 +48,6 @@ export interface EventData {
     location: GolfLocation;
     url: string;
     type: EventType;
-    duration?: number | undefined;
 }
 
 export interface Events {
