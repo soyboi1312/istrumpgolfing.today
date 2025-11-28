@@ -498,10 +498,10 @@ export const statusData: StatusData = {
         [GolfLocation.JUPITER_FL]: 1360000,
         [GolfLocation.DORAL_FL]: 1360000,
         [GolfLocation.FLORIDA]: 1360000,
-        [GolfLocation.BEDMINSTER]: 140000,      // $350K per trip / ~2.5 days
-        [GolfLocation.NEW_JERSEY]: 140000,
-        [GolfLocation.PHILADELPHIA]: 140000,
-        [GolfLocation.STERLING_VA]: 100000,
+        [GolfLocation.BEDMINSTER]: 375000,
+        [GolfLocation.NEW_JERSEY]: 375000,
+        [GolfLocation.PHILADELPHIA]: 350000,
+        [GolfLocation.STERLING_VA]: 200000,
         [GolfLocation.WASHINGTON_DC]: 100000,   // Day trips, minimal additional cost
     }
 };
