@@ -196,8 +196,68 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
             </table>
           </div>
           <p className={`${styles.textBlock} ${styles.noteText}`}>
-            Note: Per-day costs are derived from GAO per-trip estimates divided by average trip length (~2.5 days).
-            These are conservative estimates based on publicly available government data.
+            <strong>Important:</strong> These figures represent <strong>minimum estimates</strong> based on golf days only.
+            Per-day costs are derived from GAO per-trip estimates divided by average trip length (~2.5 days).
+          </p>
+          <p className={`${styles.textBlock} ${styles.noteText}`}>
+            Actual costs are likely <strong>20-40% higher</strong> when accounting for arrival and departure days,
+            advance team deployments, and post-visit security operations. The full security apparatus—Air Force One,
+            Coast Guard, Secret Service—is deployed for the entire trip duration, not just golf days.
+          </p>
+        </section>
+
+        <section className={styles.sectionCard}>
+          <h2 className={styles.sectionTitle}>External Estimates & Validation</h2>
+          <p className={styles.textBlock}>
+            Independent analyses from news organizations and watchdog groups provide additional context for these estimates:
+          </p>
+          <div className={styles.tableContainer}>
+            <table className={styles.dataTable}>
+              <tbody>
+                <tr>
+                  <td>Second Term (2025) - External Estimate</td>
+                  <td>~$70.8 Million</td>
+                </tr>
+                <tr>
+                  <td>First Term Total (2017-2021)</td>
+                  <td>$151.5 Million</td>
+                </tr>
+                <tr>
+                  <td>Projected Full Second Term</td>
+                  <td>~$300 Million</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className={`${styles.textBlock} ${styles.noteText}`}>
+            Sources: Independent media reports based on GAO methodology and public records.
+            Variations between estimates reflect different counting methods and which expenses are included.
+          </p>
+        </section>
+
+        <section className={styles.sectionCard}>
+          <h2 className={styles.sectionTitle}>Additional Cost: Payments to Trump Properties</h2>
+          <p className={styles.textBlock}>
+            Beyond travel and security costs, taxpayer money flows <strong>directly to Trump-owned businesses</strong> when
+            the Secret Service rents rooms, golf carts, and facilities at his properties.
+          </p>
+          <div className={styles.tableContainer}>
+            <table className={styles.dataTable}>
+              <tbody>
+                <tr>
+                  <td>Secret Service at Trump Properties (2025)</td>
+                  <td>~$100,000</td>
+                </tr>
+                <tr>
+                  <td>Golf Carts & Portable Toilets (Bedminster)</td>
+                  <td>$600,000+</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className={`${styles.textBlock} ${styles.noteText}`}>
+            Source: Citizens for Responsibility and Ethics in Washington (CREW) via FOIA requests.
+            These payments represent revenue to Trump&apos;s businesses on top of the travel costs tracked above.
           </p>
         </section>
 
