@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Navbar from '../components/Navbar';
 import SEO from '../components/SEO';
+import Footer from '../components/Footer';
 import styles from '../styles/Home.module.css';
 import { getStatusData } from '../data/status';
 import { calculateGolfStats } from '../utils/statsCalculator';
@@ -186,7 +186,7 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
                     <td>${loc.totalCost.toLocaleString()}</td>
                   </tr>
                 ))}
-                <tr style={{ fontWeight: 'bold', borderTop: '2px solid var(--color-primary-orange)' }}>
+                <tr className={styles.tableTotalRow}>
                   <td>Total</td>
                   <td>{totalDays}</td>
                   <td>—</td>
@@ -195,21 +195,13 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
               </tbody>
             </table>
           </div>
-          <p className={styles.textBlock} style={{ fontSize: '0.85rem', fontStyle: 'italic', marginTop: '1rem' }}>
+          <p className={`${styles.textBlock} ${styles.noteText}`}>
             Note: Per-day costs are derived from GAO per-trip estimates divided by average trip length (~2.5 days).
             These are conservative estimates based on publicly available government data.
           </p>
         </section>
 
-        <div className={styles.footer}>
-           <div className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink}>Home</Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/comparison" className={styles.footerLink}>Presidential Comparison</Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/about" className={styles.footerLink}>About</Link>
-          </div>
-        </div>
+        <Footer exclude={['cost-breakdown']} />
       </main>
     </div>
   );

@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import SEO from '../components/SEO';
+import Footer from '../components/Footer';
 import styles from '../styles/Home.module.css';
 
 /**
@@ -75,7 +75,7 @@ const About = () => {
             We only count days with <strong>confirmed golf activity</strong>. A day is counted when there is evidence
             from pool reports, photographs, or official schedules showing Trump at a golf course playing golf.
           </p>
-          <p className={styles.textBlock} style={{ fontStyle: 'italic', fontSize: '0.9rem' }}>
+          <p className={`${styles.textBlock} ${styles.noteText}`}>
             Note: Days where Trump was merely present at a golf property without confirmed golfing activity
             are not included in the count. We err on the side of caution and only count verified golf days.
           </p>
@@ -124,7 +124,7 @@ const About = () => {
             <li>
               <strong>Factbase/Rollcall Presidential Calendar:</strong> The official presidential public schedule
               compiled by Factbase at{' '}
-              <a href="https://rollcall.com/factbase/trump/topic/calendar/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-orange)' }}>
+              <a href="https://rollcall.com/factbase/trump/topic/calendar/" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
                 rollcall.com/factbase/trump/topic/calendar/
               </a>
             </li>
@@ -139,7 +139,7 @@ const About = () => {
           </h3>
           <p className={styles.textBlock}>
             We strive for 100% accuracy. If you find an error in our data, please email us at{' '}
-            <a href="mailto:mail@istrumpgolfing.today" style={{ color: 'var(--color-primary-orange)' }}>
+            <a href="mailto:mail@istrumpgolfing.today" className={styles.orangeLink}>
               mail@istrumpgolfing.today
             </a>{' '}
             with:
@@ -187,30 +187,20 @@ const About = () => {
           <ul className={styles.contentList}>
             <li>
               Email:{' '}
-              <a href="mailto:mail@istrumpgolfing.today" style={{ color: 'var(--color-primary-orange)' }}>
+              <a href="mailto:mail@istrumpgolfing.today" className={styles.orangeLink}>
                 mail@istrumpgolfing.today
               </a>
             </li>
             <li>
               Bluesky:{' '}
-              <a href="https://bsky.app/profile/istrumpgolfing.today" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-orange)' }}>
+              <a href="https://bsky.app/profile/istrumpgolfing.today" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
                 @istrumpgolfing.today
               </a>
             </li>
           </ul>
         </section>
 
-        <div className={styles.footer}>
-          <div className={styles.footerLinks}>
-            <Link href="/" className={styles.footerLink}>Home</Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/comparison" className={styles.footerLink}>Comparison</Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/cost-breakdown" className={styles.footerLink}>Cost Breakdown</Link>
-            <span className={styles.footerSeparator}>|</span>
-            <Link href="/embed" className={styles.footerLink}>Embed Widget</Link>
-          </div>
-        </div>
+        <Footer exclude={['about']} />
       </main>
     </div>
   );

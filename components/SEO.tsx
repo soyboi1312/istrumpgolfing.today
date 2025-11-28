@@ -1,22 +1,23 @@
 // components/SEO.tsx
 import Head from 'next/head';
+import { SITE_URL, DEFAULT_OG_IMAGE } from '../utils/constants';
 
 interface SEOProps {
   title: string;
   description?: string;
   image?: string;
   path?: string;
-  isGolfing?: boolean; 
+  isGolfing?: boolean;
 }
 
-const SEO: React.FC<SEOProps> = ({ 
-  title, 
-  description = "See live updates on presidential golf trips and taxpayer costs.", 
-  image = "https://istrumpgolfing.today/files/istrumpgolfing.webp",
+const SEO: React.FC<SEOProps> = ({
+  title,
+  description = "See live updates on presidential golf trips and taxpayer costs.",
+  image = DEFAULT_OG_IMAGE,
   path = "/",
   isGolfing
 }) => {
-  const url = `https://istrumpgolfing.today${path}`;
+  const url = `${SITE_URL}${path}`;
   
   // Default to "Work Mode" (Presidential Seal)
   // If confirmed golfing, switch to Golf Mode
