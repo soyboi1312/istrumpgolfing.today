@@ -502,7 +502,7 @@ export const statusData: StatusData = {
         [GolfLocation.NEW_JERSEY]: 375000,
         [GolfLocation.PHILADELPHIA]: 350000,
         [GolfLocation.STERLING_VA]: 200000,
-        [GolfLocation.WASHINGTON_DC]: 100000,   // Day trips, minimal additional cost
+        [GolfLocation.WASHINGTON_DC]: 150000,   // Day trips, minimal additional cost
     }
 };
 
