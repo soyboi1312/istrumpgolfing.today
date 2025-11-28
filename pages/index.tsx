@@ -57,8 +57,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
         totalCost: stats.totalCost,
         daysSinceStart,
         percentage
-      },
-      // REMOVED: revalidate is not compatible with "output: export"
+      }
     };
   } catch (error) {
     return {
@@ -113,10 +112,10 @@ const Home: React.FC<HomeProps> = ({
 
   useClickOutside(modalRef, setModalOpen, modalOpen);
 
-  // We still use this hook for "isGolfingToday" live status
   const { isGolfingToday } = useTermDates(termStart, events);
 
   const statusImage = isGolfingToday ? "/files/golf.webp" : "/files/sad.webp";
+  const formattedTotal = (totalCost || 0).toLocaleString('en-US', { maximumFractionDigits: 0 });
 
   return (
     <div className={styles.container}>
@@ -134,8 +133,7 @@ const Home: React.FC<HomeProps> = ({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Is Trump Golfing Today?",
-              "url": "https://istrumpgolfing.today",
-              }
+              "url": "https://istrumpgolfing.today"
             })
           }}
         />
