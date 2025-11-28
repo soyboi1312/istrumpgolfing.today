@@ -201,8 +201,8 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
           </p>
           <p className={`${styles.textBlock} ${styles.noteText}`}>
             Actual costs are likely <strong>20-40% higher</strong> when accounting for arrival and departure days,
-            advance team deployments, and post-visit security operations. The full security apparatus—Air Force One,
-            Coast Guard, Secret Service—is deployed for the entire trip duration, not just golf days.
+            advance team deployments, and post-visit security operations. The full security apparatus (Air Force One,
+            Coast Guard, Secret Service) is deployed for the entire trip duration, not just golf days.
           </p>
         </section>
 
