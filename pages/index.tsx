@@ -21,14 +21,32 @@ interface HomeProps {
   termStart: TermStart;
   daysGolfed: number;
   totalCost: number;
+  // NEW: Pre-calculated props for SEO/SSR
+  daysSinceStart: number;
+  percentage: string;
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
     const statusData = getStatusData();
     
-    // Calculate stats at build time to prevent client-side layout shift
+    // Calculate stats at build time
     const stats = calculateGolfStats(statusData.events, statusData.locationCosts);
+
+    // NEW: Calculate time-based stats on the server for SEO
+    // This ensures Google sees "20%" instead of "-%"
+    const termStartDate = new Date(
+        statusData.termStart.getFullYear(),
+        statusData.termStart.getMonth(),
+        statusData.termStart.getDate()
+    );
+    
+    // Use current time for build; Math.max ensures we don't divide by zero or negative
+    const now = new Date();
+    const diffTime = now.getTime() - termStartDate.getTime();
+    const daysSinceStart = Math.max(Math.floor(diffTime / (1000 * 3600 * 24)), 1);
+    
+    const percentage = ((stats.daysGolfed / daysSinceStart) * 100).toFixed(1);
 
     return {
       props: {
@@ -40,7 +58,11 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
         },
         daysGolfed: stats.daysGolfed,
         totalCost: stats.totalCost,
+        daysSinceStart,
+        percentage
       },
+      // Optional: Revalidate every hour to keep "daysSinceStart" relatively fresh
+      revalidate: 3600, 
     };
   } catch (error) {
     return {
@@ -49,6 +71,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
         termStart: { year: 2025, month: 1, day: 20 },
         daysGolfed: 0,
         totalCost: 0,
+        daysSinceStart: 1,
+        percentage: "0.0"
       },
     };
   }
@@ -79,6 +103,8 @@ const Home: React.FC<HomeProps> = ({
   termStart,
   daysGolfed,
   totalCost,
+  daysSinceStart,
+  percentage
 }) => {
   const hasMounted = useHasMounted();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -92,10 +118,9 @@ const Home: React.FC<HomeProps> = ({
   // Use the extracted hook - closes modal when clicking outside
   useClickOutside(modalRef, setModalOpen, modalOpen);
 
-  const { daysSinceStart, isGolfingToday } = useTermDates(termStart, events);
-
-  const effectiveDaysSinceStart = Math.max(daysSinceStart || 0, 1);
-  const percentage = ((daysGolfed / effectiveDaysSinceStart) * 100).toFixed(1);
+  // We still use this hook for "isGolfingToday" live status,
+  // but we use props for the hard numbers to improve SEO/CLS.
+  const { isGolfingToday } = useTermDates(termStart, events);
 
   const statusImage = isGolfingToday ? "/files/golf.webp" : "/files/sad.webp";
 
@@ -104,12 +129,29 @@ const Home: React.FC<HomeProps> = ({
       <SEO 
         title="Is Trump Golfing Today? | Live Presidential Golf Tracker"
         description="Real-time tracker for Donald Trump's presidential golf trips, taxpayer costs, and stats."
-        // FIXED: Convert null to undefined to satisfy TypeScript interface
         isGolfing={isGolfingToday ?? undefined}
       />
       
       <Head>
-        {/* Structured Data (JSON-LD) kept in Head as SEO component doesn't accept children */}
+        {/* NEW: WebSite Schema to establish authority */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Is Trump Golfing Today?",
+              "url": "https://istrumpgolfing.today",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://istrumpgolfing.today/?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
+
+        {/* Structured Data (Dataset) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -179,7 +221,6 @@ const Home: React.FC<HomeProps> = ({
 
       <main className={styles.main}>
         
-        {/* Visible H1 for SEO and UX */}
         <h1 className={styles.pageTitle}>
           Donald Trump Presidential Golf Tracker & Statistics
         </h1>
@@ -199,7 +240,6 @@ const Home: React.FC<HomeProps> = ({
               <div>
                 <div className={styles.statusBadge}>
                   <span className={`${styles.statusPulse} ${isGolfingToday ? styles.statusPulseYes : styles.statusPulseNo}`} />
-                  {/* Changed H1 to H2 for better hierarchy */}
                   <h2 className={`${styles.statusText} ${styles.statusTextInline}`}>
                     {isGolfingToday ? "YES, HE IS GOLFING" : "NO, HE IS NOT GOLFING"}
                   </h2>
@@ -210,6 +250,7 @@ const Home: React.FC<HomeProps> = ({
         </section>
 
         {/* STATS DASHBOARD */}
+        {/* IMPROVEMENT: Values now render Server-Side, improving SEO indexing */}
         <div className={styles.statsGrid}>
           <dl className={styles.statCard}>
             <dt className={styles.statLabel}>Days Golfed</dt>
@@ -217,14 +258,14 @@ const Home: React.FC<HomeProps> = ({
               {daysGolfed}
             </dd>
             <dd className={styles.statSubtext}>
-                Out of {effectiveDaysSinceStart} days in office
+                Out of {daysSinceStart} days in office
             </dd>
           </dl>
 
           <dl className={styles.statCard}>
             <dt className={styles.statLabel}>Time Spent</dt>
             <dd className={styles.statValue}>
-                {hasMounted ? `${percentage}%` : "-%"}
+                {percentage}%
             </dd>
             <dd className={styles.statSubtext}>
                 Of his presidency so far
@@ -234,8 +275,7 @@ const Home: React.FC<HomeProps> = ({
           <dl className={styles.statCard}>
             <dt className={styles.statLabel}>Taxpayer Cost</dt>
             <dd className={`${styles.statValue} ${styles.statValueHighlight}`}>
-                {/* Use the prop passed from getStaticProps */}
-                {hasMounted ? `$${(totalCost / 1000000).toFixed(1)}M` : "$-M"}
+                ${(totalCost / 1000000).toFixed(1)}M
             </dd>
             <dd className={styles.statSubtext}>
                 Estimated travel expenses
@@ -313,7 +353,7 @@ const Home: React.FC<HomeProps> = ({
             >
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
                 <title>Reddit icon</title>
-                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 1.249.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
               </svg>
               Reddit
             </a>

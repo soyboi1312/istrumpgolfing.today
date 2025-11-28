@@ -4,6 +4,3 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://istrumpgolfing.today/sitemap.xml
-
-# Crawl-delay (optional, for politeness)
-Crawl-delay: 1
