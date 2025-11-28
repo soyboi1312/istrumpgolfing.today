@@ -1,7 +1,7 @@
 /* pages/index.tsx */
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next-image-export-optimizer";
 import { useState, useRef } from "react";
 import { GetStaticProps } from "next";
 import { getStatusData } from "../data/status";
