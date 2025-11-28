@@ -63,7 +63,7 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
         title="Trump Golf Cost to Taxpayers - Breakdown & Analysis | Is Trump Golfing Today?"
         description="See the detailed taxpayer cost breakdown for presidential golf trips. Analysis includes expenses for Mar-a-Lago, Bedminster, and local outings." 
         path="/cost-breakdown/"
-      />
+      >
 
       <Navbar />
 
