@@ -59,9 +59,9 @@ export const getStaticProps: GetStaticProps<CostBreakdownProps> = async () => {
 const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, totalCost }) => {
   return (
     <div className={styles.container}>
-      <SEO
+      ‹SEO
         title="Trump Golf Cost to Taxpayers - Breakdown & Analysis | Is Trump Golfing Today?"
-        description="Analysis of taxpayer costs for presidential golf trips. See the breakdown of Mar-a-Lago weekends vs local trips."
+        description="See the detailed taxpayer cost breakdown for presidential golf trips. Analysis includes expenses for Mar-a-Lago, Bedminster, and local outings." 
         path="/cost-breakdown/"
       />
 
