@@ -135,10 +135,6 @@ const Home: React.FC<HomeProps> = ({
               "@type": "WebSite",
               "name": "Is Trump Golfing Today?",
               "url": "https://istrumpgolfing.today",
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://istrumpgolfing.today/?q={search_term_string}",
-                "query-input": "required name=search_term_string"
               }
             })
           }}
@@ -175,7 +171,7 @@ const Home: React.FC<HomeProps> = ({
                   "name": "Is Trump golfing today?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "This website tracks Donald Trump's golf trips in real-time, showing whether he is golfing today and providing historical data on all his golf outings during his presidency."
+                    "text": `As of today, we are tracking Donald Trump's golf trips in real-time. Currently, the status is: ${isGolfingToday ? "YES, HE IS GOLFING" : "NO, HE IS NOT GOLFING"}. Check the site for the latest verified data.`
                   }
                 },
                 {
@@ -183,7 +179,7 @@ const Home: React.FC<HomeProps> = ({
                   "name": "How much do Trump's golf trips cost taxpayers?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Trump's golf trips cost taxpayers varying amounts depending on location: Mar-a-Lago trips cost approximately $3.4 million per weekend, Bedminster trips cost around $350,000, and local DC trips cost under $100,000. During his first term, golf trips cost taxpayers $151.5 million total."
+                    "text": `So far in this term, Trump's golf trips have cost taxpayers approximately $${formattedTotal}. Locations vary in cost: Mar-a-Lago trips cost ~$3.4M per weekend, while Bedminster is around $350k.`
                   }
                 },
                 {
@@ -191,7 +187,7 @@ const Home: React.FC<HomeProps> = ({
                   "name": "How many days has Trump golfed as president?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "During his first term, Donald Trump golfed 293 days out of 1,461 days in office (20%). The website tracks all golf days with verified sources and real-time updates for his current term."
+                    "text": `In his current term, Donald Trump has golfed ${daysGolfed} days out of ${daysSinceStart} days in office (${percentage}%). During his first term, he golfed 293 days (20% of his presidency).`
                   }
                 },
                 {

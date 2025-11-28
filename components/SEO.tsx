@@ -31,9 +31,10 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
       
-      {/* FIX: Added 'key' to force replacement and '?v=' to bust browser cache.
-         The 'key' ensures Next.js knows this is the SAME tag changing, not a new one.
-      */}
+      {/* ADDED: Explicitly control crawling behavior */}
+      <meta name="robots" content="index, follow" />
+      
+      {/* FIX: Added 'key' to force replacement and '?v=' to bust browser cache. */}
       <link 
         rel="icon" 
         type="image/svg+xml" 
