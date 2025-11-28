@@ -117,7 +117,7 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
           <h2 className={styles.sectionTitle}>2. The "Bedminster" Trip</h2>
           <p className={styles.textBlock}>
             <strong>Location:</strong> New Jersey<br/>
-            <strong>Cost:</strong> ~$350,000 per trip
+            <strong>Cost:</strong> ~$1.1 Million per trip
           </p>
           <p className={styles.textBlock}>
             A low-to-mid-range cost scenario. Due to its proximity to Washington, DC (~50 miles), these trips avoid the need for heavy cargo planes.
