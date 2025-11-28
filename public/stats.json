@@ -1,7 +1,7 @@
 {
   "termStart": "2025-01-20",
   "currentDate": "2025-11-27",
-  "daysSinceStart": 311,
+  "daysSinceStart": 310,
   "totalGolfDays": 86,
   "percentageGolfed": "27.7",
   "estimatedTotalCost": 62180000,
@@ -78,7 +78,7 @@
   ],
   "metadata": {
     "dataVersion": "2.0",
-    "lastUpdated": "2025-11-28T00:14:34.393Z",
+    "lastUpdated": "2025-11-28T00:23:08.339Z",
     "attribution": "Is Trump Golfing Today?",
     "website": "https://istrumpgolfing.today"
   }
