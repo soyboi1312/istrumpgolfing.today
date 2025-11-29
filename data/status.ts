@@ -13,6 +13,11 @@ interface StatusData {
  */
 export const statusData: StatusData = {
     events: {
+        '2025-11-28': {
+            location: GolfLocation.MAR_A_LAGO,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar',
+            type: 'golf',
+        },
         // ========================================
         // November 2025
         // ========================================
