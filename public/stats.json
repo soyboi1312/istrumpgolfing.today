@@ -1,9 +1,9 @@
 {
   "termStart": "2025-01-20",
-  "currentDate": "2025-11-28",
-  "daysSinceStart": 311,
+  "currentDate": "2025-11-29",
+  "daysSinceStart": 312,
   "totalGolfDays": 87,
-  "percentageGolfed": "28.0",
+  "percentageGolfed": "27.9",
   "estimatedTotalCost": 69040000,
   "golfDaysByLocation": {
     "Mar-a-Lago": 32,
@@ -78,7 +78,7 @@
   ],
   "metadata": {
     "dataVersion": "2.0",
-    "lastUpdated": "2025-11-29T04:51:50.726Z",
+    "lastUpdated": "2025-11-29T08:00:02.827Z",
     "attribution": "Is Trump Golfing Today?",
     "website": "https://istrumpgolfing.today"
   }
