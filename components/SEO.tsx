@@ -22,12 +22,6 @@ const SEO: React.FC<SEOProps> = ({
   // This prevents canonical URL mismatches (e.g., /about vs /about/).
   const cleanPath = path === '/' ? path : path.replace(/\/$/, '') + '/';
   const url = `${SITE_URL}${cleanPath}`;
-  
-  // Default to "Work Mode" (Presidential Seal)
-  // If confirmed golfing, switch to Golf Mode
-  const favicon = isGolfing === true
-    ? "/files/fav/golf-mode.svg"
-    : "/files/fav/work-mode.svg";
 
   return (
     <Head>
@@ -38,15 +32,8 @@ const SEO: React.FC<SEOProps> = ({
       {/* ADDED: Explicitly control crawling behavior */}
       <meta name="robots" content="index, follow" />
       
-      {/* FIX: Added 'key' to force replacement and '?v=' to bust browser cache. */}
-      <link 
-        rel="icon" 
-        type="image/svg+xml" 
-        href={`${favicon}?v=1`} 
-        key="dynamic-favicon" 
-      />
-      
-      <link rel="alternate icon" href="/files/fav/favicon.ico" /> 
+      {/* Changed to use static favicon.ico instead of dynamic SVGs */}
+      <link rel="icon" href="/files/fav/favicon.ico" sizes="any" />
       
       {/* Open Graph */}
       <meta property="og:type" content="website" />
