@@ -2,11 +2,11 @@
   "termStart": "2025-01-20",
   "currentDate": "2025-11-30",
   "daysSinceStart": 313,
-  "totalGolfDays": 88,
-  "percentageGolfed": "28.1",
-  "estimatedTotalCost": 70400000,
+  "totalGolfDays": 89,
+  "percentageGolfed": "28.4",
+  "estimatedTotalCost": 71760000,
   "golfDaysByLocation": {
-    "Mar-a-Lago": 33,
+    "Mar-a-Lago": 34,
     "Washington, DC": 32,
     "Bedminster, NJ": 15,
     "Scotland": 5,
@@ -15,6 +15,12 @@
     "Las Vegas, NV": 1
   },
   "recentGolfDays": [
+    {
+      "date": "2025-11-30",
+      "location": "Mar-a-Lago",
+      "type": "golf",
+      "source": "https://rollcall.com/factbase/trump/topic/calendar"
+    },
     {
       "date": "2025-11-29",
       "location": "Mar-a-Lago",
@@ -68,17 +74,11 @@
       "location": "Mar-a-Lago",
       "type": "golf",
       "source": "https://rollcall.com/factbase/trump/topic/calendar/"
-    },
-    {
-      "date": "2025-10-19",
-      "location": "Mar-a-Lago",
-      "type": "golf",
-      "source": "https://rollcall.com/factbase/trump/topic/calendar/"
     }
   ],
   "metadata": {
     "dataVersion": "2.0",
-    "lastUpdated": "2025-11-30T20:00:03.065Z",
+    "lastUpdated": "2025-11-30T22:00:03.441Z",
     "attribution": "Is Trump Golfing Today?",
     "website": "https://istrumpgolfing.today"
   }
