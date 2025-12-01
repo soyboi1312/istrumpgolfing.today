@@ -61,6 +61,20 @@ const Footer: React.FC<FooterProps> = ({ exclude = [], variant = 'minimal' }) =>
                 height={24}
               />
             </a>
+            <a
+              href="https://x.com/istrumpgolfing_"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Follow us on X"
+            >
+              <Image
+                src="/files/icons/x.svg"
+                className={styles.socialIcon}
+                alt="X"
+                width={24}
+                height={24}
+              />
+            </a>
           </div>
         </>
       )}
