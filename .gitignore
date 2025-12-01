@@ -23,7 +23,11 @@ yarn-debug.log*
 yarn-error.log*
 
 # Local env files
+.env
 .env*.local
+
+# Social posting tracker
+.last-social-post
 
 # Vercel
 .vercel

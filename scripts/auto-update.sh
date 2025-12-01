@@ -62,4 +62,8 @@ git commit -m "Auto-update golf data ($DATE_TODAY)
 echo "[$(date)] Pushing to GitHub..."
 git push
 
+# 6. Post to social media if today is a golf day
+echo "[$(date)] Checking social media posting..."
+npx tsx scripts/post-social.ts || echo "[$(date)] Social posting skipped or failed"
+
 echo "[$(date)] Done! Changes pushed to GitHub."
