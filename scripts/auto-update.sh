@@ -40,13 +40,15 @@ npx tsx scripts/sync-golf-dates.ts
 echo "[$(date)] Generating stats..."
 npx tsx scripts/generate-stats.ts
 
-# 4. Check if there are any changes to commit
-if git diff --quiet && git diff --cached --quiet; then
-    echo "[$(date)] No changes detected. Done."
+# 4. Check if status.ts has actual golf data changes (not just stats.json timestamp updates)
+if git diff --quiet data/status.ts; then
+    echo "[$(date)] No new golf data. Skipping commit to conserve build minutes."
+    # Reset any stats.json changes since we're not committing
+    git checkout -- public/stats.json data/rollcall_calendar.json 2>/dev/null || true
     exit 0
 fi
 
-# 5. Commit and push changes
+# 5. Commit and push changes (only when status.ts has new data)
 echo "[$(date)] Changes detected, committing..."
 git add data/rollcall_calendar.json data/status.ts public/stats.json
 
