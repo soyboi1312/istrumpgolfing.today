@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import SEO from '../components/SEO';
 import Footer from '../components/Footer';
@@ -61,9 +62,50 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
     <div className={styles.container}>
       <SEO
         title="Trump Golf Cost to Taxpayers - Breakdown & Analysis Is Trump Golfing"
-        description="See the detailed taxpayer cost breakdown for presidential golf trips. Analysis includes expenses for Mar-a-Lago, Bedminster, and local outings." 
+        description="See the detailed taxpayer cost breakdown for presidential golf trips. Analysis includes expenses for Mar-a-Lago, Bedminster, and local outings."
         path="/cost-breakdown/"
       />
+
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "headline": "Trump Golf Taxpayer Cost Breakdown",
+              "description": `Detailed analysis of the taxpayer cost for presidential golf trips. Current estimated cost: $${(totalCost / 1000000).toFixed(1)} million.`,
+              "author": {
+                "@type": "Organization",
+                "name": "Is Trump Golfing Today"
+              },
+              "articleBody": `Current estimated taxpayer cost is $${(totalCost / 1000000).toFixed(1)} million across ${totalDays} golf days.`,
+              "datePublished": "2025-01-20",
+              "dateModified": new Date().toISOString()
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://istrumpgolfing.today"
+              }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Cost Breakdown",
+                "item": "https://istrumpgolfing.today/cost-breakdown/"
+              }]
+            })
+          }}
+        />
+      </Head>
 
       <Navbar />
 

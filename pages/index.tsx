@@ -215,7 +215,7 @@ const Home: React.FC<HomeProps> = ({
             <>
               <Image
                 src={statusImage}
-                alt={isGolfingToday ? "Donald Trump Golfing at Mar-a-Lago" : "Donald Trump working"}
+                alt={isGolfingToday ? "Donald Trump Golfing at Mar-a-Lago" : "Donald Trump at the White House (Not Golfing)"}
                 className={styles.golfImage}
                 width={180}
                 height={180}
