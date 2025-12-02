@@ -7,7 +7,6 @@ interface SEOProps {
   description?: string;
   image?: string;
   path?: string;
-  isGolfing?: boolean;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -15,9 +14,8 @@ const SEO: React.FC<SEOProps> = ({
   description = "See live updates on presidential golf trips and taxpayer costs.",
   image = DEFAULT_OG_IMAGE,
   path = "/",
-  isGolfing
 }) => {
-  // FIX: Ensure path ends with a slash if it's not the root, 
+  // FIX: Ensure path ends with a slash if it's not the root,
   // because trailingSlash: true is set in next.config.js.
   // This prevents canonical URL mismatches (e.g., /about vs /about/).
   const cleanPath = path === '/' ? path : path.replace(/\/$/, '') + '/';
@@ -28,7 +26,7 @@ const SEO: React.FC<SEOProps> = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
-      
+
       {/* ADDED: Explicitly control crawling behavior */}
       <meta name="robots" content="index, follow" />
       
@@ -41,7 +39,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      
+
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
