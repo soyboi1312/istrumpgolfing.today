@@ -128,7 +128,6 @@ const Home: React.FC<HomeProps> = ({
       <SEO
         title={dynamicTitle}
         description={dynamicDescription}
-        isGolfing={isGolfingToday ?? undefined}
       />
       
       <Head>
