@@ -13,6 +13,21 @@ interface StatusData {
  */
 export const statusData: StatusData = {
     events: {
+        '2025-11-30': {
+            location: GolfLocation.MAR_A_LAGO,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar',
+            type: 'golf',
+        },
+        '2025-11-29': {
+            location: GolfLocation.MAR_A_LAGO,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar',
+            type: 'golf',
+        },
+        '2025-11-28': {
+            location: GolfLocation.MAR_A_LAGO,
+            url: 'https://rollcall.com/factbase/trump/topic/calendar',
+            type: 'golf',
+        },
         // ========================================
         // November 2025
         // ========================================
@@ -498,11 +513,11 @@ export const statusData: StatusData = {
         [GolfLocation.JUPITER_FL]: 1360000,
         [GolfLocation.DORAL_FL]: 1360000,
         [GolfLocation.FLORIDA]: 1360000,
-        [GolfLocation.BEDMINSTER]: 375000,
-        [GolfLocation.NEW_JERSEY]: 375000,
-        [GolfLocation.PHILADELPHIA]: 350000,
+        [GolfLocation.BEDMINSTER]: 400000,
+        [GolfLocation.NEW_JERSEY]: 400000,
+        [GolfLocation.PHILADELPHIA]: 400000,
         [GolfLocation.STERLING_VA]: 200000,
-        [GolfLocation.WASHINGTON_DC]: 100000,   // Day trips, minimal additional cost
+        [GolfLocation.WASHINGTON_DC]: 150000,   // Day trips, minimal additional cost
     }
 };
 

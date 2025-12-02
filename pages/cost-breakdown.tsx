@@ -176,7 +176,7 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
           <h2 className={styles.sectionTitle}>3. The "Local" Round</h2>
           <p className={styles.textBlock}>
             <strong>Location:</strong> Washington, DC<br/>
-            <strong>Cost:</strong> &lt; $100,000
+            <strong>Cost:</strong> &lt; $150,000
           </p>
           <p className={styles.textBlock}>
             The lowest-cost scenario. Because this location is near the White House, travel is conducted entirely by motorcade, <strong>eliminating all aircraft expenses</strong>—the largest component of travel costs. The total cost consists mainly of vehicle operations and personnel overtime.
@@ -244,8 +244,8 @@ const CostBreakdown: React.FC<CostBreakdownProps> = ({ locationData, totalDays, 
           </p>
           <p className={`${styles.textBlock} ${styles.noteText}`}>
             Actual costs are likely <strong>20-40% higher</strong> when accounting for arrival and departure days,
-            advance team deployments, and post-visit security operations. The full security apparatus—Air Force One,
-            Coast Guard, Secret Service—is deployed for the entire trip duration, not just golf days.
+            advance team deployments, and post-visit security operations. The full security apparatus (Air Force One,
+            Coast Guard, Secret Service) is deployed for the entire trip duration, not just golf days.
           </p>
         </section>
 

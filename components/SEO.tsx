@@ -29,9 +29,10 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* ADDED: Explicitly control crawling behavior */}
       <meta name="robots" content="index, follow" />
-
-      <link rel="icon" href="/files/fav/favicon.ico" />
-
+      
+      {/* Changed to use static favicon.ico instead of dynamic SVGs */}
+      <link rel="icon" href="/files/fav/favicon.ico" sizes="any" />
+      
       {/* Open Graph */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
