@@ -63,6 +63,7 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
         title="Trump Golf vs Other Presidents - Presidential Vacation Comparison"
         description="Compare presidential golf and vacation days. See how Trump's time off compares to Obama, Bush, and Biden, including a full taxpayer cost analysis."
         path="/comparison/"
+        image="/files/og-comparison.jpg"
       />
 
       <Head>
