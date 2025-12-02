@@ -1,7 +1,7 @@
 #!/bin/bash
 # Auto-update script: fetch calendar, sync dates, generate stats, push to GitHub
 # Usage: ./scripts/auto-update.sh
-# Cron: 0 */2 * * * /path/to/istrumpgolfing.today/scripts/auto-update.sh >> /tmp/golf-update.log 2>&1
+# Cron: 0 */1 * * * /path/to/istrumpgolfing.today/scripts/auto-update.sh >> /tmp/golf-update.log 2>&1
 
 set -e
 
