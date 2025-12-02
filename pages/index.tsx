@@ -117,11 +117,17 @@ const Home: React.FC<HomeProps> = ({
   const statusImage = isGolfingToday ? "/files/golf.webp" : "/files/sad.webp";
   const formattedTotal = (totalCost || 0).toLocaleString('en-US', { maximumFractionDigits: 0 });
 
+  // Dynamic SEO content
+  const dynamicTitle = isGolfingToday
+    ? "YES, Trump is Golfing Today | Live Presidential Golf Tracker"
+    : "NO, Trump is Not Golfing Today | Live Presidential Golf Tracker";
+  const dynamicDescription = `As of today, Trump has golfed ${daysGolfed} times (${percentage}% of his term). Total taxpayer cost: ~$${(totalCost / 1000000).toFixed(1)}M. Track live updates here.`;
+
   return (
     <div className={styles.container}>
-      <SEO 
-        title="Is Trump Golfing Today? | Live Presidential Golf Tracker"
-        description="Real-time tracker for Donald Trump's presidential golf trips, taxpayer costs, and stats."
+      <SEO
+        title={dynamicTitle}
+        description={dynamicDescription}
         isGolfing={isGolfingToday ?? undefined}
       />
       
@@ -215,7 +221,7 @@ const Home: React.FC<HomeProps> = ({
             <>
               <Image
                 src={statusImage}
-                alt={isGolfingToday ? "Donald Trump Golfing at Mar-a-Lago" : "Donald Trump working"}
+                alt={isGolfingToday ? "Donald Trump Golfing at Mar-a-Lago" : "Donald Trump at the White House (Not Golfing)"}
                 className={styles.golfImage}
                 width={180}
                 height={180}
@@ -232,6 +238,12 @@ const Home: React.FC<HomeProps> = ({
             </>
           )}
         </section>
+
+        <p className={styles.summaryText}>
+          Donald Trump is currently <strong>{isGolfingToday ? 'at his golf club' : 'not golfing'}</strong>.
+          Since taking office, he has visited golf clubs on <strong>{daysGolfed} days</strong>,
+          costing taxpayers an estimated <strong>${(totalCost / 1000000).toFixed(1)} million</strong>.
+        </p>
 
         <div className={styles.statsGrid}>
           <dl className={styles.statCard}>

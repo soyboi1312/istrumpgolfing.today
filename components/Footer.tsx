@@ -13,8 +13,8 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ exclude = [], variant = 'minimal' }) => {
   const links = [
     { key: 'home', href: '/', label: 'Home' },
-    { key: 'comparison', href: '/comparison', label: 'Presidential Comparison' },
-    { key: 'cost-breakdown', href: '/cost-breakdown', label: 'Cost Breakdown' },
+    { key: 'comparison', href: '/comparison', label: 'Trump vs Obama Golf Comparison' },
+    { key: 'cost-breakdown', href: '/cost-breakdown', label: 'Taxpayer Cost Breakdown' },
     { key: 'embed', href: '/embed', label: 'Embed Widget' },
     { key: 'about', href: '/about', label: 'About' },
   ].filter(link => !exclude.includes(link.key as typeof exclude[number]));

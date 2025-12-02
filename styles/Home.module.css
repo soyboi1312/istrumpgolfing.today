@@ -198,6 +198,22 @@
   letter-spacing: 0.5px;
 }
 
+/* --- Summary Text --- */
+.summaryText {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.summaryText strong {
+  color: var(--color-text);
+}
+
 /* --- Stats Dashboard --- */
 .statsGrid {
   display: grid;
