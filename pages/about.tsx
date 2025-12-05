@@ -45,9 +45,24 @@ const About = () => {
             Trump's Own Words
           </h3>
           <ul className={styles.contentList}>
-            <li>"I'm going to be working for you. I'm not going to have time to go play golf." - Trump, August 2016</li>
-            <li>"I would rarely leave the White House because there's so much work to be done." - Trump, 2015</li>
-            <li>"Can you believe that, with all of the problems and difficulties facing the U.S., President Obama spent the day playing golf?" - Trump tweet, October 2014</li>
+            <li>
+              "I'm going to be working for you. I'm not going to have time to go play golf." —{' '}
+              <a href="https://www.politico.com/story/2017/02/trump-obama-golf-235217" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
+                Trump, August 2016
+              </a>
+            </li>
+            <li>
+              "I would rarely leave the White House because there's so much work to be done." —{' '}
+              <a href="https://thehill.com/blogs/in-the-know/245884-trump-i-would-rarely-leave-the-white-house/" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
+                Trump, 2015
+              </a>
+            </li>
+            <li>
+              "Can you believe that, with all of the problems and difficulties facing the U.S., President Obama spent the day playing golf?" —{' '}
+              <a href="https://x.com/realdonaldtrump/status/521813597799067648" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
+                Trump tweet, October 2014
+              </a>
+            </li>
           </ul>
         </section>
 

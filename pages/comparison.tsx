@@ -299,32 +299,32 @@ const Comparison: React.FC<ComparisonProps> = ({ lastUpdated, term2Stats }) => {
           <h2 className={styles.sectionTitle}>Sources & Methodology</h2>
           <ul className={styles.contentList}>
             <li>
-              <a href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.nbcnews.com/politics/donald-trump/how-much-time-trump-spending-trump-properties-n753366" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
                 NBC News - Trump property visits and golf tracker
               </a>
             </li>
             <li>
-              <a href="https://www.snopes.com/news/2025/02/04/biden-vacation-president/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.snopes.com/news/2025/02/04/biden-vacation-president/" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
                 Snopes - Biden vacation day fact check
               </a>
             </li>
             <li>
-              <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.cleveland.com/nation/2017/08/presidential_vacations_who_too.html" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
                 Cleveland.com - Historical presidential vacation data
               </a>
             </li>
             <li>
-              <a href="https://www.washingtonpost.com/wp-dyn/content/blog/2008/03/04/BL2008030401392.html" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.washingtonpost.com/wp-dyn/content/blog/2008/03/04/BL2008030401392.html" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
                 Washington Post - Reagan vacation records
               </a>
             </li>
             <li>
-              <a href="https://www.independent.co.uk/news/world/americas/us-politics/trump-gold-trips-taxpayer-money-doge-b2701045.html" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.independent.co.uk/news/world/americas/us-politics/trump-gold-trips-taxpayer-money-doge-b2701045.html" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
                 The Independent - Trump golf trip cost analysis
               </a>
             </li>
             <li>
-              <a href="https://www.citizensforethics.org/reports-investigations/crew-investigations/the-secret-service-spent-nearly-2-million-at-trump-properties/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.citizensforethics.org/reports-investigations/crew-investigations/the-secret-service-spent-nearly-2-million-at-trump-properties/" target="_blank" rel="noopener noreferrer" className={styles.orangeLink}>
                 CREW - Secret Service spending at Trump properties
               </a>
             </li>
