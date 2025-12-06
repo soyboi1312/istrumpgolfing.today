@@ -57,7 +57,7 @@ const Embed: React.FC<EmbedProps> = ({ totalGolfDays, estimatedTotalCost }) => {
     <div className={styles.container}>
       <SEO
         title="Embed Widget | Is Trump Golfing Today?"
-        description="Add the Trump Golf Tracker widget to your website. Free to use with attribution."
+        description="Embed the Trump Golf Tracker widget on your website. Shows live golf day count, taxpayer cost estimates, and percentage of term spent golfing. Free to use."
         path="/embed/"
       />
 
